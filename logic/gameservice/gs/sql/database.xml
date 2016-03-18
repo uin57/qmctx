@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mysql >
+	<database name="GameInfo" host="10.148.141.204" port="3306" dbname="Online" username="root" password="" />
+</mysql>

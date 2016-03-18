@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<application>
+
+	<javaconfig basepackage="ket.kpc"				
+				rpcpackage="rpc"
+				packetclassname="Packet"
+				sbeanclassname="SBean"
+	/>
+
+	<cppconfig basenamespace="KET::KPC"
+				packetnamespace="Packet"
+				sbeannamespace="SBean"
+				sbeandirectory="ket/kpc/"
+	/>	
+	
+	<refpackage name="ket.kpc.common" cppheader="datatypes.h" cppnamespace="KET::KPC">
+		<refbean name="PeerID"/>
+	</refpackage>
+	<refpackage name="ket.pack" cppheader="ket/util/pack.h" localheader="N" cppnamespace="KET::Util">
+		<refbean name="Digest"/>
+	</refpackage>
+	<refpackage name="ket.kio" cppheader="ket/kio/types.h" localheader="N" cppnamespace="KET::KIO">
+		<refbean name="NetAddress"/>
+	</refpackage>
+	
+	<!--<extsbeans ref="../kio/rpc.xml"/>-->		
+	
+	<bean name="PeerLoginRequest">
+		<field name="peerVersion" type="int32"/>
+		<field name="pubIP" type="string"/>
+		<field name="KUID" type="int64"/>
+		<field name="peerFlag" type="int32"/>
+		<field name="localIP" type="string"/>
+		<field name="localTCPPort" type="int32"/>
+		<field name="localUDPPort" type="int32"/>
+	</bean>
+	
+	<bean name="LocalPeerID" tostring="Y">
+		<field name="peerID" type="int64"/>
+		<field name="localIP" type="string"/>
+		<field name="localTCPPort" type="int32"/>
+		<field name="localUDPPort" type="int32"/>
+	</bean>
+	
+	<bean name="LocalNetworkNotice" tostring="Y">
+		<field name="head" type="LocalPeerID"/>
+		<field name="members" type="LocalPeerID" lst="Y"/>
+	</bean>
+	
+	<bean name="NetworkTCPTest" tostring="Y">
+		<field name="headID" type="int64"/>
+		<field name="addr" type="ket.kio.NetAddress"/>
+	</bean>
+	
+	<bean name="PieceInfo">
+		<intconst name="eCryNull" val="0"/>
+		<intconst name="eCryZip" val="1"/>
+		<field name="pieceSize" type="int32"/>
+		<field name="orgSize" type="int32"/>
+		<field name="digest" type="wstring"/>
+		<field name="cryType" type="uint8"/>
+	</bean>
+	
+	<bean name="Section">
+		<field name="offset" type="uint32"/>
+		<field name="count" type="uint32"/>
+	</bean>
+	
+	<bean name="Session">
+		<ienum name="Type">
+			<constant name="eTTS"/>
+			<constant name="eTPS"/>
+			<constant name="eTPC"/>
+		</ienum>
+		<ienum name="State">
+			<constant name="eIdle"/>
+			<constant name="eConnecting"/>
+			<constant name="eConnected"/>
+		</ienum>
+		<field name="id" type="uint32" uppername="ID"/>
+		<field name="type" type="Type"/>		
+		<field name="addr" type="ket.kio.NetAddress"/>
+		<field name="state" type="State"/>
+		<field name="downloadBytes" type="uint32"/>
+		<field name="uploadBytes" type="uint32"/>
+		<field name="downloadSpeed" type="uint32"/>
+		<field name="uploadSpeed" type="uint32"/>
+	</bean>
+	
+	<bean name="Task">
+		<ienum name="State">
+			<constant name="eShare"/>
+			<constant name="eDownload"/>
+		</ienum>
+		<ienum name="DState">
+			<constant name="eIdle"/>
+			<constant name="eWaiting"/>
+			<constant name="eDownloading"/>
+		</ienum>
+		<field name="digest" type="wstring"/>
+		<field name="state" type="State"/>
+		<field name="dState" type="DState"/>
+		<field name="nProviders" type="int32"/>
+		<field name="nextQuery" type="int32"/>
+	</bean>
+	
+	<bean name="TaskX">
+		<ienum name="State">
+			<constant name="eShare"/>
+			<constant name="eDownloadIdle"/>
+			<constant name="eDownloadWaiting"/>
+			<constant name="eDownloading"/>
+		</ienum>
+		<field name="state" type="int32"/>
+		<field name="size" type="int32"/>
+	</bean>
+	
+	<bean name="TaskXName">
+		<field name="digest" type="wstring"/>
+		<field name="index" type="int32"/>
+	</bean>
+	
+	<bean name="PeerSnapshot">
+		<field name="tasks" type="TaskX" lst="Y"/>
+		<field name="taskNames" type="TaskXName" lst="Y"/>
+		<field name="sessions" type="Session" lst="Y"/>
+	</bean>
+	
+	<bean name="DistFileInfo">
+		<field name="fileName" type="wstring"/>
+		<field name="size" type="int64"/>
+	</bean>
+	
+	<bean name="DistFileDownloadInfo">
+		<field name="totalSize" type="int64"/>
+		<field name="completedSize" type="int64"/>
+	</bean>
+	
+	<bean name="DistFileListRequest">
+		<field name="digest" type="wstring"/>
+		<field name="index" type="int32"/>
+	</bean>
+	
+	<bean name="DistFileListResponse">
+		<ienum name="ErrorCode">
+			<constant name="eOK"/>
+			<constant name="eDigestErr"/>
+		</ienum>
+		<field name="errcode" type="ErrorCode"/>
+		<field name="digest" type="wstring"/>
+		<field name="totalCount" type="int32"/>
+		<field name="index" type="int32"/>
+		<field name="count" type="int32"/>
+		<field name="files" type="DistFileInfo" lst="Y"/>
+	</bean>
+	
+	<bean name="DistFileRequest">
+		<ienum name="Priority">
+			<constant name="eCritical"/>
+			<constant name="eNormal"/>
+			<constant name="eBackground"/>
+		</ienum>
+		<field name="fileName" type="wstring"/>
+		<field name="priority" type="Priority"/>
+	</bean>
+	
+	<bean name="DistFileResponse">
+		<ienum name="ErrorCode">
+			<constant name="eOK"/>
+			<constant name="eFileNotFound"/>
+			<constant name="eEmptyFile"/>
+			<constant name="eReadError"/>
+			<constant name="eNetError"/>
+		</ienum>
+		<field name="fileName" type="wstring"/>
+		<field name="pieces" type="PieceInfo" lst="Y"/>
+		<field name="errcode" type="ErrorCode"/>
+	</bean>
+	
+	<bean name="PeerStatus">
+		<field name="downSpeed" type="int32"/>
+	</bean>
+	
+	<bean name="TrackerRedirectInfo">
+		<field name="addr" type="ket.kio.NetAddress"/>
+	</bean>
+	
+	<bean name="PeerLoadInfo">
+		<field name="load" type="int32"/>
+	</bean>
+			
+	<channel name="T2P" comment="tracker to peer">
+		<packet name="Hello" id="1">
+			<field name="trackerVersion" type="int32"/>
+			<field name="clientIP" type="string"/>
+		</packet>
+		<packet name="LoginResponse" id="2">
+			<ienum name="RetCode">
+				<constant name="eLoginOK"/>
+				<constant name="eLoginFailed"/>
+			</ienum>
+			<field name="ret" type="RetCode"/>
+			<field name="peerID" type="ket.kpc.common.PeerID"/>
+		</packet>
+		<packet name="TPSTestQuestion" id="3">
+		</packet>
+		<packet name="TPSTestResponse" id="4">
+			<field name="peerID" type="ket.kpc.common.PeerID"/>
+		</packet>
+		<packet name="UPSTestQuestion" id="5">
+			<field name="assistantPort" type="int32"/>
+		</packet>
+		<packet name="UPSTestResponse" id="6">
+			<field name="ret" type="int32"/>
+			<field name="peerID" type="ket.kpc.common.PeerID"/>
+		</packet>
+		<packet name="SourceAnswer" id="7">
+			<field name="digest" type="ket.pack.Digest"/>
+			<field name="providers" type="ket.kpc.common.PeerID" lst="Y"/>
+		</packet>
+		<packet name="TPSRCResponse" id="8">
+			<field name="ok" type="bool" uppername="OK"/>
+			<field name="peerSessionID" type="int32"/>
+		</packet>
+		<packet name="TPSRCRequest" id="9">
+			<field name="demanderPeerID" type="ket.kpc.common.PeerID"/>
+			<field name="peerSessionID" type="int32"/>
+		</packet>
+		<packet name="Relay" id="10">
+			<field name="sourcePeerID" type="ket.kpc.common.PeerID"/>
+			<field name="data" type="bytebuffer"/>
+		</packet>
+		<packet name="UPSRCResponse" id="11">
+			<field name="ok" type="bool" uppername="OK"/>
+			<field name="peerSessionID" type="int32"/>
+		</packet>
+		<packet name="UPSRCRequest" id="12">
+			<field name="demanderPeerID" type="ket.kpc.common.PeerID"/>
+			<field name="peerSessionID" type="int32"/>
+		</packet>
+		<packet name="RelayClose" id="13">
+			<field name="peerID" type="ket.kpc.common.PeerID"/>
+		</packet>
+		<packet name="DataGroupMemberQuery" id="14">
+			<field name="group" type="ket.pack.Digest"/>
+			<field name="section" type="Section"/>
+		</packet>
+		<packet name="NoticeLocalNetwork" id="15">
+			<field name="notice" type="LocalNetworkNotice"/>
+		</packet>
+		<packet name="TestNetworkTCP" id="16">
+			<field name="test" type="NetworkTCPTest"/>
+		</packet>
+		<packet name="TrackerRedirect" id="17">
+			<field name="info" type="TrackerRedirectInfo"/>
+		</packet>
+		<packet name="Ping" id="18">
+			<field name="seq" type="int32"/>
+			<field name="load" type="int32"/>
+		</packet>
+	</channel>
+	
+	<channel name="P2T" comment="peer to tracker">
+		<packet name="LoginRequest" id="1001">
+			<field name="req" type="PeerLoginRequest"/>
+		</packet>
+		<packet name="TPSTestRequest" id="1002">
+			<field name="port" type="int32"/>
+		</packet>
+		<packet name="TPSTestAnswer" id="1003">
+			<field name="key" type="int64"/>
+		</packet>
+		<packet name="UPSTestRequest" id="1004">
+		</packet>
+		<packet name="UPSTestAnswer" id="1005">
+			<field name="key" type="int64"/>
+		</packet>
+		<packet name="ShareUpdateRequest" id="1006">
+			<field name="digest" type="ket.pack.Digest"/>
+			<field name="addOrRemove" type="bool"/>
+		</packet>
+		<packet name="SourceQuery" id="1007">
+			<field name="digest" type="ket.pack.Digest"/>
+		</packet>
+		<packet name="TPSRCRequest" id="1008">
+			<field name="targetPeerID" type="ket.kpc.common.PeerID"/>
+			<field name="peerSessionID" type="int32"/>
+		</packet>
+		<packet name="TPSRCResponse" id="1009">
+			<field name="demanderPeerID" type="ket.kpc.common.PeerID"/>
+			<field name="peerSessionID" type="int32"/>
+			<field name="ok" type="bool" uppername="OK"/>
+		</packet>
+		<packet name="Relay" id="1010">
+			<field name="targetPeerID" type="ket.kpc.common.PeerID"/>
+			<field name="data" type="bytebuffer"/>
+		</packet>
+		<packet name="UPSRCRequest" id="1011">
+			<field name="targetPeerID" type="ket.kpc.common.PeerID"/>
+			<field name="peerSessionID" type="int32"/>
+		</packet>
+		<packet name="CreateDataGroup" id="1012">
+			<field name="group" type="ket.pack.Digest"/>
+			<field name="memberCount" type="uint32"/>
+		</packet>
+		<packet name="DataGroupMemberAnswer" id="1013">
+			<field name="group" type="ket.pack.Digest"/>
+			<field name="section" type="Section"/>
+			<field name="members" type="ket.pack.Digest" lst="Y"/>
+		</packet>
+		<packet name="GroupShareUpdateRequest" id="1014">
+			<field name="group" type="ket.pack.Digest"/>
+			<field name="list" type="uint32" lst="Y"/>
+		</packet>
+		<packet name="TestNetworkTCP" id="1017">
+			<field name="host" type="string"/>
+			<field name="ok" type="bool" uppername="OK"/>
+		</packet>
+		<packet name="Ping" id="1018">
+			<field name="seq" type="int32"/>
+		</packet>
+		<packet name="LoadReport" id="1019">
+			<field name="loadInfo" type="PeerLoadInfo"/>
+		</packet>
+	</channel>
+	
+	<channel name="P2P" comment="peer to peer">
+		<packet name="Hello" id="2001">
+			<field name="peerID" type="ket.kpc.common.PeerID"/>
+		</packet>
+		<packet name="TPSRCResponse" id="2002">
+			<field name="ok" type="bool" uppername="OK"/>
+			<field name="peerSessionID" type="int32"/>
+		</packet>
+		<packet name="UPSRCResponse" id="2003">
+			<field name="ok" type="bool" uppername="OK"/>
+			<field name="peerSessionID" type="int32"/>
+		</packet>
+		<packet name="UPSPunch" id="2004">
+		</packet>
+		<packet name="UPSClose" id="2005">
+		</packet>
+		<packet name="RegisterRequest" id="2006">
+			<field name="digest" type="ket.pack.Digest"/>
+		</packet>
+		<packet name="RegisterResponse" id="2007">
+			<field name="digest" type="ket.pack.Digest"/>
+			<field name="rank" type="uint32"/>
+		</packet>
+		<packet name="UploadRequest" id="2008">
+			<field name="digest" type="ket.pack.Digest"/>
+		</packet>
+		<packet name="UploadResponse" id="2009">
+			<field name="digest" type="ket.pack.Digest"/>
+			<field name="ok" type="bool" uppername="OK"/>
+		</packet>
+		<packet name="DataRequest" id="2010">
+			<field name="digest" type="ket.pack.Digest"/>
+			<field name="section" type="Section"/>
+		</packet>
+		<packet name="DataResponse" id="2011">
+			<field name="digest" type="ket.pack.Digest"/>
+			<field name="section" type="Section"/>
+			<field name="data" type="bytebuffer"/>
+		</packet>
+		<packet name="FinishUpload" id="2012">
+			<field name="digest" type="ket.pack.Digest"/>
+		</packet>
+		<packet name="FinishDownload" id="2013">
+			<field name="digest" type="ket.pack.Digest"/>
+		</packet>
+		<packet name="GroupQuery" id="2014">
+			<field name="group" type="ket.pack.Digest"/>
+		</packet>
+		<packet name="GroupAnswer" id="2015">
+			<field name="group" type="ket.pack.Digest"/>
+			<field name="exist" type="bool"/>
+		</packet>
+		<packet name="NoticeLocalNetworkMember" id="2016">
+			<field name="headID" type="LocalPeerID"/>
+			<field name="memberID" type="LocalPeerID"/>
+		</packet>
+		<packet name="LocalNetworkKeepaliveReq" id="2017">
+			<field name="selfID" type="int64"/>
+		</packet>
+		<packet name="LocalNetworkKeepaliveRes" id="2018">
+			<field name="selfID" type="int64"/>
+		</packet>
+		<packet name="LocalNetworkShareUpdate" id="2019">
+			<field name="selfID" type="int64"/>
+			<field name="digests" type="ket.pack.Digest" lst="Y"/>
+		</packet>
+		<packet name="LocalQuery" id="2020">
+			<field name="queryID" type="int32"/>
+			<field name="digest" type="ket.pack.Digest"/>
+		</packet>
+		<packet name="LocalQueryAnswer" id="2021">
+			<field name="queryID" type="int32"/>
+			<field name="providers" type="ket.kpc.common.PeerID" lst="Y"/>
+		</packet>
+		<packet name="QueryRequest" id="2022">
+			<field name="digest" type="ket.pack.Digest"/>
+		</packet>
+		<packet name="QueryResponse" id="2023">
+			<field name="digest" type="ket.pack.Digest"/>
+			<field name="exist" type="bool"/>
+		</packet>
+	</channel>
+	
+	<channel name="M2P" comment="monitor to peer">
+		<packet name="Hello" id="3001"/>
+		<packet name="SnapshotRequest" id="3002"/>
+	</channel>
+	
+	<channel name="P2M" comment="peer to monitor">
+		<packet name="Hello" id="3101"/>
+		<packet name="SnapshotResponse" id="3102">
+			<field name="snapshot" type="PeerSnapshot"/>
+		</packet>
+	</channel>
+	
+	<channel name="C2P" comment="control to peer">
+		<packet name="Hello" id="4001">
+			<field name="mutexName" type="wstring"/>
+		</packet>
+		<packet name="RegisterDistDigest" id="4002">
+			<field name="digest" type="wstring"/>
+		</packet>
+		<packet name="DistFile" id="4003">
+			<field name="req" type="DistFileRequest"/>
+		</packet>
+		<packet name="CheckFile" id="4004">
+			<field name="req" type="wstring"/>
+		</packet>
+		<packet name="DistFileList" id="4005">
+			<field name="req" type="DistFileListRequest"/>
+		</packet>
+	</channel>
+	
+	<channel name="P2C" comment="peer to control">
+		<packet name="Hello" id="4501">
+			<field name="downloadDir" type="wstring"/>
+		</packet>
+		<packet name="DistFile" id="4502">
+			<field name="res" type="DistFileResponse"/>
+		</packet>
+		<packet name="DistFileFrag" id="4503">
+			<field name="fileName" type="wstring"/>
+			<field name="totalCount" type="uint32"/>
+			<field name="index" type="uint32"/>
+			<field name="res" type="DistFileResponse"/>
+		</packet>
+		<packet name="DistFileUpdate" id="4504">
+			<field name="fileName" type="wstring"/>
+			<field name="dinfo" type="DistFileDownloadInfo"/>
+		</packet>
+		<packet name="CheckFile" id="4505">
+			<field name="res" type="DistFileResponse"/>
+			<field name="dinfo" type="DistFileDownloadInfo"/>
+		</packet>
+		<packet name="CheckFileFrag" id="4506">
+			<field name="fileName" type="wstring"/>
+			<field name="totalCount" type="uint32"/>
+			<field name="index" type="uint32"/>
+			<field name="res" type="DistFileResponse"/>
+			<field name="dinfo" type="DistFileDownloadInfo"/>
+		</packet>
+		<packet name="DistFileList" id="4507">
+			<field name="res" type="DistFileListResponse"/>
+		</packet>
+		<packet name="UpdatePeerStatus" id="4508">
+			<field name="status" type="PeerStatus"/>
+		</packet>
+	</channel>
+	
+	<peer name="UDPTrackerServer" type="udppeer" package="tracker">
+		<channelref name="P2T">
+			<packetref name="UPSTestAnswer"/>
+			<packetref name="Ping"/>
+		</channelref>
+	</peer>
+	<peer name="AssistantUDPTrackerServer" type="udppeer" package="tracker">
+		<channelref name="P2T">
+			<packetref name="UPSTestAnswer"/>
+		</channelref>
+	</peer>
+	<peer name="TCPTrackerServer" type="tcpserver" package="tracker" maxidle="handler">
+		<channelref name="P2T">
+			<packetref name="LoginRequest"/>
+			<packetref name="TPSTestRequest"/>
+			<packetref name="UPSTestRequest"/>
+			<packetref name="ShareUpdateRequest"/>
+			<packetref name="SourceQuery"/>
+			<packetref name="TPSRCRequest"/>
+			<packetref name="TPSRCResponse"/>
+			<packetref name="UPSRCRequest"/>
+			<packetref name="Relay"/>
+			<packetref name="CreateDataGroup"/>
+			<packetref name="DataGroupMemberAnswer"/>
+			<packetref name="GroupShareUpdateRequest"/>
+			<packetref name="TestNetworkTCP"/>
+			<packetref name="LoadReport"/>
+		</channelref>
+	</peer>
+	<peer name="TPSTestClient" type="tcpclient" package="tracker">
+		<field name="key" type="int64"/>
+		<field name="ok" type="bool" uppername="OK"/>
+		<channelref name="P2T">
+			<packetref name="TPSTestAnswer"/>
+		</channelref>
+	</peer>
+	
+	<peer name="UDPPeerServer" type="udppeer" package="peer">
+		<channelref name="T2P">
+			<packetref name="Ping"/>			
+		</channelref>
+		<channelref name="P2P">
+			<packetref name="Hello"/>
+			<packetref name="UPSRCResponse"/>
+			<packetref name="UPSPunch"/>
+			<packetref name="UPSClose"/>
+			<packetref name="RegisterRequest"/>
+			<packetref name="RegisterResponse"/>
+			<packetref name="UploadRequest"/>
+			<packetref name="UploadResponse"/>
+			<packetref name="DataRequest"/>
+			<packetref name="DataResponse"/>
+			<packetref name="FinishUpload"/>
+			<packetref name="FinishDownload"/>
+			<packetref name="GroupQuery"/>
+			<packetref name="GroupAnswer"/>
+			<packetref name="NoticeLocalNetworkMember"/>
+			<packetref name="LocalNetworkKeepaliveReq"/>
+			<packetref name="LocalNetworkKeepaliveRes"/>
+			<packetref name="LocalNetworkShareUpdate"/>
+			<packetref name="LocalQuery"/>
+			<packetref name="LocalQueryAnswer"/>
+			<packetref name="QueryRequest"/>
+			<packetref name="QueryResponse"/>			
+		</channelref>
+	</peer>
+	
+	<peer name="TCPPeerServer" type="tcpserver" package="peer">
+		<channelref name="T2P">
+			<packetref name="TPSTestQuestion"/>
+		</channelref>
+		<channelref name="P2P">
+			<packetref name="Hello"/>
+			<packetref name="TPSRCResponse"/>
+			<packetref name="RegisterRequest"/>
+			<packetref name="RegisterResponse"/>
+			<packetref name="UploadRequest"/>
+			<packetref name="UploadResponse"/>
+			<packetref name="DataRequest"/>
+			<packetref name="DataResponse"/>
+			<packetref name="FinishUpload"/>
+			<packetref name="FinishDownload"/>
+			<packetref name="GroupQuery"/>
+			<packetref name="GroupAnswer"/>
+			<packetref name="QueryRequest"/>
+			<packetref name="QueryResponse"/>
+		</channelref>
+	</peer>
+	
+	<peer name="TCPPeerMonitorServer" type="tcpserver" package="peer">
+		<channelref name="M2P">
+			<packetref name="Hello"/>
+			<packetref name="SnapshotRequest"/>
+		</channelref>
+	</peer>
+	
+	<peer name="TCPPeerMonitorClient" type="tcpclient" package="monitor">
+		<channelref name="P2M">
+			<packetref name="Hello"/>
+			<packetref name="SnapshotResponse"/>
+		</channelref>
+	</peer>
+	
+	<peer name="TCPPeerControlServer" type="tcpserver" package="peer">
+		<channelref name="C2P">
+			<packetref name="Hello"/>
+			<packetref name="RegisterDistDigest"/>
+			<packetref name="DistFile"/>
+			<packetref name="CheckFile"/>
+			<packetref name="DistFileList"/>
+		</channelref>
+	</peer>
+	
+	<peer name="TCPPeerControlClient" type="tcpclient" package="control">
+		<channelref name="P2C">
+			<packetref name="Hello"/>
+			<packetref name="DistFile"/>
+			<packetref name="DistFileFrag"/>
+			<packetref name="DistFileUpdate"/>
+			<packetref name="CheckFile"/>
+			<packetref name="CheckFileFrag"/>
+			<packetref name="DistFileList"/>
+			<packetref name="UpdatePeerStatus"/>
+		</channelref>
+	</peer>
+	
+	<peer name="TCPTrackerClient" type="tcpclient" package="peer">
+		<field name="redirectInfo" type="TrackerRedirectInfo"/>
+		<channelref name="T2P">
+			<packetref name="Hello"/>
+			<packetref name="LoginResponse"/>
+			<packetref name="TPSTestResponse"/>
+			<packetref name="UPSTestResponse"/>
+			<packetref name="UPSTestQuestion"/>
+			<packetref name="SourceAnswer"/>
+			<packetref name="TPSRCResponse"/>
+			<packetref name="TPSRCRequest"/>
+			<packetref name="UPSRCRequest"/>
+			<packetref name="UPSRCResponse"/>
+			<packetref name="RelayClose"/>
+			<packetref name="Relay"/>
+			<packetref name="DataGroupMemberQuery"/>
+			<packetref name="NoticeLocalNetwork"/>
+			<packetref name="TestNetworkTCP"/>
+			<packetref name="TrackerRedirect"/>			
+		</channelref>
+	</peer>
+	<peer name="TCPTrackerClientCheater" type="tcpclient" package="peer">
+		<field name="clientID" type="int32"/>
+		<channelref name="T2P">
+			<packetref name="Hello"/>
+			<packetref name="LoginResponse"/>
+			<packetref name="TPSTestResponse"/>
+			<packetref name="UPSTestResponse"/>
+			<packetref name="UPSTestQuestion"/>
+			<packetref name="SourceAnswer"/>
+			<packetref name="TPSRCResponse"/>
+			<packetref name="TPSRCRequest"/>
+			<packetref name="UPSRCRequest"/>
+			<packetref name="UPSRCResponse"/>
+			<packetref name="RelayClose"/>
+			<packetref name="Relay"/>
+			<packetref name="DataGroupMemberQuery"/>
+			<packetref name="NoticeLocalNetwork"/>
+			<packetref name="TestNetworkTCP"/>
+			<packetref name="TrackerRedirect"/>
+		</channelref>
+	</peer>
+	
+	<peer name="TCPPeerClient" type="tcpclient" package="peer">
+		<field name="localPeerSessionID" type="int32"/>
+		<field name="remotePeerSessionID" type="int32"/>
+		<field name="direct" type="bool"/>
+		<field name="remotePeerID" type="ket.kpc.common.PeerID"/>
+		<field name="localPeerID" type="ket.kpc.common.PeerID"/>
+		<channelref name="P2P">
+			<packetref name="Hello"/>
+			<packetref name="RegisterRequest"/>
+			<packetref name="RegisterResponse"/>
+			<packetref name="UploadRequest"/>
+			<packetref name="UploadResponse"/>
+			<packetref name="DataRequest"/>
+			<packetref name="DataResponse"/>
+			<packetref name="FinishUpload"/>
+			<packetref name="FinishDownload"/>
+			<packetref name="GroupQuery"/>
+			<packetref name="GroupAnswer"/>
+			<packetref name="QueryRequest"/>
+			<packetref name="QueryResponse"/>
+		</channelref>
+	</peer>
+	
+	<peer name="NTTestClient" type="tcpclient" package="peer">
+		<field name="dstHost" type="string"/>
+		<field name="ok" type="bool" uppername="OK"/>
+	</peer>
+	
+	<handler name="Tracker" vname="tracker" package="tracker">
+		<peerref name="tracker.UDPTrackerServer"/>
+		<peerref name="tracker.AssistantUDPTrackerServer"/>
+		<peerref name="tracker.TCPTrackerServer"/>
+		<peerref name="tracker.TPSTestClient"/>
+	</handler>
+	
+	<handler name="RPCManager" vname="managerRPC" package="peer">
+		<peerref name="peer.UDPPeerServer"/>
+		<peerref name="peer.TCPPeerServer"/>
+		<peerref name="peer.TCPPeerMonitorServer"/>
+		<peerref name="peer.TCPPeerControlServer"/>
+		<peerref name="peer.TCPTrackerClient"/>
+		<peerref name="peer.TCPPeerClient"/>
+		<peerref name="peer.NTTestClient"/>
+	</handler>
+	
+	<handler name="ClientCheater" vname="clientCheater" package="peer">
+		<peerref name="peer.TCPTrackerClientCheater"/>
+	</handler>
+	
+	<handler name="Monitor" vname="monitor" package="monitor">
+		<peerref name="monitor.TCPPeerMonitorClient"/>
+	</handler>
+	
+	<handler name="Control" vname="control" package="control">
+		<peerref name="control.TCPPeerControlClient"/>
+	</handler>
+	
+</application>

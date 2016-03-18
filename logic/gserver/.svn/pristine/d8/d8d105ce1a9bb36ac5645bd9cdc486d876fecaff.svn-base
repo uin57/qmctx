@@ -1,0 +1,5030 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<application>
+
+	<javaconfig basepackage="i3k"				
+				rpcpackage="rpc"
+				packetclassname="Packet"
+				sbeanclassname="SBean"
+	/>
+
+	<cppconfig basenamespace="I3K"
+				packetnamespace="Packet"
+				sbeannamespace="SBean"
+				sbeandirectory=""
+				bsinglethread="y"
+	/>
+	
+	<refpackage name="i3k">
+		<refbean name="DBRoleGeneral"/>
+        <refbean name="DBRole"/>
+	</refpackage>
+	
+	<bean name="Float3" kclone="s">
+		<field name="x" type="float"/>
+		<field name="y" type="float"/>
+		<field name="z" type="float"/>
+	</bean>
+	
+	<bean name="CmnRewardCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="generalLevel" type="int8"/>
+		<field name="exp" type="int32"/>
+		<field name="stone" type="int32"/>
+		<field name="money" type="int32"/>
+		<field name="rewards" type="DropEntry" lst="Y"/>
+	</bean>
+	
+	<bean name="UIEffectCFG">
+		<field name="id" type="int16"/>
+		<field name="path" type="string"/>
+		<field name="scale" type="float"/>		
+	</bean>
+	
+	<bean name="ArtEffectCFG">
+		<field name="id" type="int16"/>
+		<field name="path" type="string"/>
+		<field name="radius" type="float"/>
+		<field name="hsName" type="string"/>		
+	</bean>
+	
+	<bean name="FightEffectCFG">
+		<field name="id" type="int8"/>
+		<field name="name" type="string"/>
+		<field name="artEffectID" type="int16"/>		
+	</bean>
+	
+	<bean name="CombatMapCFG">
+		<field name="id" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="path" type="string"/>
+	</bean>
+	
+	<bean name="CombatGeneral">
+		<field name="generalID" type="int16"/>
+		<field name="generalLvl" type="int8"/>
+	</bean>
+	
+	<bean name="CombatCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="monsterWaveCnt" type="int8"/>
+		<field name="lvlReq" type="int16"/>
+		<field name="monsterCnt" type="int8"/>
+		<field name="immune" type="int8"/>
+		<field name="fightPower" type="int32"/>
+		<field name="maxTimes" type="int8"/>
+		<field name="type" type="int8"/>
+		<field name="vitCostStart" type="int16"/>
+		<field name="vitCostWin" type="int16"/>
+		<field name="dropExp" type="int32"/>
+		<field name="dropGeneralExp" type="int32"/>
+		<field name="dropMoney" type="int32"/>
+		<field name="dropStone" type="int16"/>
+		<field name="dropStoneTimes" type="int8"/>
+		<field name="dropTimes" type="int8"/>
+		<field name="dropTableID" type="int16"/>
+		<field name="dropStoneID" type="int16"/>
+		<field name="dropFixed" type="DropEntry" lst="Y"/>
+	</bean>
+	
+	<bean name="CombatEventCFGS" scope="1">
+		<field name="id" type="int8"/>
+		<field name="lvlReq" type="int16"/>
+		<field name="maxTimes" type="int8"/>
+		<field name="cool" type="int16"/>
+		<field name="weekdays" type="int8" lst="Y"/>
+		<field name="combatIDs" type="int16" lst="Y"/>
+	</bean>
+	
+	<bean name="DayReward">
+		<int8const name="eTypeItem" val="0"/>
+		<int8const name="eTypeEquip" val="1"/>
+		<int8const name="eTypeGeneral" val="2"/>
+		<field name="type" type="int8"/>
+		<field name="count" type="int8"/>
+		<field name="id" type="int16"/>
+	</bean>
+	
+	<bean name="ForceCostCFGS" scope="1">
+		<field name="moneyType" type="int8"/>
+		<field name="money" type="int32"/>
+	</bean>
+	
+	<bean name="ForceLevelCFGS" scope="1">
+		<field name="cupNeed" type="int32"/>
+		<field name="posCount" type="int8" lst="Y"/>
+	</bean>
+	
+	<bean name="ForceMobaiCFGS" scope="1">
+		<field name="maxRewardMoney" type="int32"/>
+		<field name="freeVit" type="int16"/>
+		<field name="moneyVit" type="int16"/>
+		<field name="stoneVit" type="int16"/>
+		<field name="moneyCost" type="int32"/>
+		<field name="stoneCost" type="int32"/>
+		<field name="freeMoney" type="int32"/>
+		<field name="moneyMoney" type="int32"/>
+		<field name="stoneMoney" type="int32"/>
+	</bean>
+
+	<bean name="ForceActivityDropCFGS" scope="1">
+		<field name="maxLvl" type="int8"/>
+		<field name="drop" type="int16"/>
+	</bean>
+	<bean name="ForceActivityRewardCFGS" scope="1">
+		<field name="name" type="string"/>
+		<field name="tips" type="string"/>
+		<field name="forceActivity" type="int32"/>
+		<field name="activity" type="int32"/>
+		<field name="money1" type="int32"/>
+		<field name="money2" type="int32"/>
+		<field name="drops" type="ForceActivityDropCFGS" lst="Y"/>
+	</bean>
+
+	<bean name="ForceDismissRewardCFGS" scope="1">
+		<field name="lvl" type="int16"/>
+		<field name="itemId" type="int16"/>
+		<field name="count" type="int32"/>
+	</bean>
+
+	<bean name="ForceCFGS" scope="1">
+		<field name="lvlCreate" type="int16"/>
+		<field name="stoneCreate" type="int32"/>
+		<field name="maxMembers" type="int16"/>
+		<field name="levels" type="ForceLevelCFGS" lst="Y"/>
+		<field name="mobai" type="ForceMobaiCFGS"/>
+		<field name="activityRewards" type="ForceActivityRewardCFGS" lst="Y"/>
+		<field name="sendMailMaxCnt" type="int32"/>
+		<field name="dismissRewards" type="ForceDismissRewardCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="CombatExtraDropCFGS" scope="1">
+		<field name="combatID" type="int16"/>
+		<field name="dropTblID" type="int16"/>	
+	</bean>
+	
+	<bean name="PlusEffectCFGS" scope="1">
+		<field name="count" type="int32"/>
+		<field name="plus" type="int8"/>	
+	</bean>
+	
+	<bean name="ItemPlusEffectCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="itemID" type="int16"/>
+		<field name="rewardPointPerItem" type="int16"/>
+		<field name="plusEffect" type="PlusEffectCFGS" lst="Y"/>	
+	</bean>
+	
+	<bean name="ForceBattleGameCFGS" scope="1">
+		<field name="startTime" type="int32"/>
+		<field name="endTime" type="int32"/>
+		<field name="winPoints" type="int32"/>
+		<field name="winMoney" type="int32"/>
+		<field name="lostPoints" type="int32"/>
+		<field name="lostMoney" type="int32"/>
+	</bean>
+	
+   <bean name="ForceBattleCFGS" scope="1">
+		<field name="id" type="int32"/>
+		<field name="startTime" type="int32"/>
+		<field name="endTime" type="int32"/>
+		<field name="selectionTimeStart" type="int32"/>
+		<field name="knockoutTimeStart" type="int32"/>
+		<field name="forceMemCntReq" type="int32"/>
+		<field name="playerLvlReq" type="int32"/>
+		<field name="generalLvlReq" type="int32"/>
+		<field name="normalDropTblID" type="int16"/>
+		<field name="heroDropTblID" type="int16"/>
+		<field name="combatsDropTblIDs" type="CombatExtraDropCFGS" lst="Y"/>
+		<field name="knockout" type="ForceBattleGameCFGS" lst="Y"/>
+		<field name="leagueEndTimes" type="int32" lst="Y"/>
+		<field name="recordEndTime" type="int32"/>
+	</bean>
+	
+	<bean name="ForceBattleRewardCFGS" scope="1">
+		<field name="money" type="int32"/>
+		<field name="stone" type="int32"/>
+		<field name="point" type="int16"/>
+		<field name="item1" type="int16"/>
+		<field name="item1Count" type="int8"/>
+		<field name="item2" type="int16"/>
+		<field name="item2Count" type="int8"/>
+	</bean>
+	
+	<bean name="ForceThiefCombatCFGS" scope="1">
+		<field name="lvlMin" type="int16" />
+		<field name="combatIds" type="int16" lst="Y"/>
+	</bean>
+	
+	<bean name="ForceThiefSequenceCFGS" scope="1">
+		<field name="startTime" type="int32" />
+		<field name="combatTypes" type="int8" lst="Y"/>
+	</bean>
+	
+	<bean name="ForceThiefRewardCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="itemId" type="int16"/>
+		<field name="itemCount" type="int32"/>
+	</bean>
+	
+	<bean name="ForceBeastBasicCFGS" scope="1">
+		<field name="resetAttackPropCost" type="int32"/>
+		<field name="resetSkillCost" type="int32"/>
+		<field name="resetPropCost" type="int32" lst="Y"/>
+		<field name="mainPropUpCost" type="int32"/>
+		<field name="auxPropUpCost" type="int32"/>
+		<field name="feedItemId" type="int16"/>
+		<field name="feedGain" type="int16"/>
+	</bean>
+	
+	<bean name="ForceBeastSkillUpCostCFGS" scope="1">
+		<field name="costs" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="ForceBeastEvoCFGS" scope="1">
+		<field name="gid" type="int16"/>
+		<field name="nextCost" type="int32"/>
+		<field name="nextLvl" type="int16"/>
+	</bean>
+	
+	<bean name="ForceBattlesCFGS" scope="1">
+		<field name="battles" type="ForceBattleCFGS" lst="Y"/>
+		<field name="itemPlusEffects" type="ItemPlusEffectCFGS" lst="Y"/>
+		<field name="rewards" type="ForceBattleRewardCFGS" lst="Y"/>
+		<field name="headRewards" type="ForceBattleRewardCFGS" lst="Y"/>
+		<field name="thiefCombats" type="ForceThiefCombatCFGS" lst="Y"/>
+		<field name="thiefBossCombats" type="ForceThiefCombatCFGS" lst="Y"/>
+		<field name="thiefSequences" type="ForceThiefSequenceCFGS" lst="Y"/>
+		<field name="thiefRewards" type="ForceThiefRewardCFGS" lst="Y"/>
+		<field name="beastBasic" type="ForceBeastBasicCFGS"/>
+		<field name="beastSkillUpCost" type="ForceBeastSkillUpCostCFGS" lst="Y"/>
+		<field name="beastEvo" type="ForceBeastEvoCFGS" lst="Y"/>
+		<field name="beastExp" type="int32" lst="Y"/>
+		<field name="normalDropTblID" type="int16"/>
+		<field name="heroDropTblID" type="int16"/>
+		<field name="combatsDropTblIDs" type="CombatExtraDropCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="InvitationTaskCFG" scope="1">
+		<field name="id" type="int32"/>
+		<field name="reqArg1" type="int32"/>
+		<field name="reqArg2" type="int32"/>
+		<field name="rewardMoney" type="int32"/>
+		<field name="rewardStone" type="int32"/>
+		<field name="rewardVip" type="int32"/>
+		<field name="rewardPoint" type="int32"/>
+	</bean>
+	
+	<bean name="InvitationGroupTasksCFG" scope="1">
+		<field name="groupId" type="int8"/>
+		<field name="tasks" type="InvitationTaskCFG" lst="Y"/>
+	</bean>
+	
+	<bean name="InvitationPointsRewardCFG" scope="1">
+		<field name="id" type="int32"/>
+		<field name="pointsLvl" type="int32"/>
+		<field name="reward" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="InvitationTypeTasksCFG" scope="1">
+		<field name="type" type="int8"/>
+		<field name="tasks" type="InvitationGroupTasksCFG" lst="Y"/>
+		<field name="rewards" type="InvitationPointsRewardCFG" lst="Y"/>
+	</bean>
+	
+	<bean name="InvitationCFGS" scope="1">
+		<field name="tasks" type="InvitationTypeTasksCFG" lst="Y"/>
+		<field name="beInvitedRewards" type="DropEntryNew" lst="Y"/>
+		<field name="inputKeyLvlMin" type="int32"/>
+		<field name="inputKeyLvlMax" type="int32"/>
+		<field name="invatationLvlReq" type="int32"/>
+	</bean>
+	
+	<bean name="RichBossBaseCFGS" scope="1">
+		<field name="lvl" type="int8" />
+		<field name="base" type="int32" />
+	</bean>
+	
+	<bean name="RichMineCFGS" scope="1">
+		<field name="gain" type="int32" />
+		<field name="tax" type="int32" />
+	</bean>
+	
+	<bean name="RichObjectCFGS" scope="1">
+		<field name="id" type="int32" />
+		<field name="itemID" type="int16" />
+	</bean>
+	
+	<bean name="RichDivineCostCFGS" scope="1">
+		<field name="gold" type="int32" />
+		<field name="stone" type="int32" />
+	</bean>
+	
+	<bean name="RichBasicCFGS" scope="1">
+		<field name="initgold" type="int32" />
+		<field name="initmovement" type="int16" />
+		<field name="movecost" type="int16" />
+		<field name="diceposs" type="int16" lst="Y"/>
+		<field name="minidiceposs" type="int16" lst="Y"/>
+		<field name="multiplydiceposs" type="int16" lst="Y"/>
+		<field name="multiplyposs" type="float"/>
+		<field name="minigold" type="int32" lst="Y"/>
+		<field name="moneygodgold" type="int32"/>
+		<field name="bigmoneygodgold" type="int32"/>
+		<field name="angelround" type="int8"/>
+		<field name="devilround" type="int8"/>
+		<field name="turtleround" type="int8"/>
+		<field name="beggargold" type="int32"/>
+		<field name="bmwmove" type="int16"/>
+		<field name="loterycost" type="int16"/>
+		<field name="divine1cost" type="RichDivineCostCFGS" lst="Y"/>
+		<field name="divine2cost" type="RichDivineCostCFGS" lst="Y"/>
+		<field name="divine3cost" type="RichDivineCostCFGS" lst="Y"/>
+		<field name="bossTimes" type="int8"/>
+		<field name="bossBase" type="RichBossBaseCFGS" lst="Y"/>
+		<field name="bossDamage" type="int32"/>
+		<field name="angelScale" type="float"/>
+		<field name="devilScale" type="float"/>
+		<field name="roadEnventDropTbl" type="int16"/>
+		<field name="maxmovement" type="int16"/>
+		<field name="divineDropTbl" type="int16" lst="Y"/>
+		<field name="mine" type="RichMineCFGS" lst="Y"/>
+		<field name="buyPassGold" type="int32"/>
+		<field name="richBuyPassGold" type="int32"/>
+		<field name="loteryWinReward" type="int32"/>
+		<field name="loteryLoseReward" type="int32"/>
+		<field name="objects" type="RichObjectCFGS" lst="Y"/>
+		<field name="remoteDiceMinItemID" type="int16" />
+		<field name="remoteDiceMaxItemID" type="int16" />
+		<field name="buyMovementCost" type="int32" lst="Y"/>
+		<field name="buyMovementVal" type="int32"/>
+		<field name="bossMaxDamage" type="int32"/>
+		<field name="bossMaxReward" type="int32"/>
+		<field name="reqLevel" type="int16"/>
+	</bean>
+	
+	<bean name="RichTechCFG" scope="1">
+		<field name="id" type="int32" />
+		<field name="lvlInit" type="int32" />
+		<field name="lvlMax" type="int32" />
+		<field name="initEffect" type="float" />
+		<field name="increaseEffect" type="float"/>
+		<field name="lvlupReq" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="RichDailyTaskCFG" scope="1">
+		<field name="id" type="int32" />
+		<field name="type" type="int32"/>
+		<field name="reqArg" type="int32"/>
+		<field name="rewardDropTblID" type="int16"/>
+		<field name="rewardDropTimes" type="int16"/>
+	</bean>
+	
+	<bean name="RichBossCombatCFGS" scope="1">
+		<field name="lvlMax" type="int16" />
+		<field name="combatIds" type="int16" lst="Y"/>
+	</bean>
+	
+	<bean name="RichMineCombatCFGS" scope="1">
+		<field name="lvlMax" type="int16" />
+		<field name="combatIds" type="int16" lst="Y"/>
+		<field name="rewards" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="RichRewardCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="money" type="int32"/>
+		<field name="point" type="int32"/>
+	</bean>
+	
+	<bean name="RichMoneyCFGS" scope="1">
+		<field name="type" type="int8"/>
+		<field name="count" type="int32"/>
+		<field name="poss" type="int16"/>
+		<field name="modelId" type="int16"/>
+	</bean>
+	
+	<bean name="RichBoxCFGS" scope="1">
+		<field name="poss" type="float"/>
+		<field name="freePoss" type="float"/>
+		<field name="feeMin" type="int32"/>
+		<field name="feeMax" type="int32"/>
+		<field name="dropId" type="int16"/>
+	</bean>
+	
+	<bean name="RichCFGS" scope="1">
+		<field name="basic" type="RichBasicCFGS"/>
+		<field name="techTree" type="RichTechCFG" lst="Y"/>
+		<field name="dailyTask" type="RichDailyTaskCFG" lst="Y"/>
+		<field name="bossCombats" type="RichBossCombatCFGS" lst="Y"/>
+		<field name="mineCombats" type="RichMineCombatCFGS" lst="Y"/>
+		<field name="richMineCombats" type="RichMineCombatCFGS" lst="Y"/>
+		<field name="rewards" type="RichRewardCFGS" lst="Y"/>
+		<field name="money" type="RichMoneyCFGS" lst="Y"/>
+		<field name="box" type="RichBoxCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="CheckinRewardCFGS" scope="1">
+		<field name="lvlVIP" type="int8"/>
+		<field name="reward" type="DropEntryNew"/>	
+	</bean>
+	
+	<bean name="CheckinCFGS" scope="1">
+		<field name="id" type="int8"/>
+		<field name="timeStart" type="int32"/>
+		<field name="rewards" type="CheckinRewardCFGS" lst="Y"/>	
+	</bean>
+	
+	<bean name="PackageCFGS">
+		<field name="id" type="int16"/>
+		<field name="generalLevel" type="int8"/>
+		<field name="lvlReq" type="int8"/>
+		<field name="money" type="int32"/>
+		<field name="stone" type="int32"/>
+		<field name="dayRewards" type="DayReward" lst="Y"/>
+	</bean>
+	
+	<bean name="PackageCFGC">
+		<field name="cfgs" type="PackageCFGS"/>
+		<field name="name" type="string"/>
+		<field name="des" type="string"/>
+	</bean>
+	
+	<bean name="LoadingCFG">
+		<field name="msg" type="string"/>
+		<field name="globalProp" type="float"/>
+	</bean>
+	
+	<bean name="CombatCatEntryCFG">
+		<field name="cid" type="int16"/>
+		<field name="seq" type="int8"/>
+	</bean>
+	
+	<bean name="CombatCatEntryListCFG">
+		<field name="combats" type="CombatCatEntryCFG" lst="Y"/>
+	</bean>
+	
+	<bean name="CombatCatCFG">
+		<field name="id" type="int8"/>
+		<field name="name" type="string"/>
+		<field name="mapIconID" type="int16"/>
+		<field name="mapCityIconID" type="int16"/>
+		<field name="mapCityDisableIconID" type="int16"/>
+		<field name="combats" type="CombatCatEntryListCFG" lst="Y"/>
+	</bean>
+	
+	<bean name="GeneralSkill">
+		<field name="id" type="int16"/>
+		<field name="learnLvl" type="int8" lst="Y"/>
+	</bean>
+	
+	<bean name="GeneralCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="type" type="int8"/>
+		<field name="stance" type="int8"/>
+		<field name="stoneID" type="int16"/>
+		<field name="initEvoLevel" type="int8"/>
+		<field name="equips" type="int16" lst="Y"/>
+		<field name="advPowerUps" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="PetEvoCFGS" scope="1">
+		<field name="pieceCountDec" type="int32"/>
+		<field name="pieceCountEvo" type="int32"/>
+		<field name="power" type="int32"/>
+	</bean>
+	
+	<bean name="PetEatCFGS" scope="1">
+		<field name="lvlMax" type="int16"/>
+		<field name="eatId" type="int16"/>
+		<field name="productId" type="int16"/>
+	</bean>
+	
+	<bean name="PetDeformCFGS" scope="1">
+		<field name="type" type="int8"/>
+		<field name="growth" type="int16"/>
+		<field name="drops" type="int16" lst="Y"/>
+	</bean>
+	
+	<bean name="PetAwakeCFGS" scope="1">
+	   <field name="canAwake" type="int8"/>
+	   <field name="awakeSkill1" type="int16"/>
+	   <field name="awakeSkill2" type="int16"/>
+	   <field name="awakeSkill3" type="int16"/>
+	   <field name="awakeSkill4" type="int16"/>
+	   <field name="awakeSkill5" type="int16"/>
+	   <field name="needItem1" type="DropEntryNew" lst="Y"/>
+	   <field name="needItem2" type="DropEntryNew" lst="Y"/>
+	   <field name="needItem3" type="DropEntryNew" lst="Y"/>
+	   <field name="needItem4" type="DropEntryNew" lst="Y"/>
+	   <field name="needItem5" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="PetCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="gender" type="int8"/>
+		<field name="pieceID" type="int16"/>
+		<field name="pieceMoney" type="int32"/>
+		<field name="eggID1" type="int16"/>
+		<field name="eggID2" type="int16"/>
+		<field name="proEgg2" type="float"/>
+		<field name="breedCool" type="int32"/>
+		<field name="breedMoney" type="int32"/>
+		<field name="initPower" type="int32"/>
+		<field name="upPower" type="int32"/>
+		<field name="evo" type="PetEvoCFGS" lst="Y"/>
+		<field name="minGrowthRate" type="int16"/>
+		<field name="maxGrowthRate" type="int16"/>
+		<field name="propGrowthRate" type="float" lst="Y"/>
+		<field name="eat" type="PetEatCFGS" lst="Y"/>
+		<field name="produceTime" type="int16"/>
+		<field name="productDesc" type="int16"/>
+		<field name="deform" type="PetDeformCFGS" lst="Y"/>
+		<field name="awake" type="PetAwakeCFGS"/>
+	</bean>
+	
+	<bean name="GeneralSkillCFGS" scope="1">
+		<field name="reqAdvLvl" type="int8"/>
+		<field name="maxLvl" type="int16"/>
+		<field name="money" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="GeneralEvoCFGS" scope="1">
+		<field name="money" type="int32"/>
+		<field name="stone" type="int16"/>
+		<field name="stoneBack" type="int16"/>
+	</bean>
+	
+	<bean name="GeneralCmnCFGS" scope="1">
+		<field name="skillInitPower" type="int32" lst="Y"/>
+		<field name="skillUpPower" type="int32"/>
+		<field name="upgradeExp" type="int32" lst="Y"/>
+		<field name="evoLevels" type="GeneralEvoCFGS" lst="Y"/>
+		<field name="skills" type="GeneralSkillCFGS" lst="Y"/>
+		<field name="evoPowerScales" type="float" lst="Y"/>
+		<field name="commonSoulStoneId" type="int16"/>
+	</bean>
+	
+	<bean name="PetFriendExpItemCFGS" scope="1">
+		<field name="lvlCeil" type="int16"/>
+		<field name="itemID" type="int16"/>
+		<field name="itemCnt" type="int32"/>
+	</bean>
+	
+	<bean name="PetCmnCFGS" scope="1">
+		<field name="upgradeExp" type="int32" lst="Y"/>
+		<field name="feedingExp" type="int32" lst="Y"/>
+		<field name="breedReqLvl" type="int16"/>
+		<field name="poundCapInit" type="int8"/>
+		<field name="poundCapMax" type="int8"/>
+		<field name="feedingFriendMax" type="int16"/>
+		<field name="feedingFriendInterval" type="int32"/>
+		<field name="feedingInterval" type="int16"/>
+		<field name="feedingMaxTime" type="int32"/>
+		<field name="poundUpgradeCost" type="int32" lst="Y"/>
+		<field name="friendExpItems" type="PetFriendExpItemCFGS" lst="Y"/>
+		<field name="deformFeedGrowth" type="int16" lst="Y"/>
+		<field name="deformZanTimes" type="int8"/>
+		<field name="deformZanGrowth" type="int16"/>
+		<field name="deformZanVit" type="int16" lst="Y"/>
+		<field name="deformTakeOfferTimes" type="int8"/>
+		<field name="deformTakeOfferGrowth" type="int16"/>
+		<field name="deformTakeOfferVit" type="int16" lst="Y"/>
+		<field name="deformHappiness" type="int16"/>
+		<field name="deformFreeTryTimes" type="int8"/>
+		<field name="deformBuyTryTimes" type="int8"/>
+		<field name="deformBuyTryStone" type="int16"/>
+		<field name="deformTryItemId" type="int16"/>
+		<field name="deformTryPoss" type="int8"/>
+		<field name="deformFeedTimes" type="int8"/>
+	</bean>
+	
+	<bean name="CritCFGS" scope="1">
+		<field name="CritRate" type="float"/>
+		<field name="CritMultiplier" type="int8"/>
+	</bean>
+	
+	<bean name="RoleCmnCFGS" scope="1">
+		<field name="upgradeExp" type="int32" lst="Y"/>
+		<field name="vitMaxTable" type="int16" lst="Y"/>
+		<field name="vitAddLvlup" type="int16" lst="Y"/>
+		<field name="vitRecoverInterval" type="int32"/>
+		<field name="skillPointRecoverInterval" type="int32"/>
+		<field name="skillPointMax00" type="int16"/>
+		<field name="timeDayRefresh" type="int16"/>
+		<field name="vitMax" type="int16"/>
+		<field name="buyMoneyMaxTimes00" type="int16"/>
+		<field name="buyMoneyBaseVal" type="int32"/>
+		<field name="buyMoneylvlVal" type="int32"/>
+		<field name="buyMoneyTimesVal" type="int32"/>
+		<field name="buyMoneyCrit" type="CritCFGS" lst="Y"/>
+		<field name="buyMoneyPrice" type="int32" lst="Y"/>
+		<field name="buyVitMaxTimes00" type="int16"/>
+		<field name="buyVitVal" type="int32"/>
+		<field name="buyVitPrice" type="int32" lst="Y"/>
+		<field name="buySkillPointMaxTimes00" type="int16"/>
+		<field name="buySkillPointVal00" type="int32"/>
+		<field name="buySkillPointPrice" type="int32" lst="Y"/>
+		<field name="chatLvlReq" type="int16"/>
+		<field name="chatItemID" type="int16"/>
+		<field name="changeNameCost" type="int32"/>
+		<field name="changePetNameCost" type="int32"/>
+	</bean>
+	
+	<bean name="CombatCmnCFGS" scope="1">
+		<field name="combatEventSkipItem" type="int16"/>
+		<field name="marchSkipItem" type="int16"/>
+		<field name="generalExpItemIDs" type="int16" lst="Y"/>
+		<field name="priceReset" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="EquipRankCFGS" scope="1">
+		<field name="gild" type="int16" lst="Y"/>
+	</bean>
+	
+	<bean name="EquipGildBackCFGS" scope="1">
+		<field name="drops" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="EquipCmnCFGS" scope="1">
+		<field name="rank" type="EquipRankCFGS" lst="Y"/>
+		<field name="gildBack" type="EquipGildBackCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="IconCFG">
+		<field name="id" type="int16"/>
+		<field name="path" type="string"/>
+	</bean>
+	
+	<bean name="ItemCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="rank" type="int8"/>
+		<field name="type" type="int16"/>
+		<field name="lvlReq" type="int16"/>
+		<field name="arg1" type="int32"/>
+		<field name="arg2" type="int32"/>
+		<field name="arg3" type="int32"/>
+		<field name="price" type="int32"/>
+		<field name="gildVal" type="int32"/>
+		<field name="extDropProp" type="int8"/>
+		<field name="extDropPropInc" type="int8"/>
+		<field name="extDropCool" type="int8"/>
+	</bean>
+	
+	<bean name="EquipEffect">
+		<field name="effectID" type="int8"/>
+		<field name="arg" type="float"/>
+	</bean>
+	
+	<bean name="EquipCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="rank" type="int8"/>
+		<field name="type" type="int8"/>
+		<field name="lvlReq" type="int16"/>
+		<field name="price" type="int32"/>
+		<field name="gildPrice" type="int32"/>
+		<field name="gildVal" type="int32"/>
+		<field name="combineMoney" type="int32"/>
+		<field name="combinePieces" type="DropEntry" lst="Y"/>
+		<field name="powers" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="ShopGoods" scope="1">
+		<field name="id" type="int16"/>
+		<field name="curUnit" type="int8"/>
+		<field name="price" type="int32"/>
+		<field name="pro" type="float"/>
+		<field name="item" type="DropEntry"/>
+	</bean>
+	
+	<bean name="TSSAntiData">
+		<field name="anti_data" type="bytebuffer"/>
+	</bean>	
+	
+	<bean name="SysMail" scope="1" kclone="d">
+		<field name="id" type="int32"/>
+		<field name="lvlReq" type="int16"/>
+		<field name="vipReq" type="int16"/>
+		<field name="timeStart" type="int32"/>
+		<field name="lifeTime" type="int32"/>
+		<field name="flag" type="int32"/>
+		<field name="title" type="string"/>
+		<field name="content" type="string"/>
+		<field name="att" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="Broadcast" scope="1" kclone="d">
+		<field name="id" type="int32"/>
+		<field name="sendTime" type="int32"/>
+		<field name="times" type="int32"/>
+		<field name="freq" type="int32"/>
+		<field name="timeStart" type="int32"/>
+		<field name="lifeTime" type="int32"/>
+		<field name="content" type="string"/>
+	</bean>
+	
+	<bean name="CDKeyLog" scope="1" kclone="d">
+		<field name="roleID" type="int32"/>
+		<field name="batchID" type="int32"/>
+		<field name="genID" type="int32"/>
+		<field name="key" type="string"/>
+	</bean>
+	
+	<!-- bean name="LevelLimit" scope="1" kclone="d">
+		<field name="level" type="int32"/>
+		<field name="openTime" type="int32"/>
+	</bean-->
+
+	<bean name="TopLevelRoleInfo" scope="1" kclone="d">
+		<field name="level" type="int32"/>
+		<field name="roleID" type="int32"/>
+		<field name="roleName" type="string"/>
+	</bean>
+	
+	<bean name="CityProduceCFGS" scope="1">
+		<field name="type" type="int8"/>
+		<field name="id" type="int16"/>
+		<field name="produce" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="CityCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="combatIDReq" type="int32"/>
+		<field name="searchLvlReq" type="int32"/>
+		<field name="searchedLvlMin" type="int32"/>
+		<field name="searchedLvlMax" type="int32"/>
+		<field name="produce" type="CityProduceCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="CitySearchLevelCFGS" scope="1">
+		<field name="lvlDiffMin" type="int32"/>
+		<field name="lvlDiffMax" type="int32"/>
+	</bean>
+	
+	<bean name="CaptureCityCFGS" scope="1">
+		<field name="citys" type="CityCFGS" lst="Y"/>
+		<field name="searchOpenLevel" type="int32"/>
+		<field name="searchCostMoney" type="int32"/>
+		<field name="searchTypeLvlRanges" type="CitySearchLevelCFGS" lst="Y"/>
+		<field name="searchTypeSequence" type="int32" lst="Y"/>
+		<field name="guardTimes" type="int32" lst="Y"/>
+		<field name="captureProduceRatio" type="float"/>
+		<field name="lostProduceRatio" type="float"/>
+		<field name="counterattackProduceRatio" type="float"/>
+		<field name="baseRewardTime" type="int16"/>
+	</bean>
+	
+	<bean name="DBCityGuardTimeLog" scope="1" kclone="d">
+		<field name="normalGuardTime" type="int32"/>
+		<field name="lostGuardTime" type="int32"/>
+	</bean>
+	
+	<bean name="DBBaseCity" scope="1" kclone="d">
+		<field name="baseGSID" type="int32"/>
+		<field name="baseRoleID" type="int32"/>
+		<field name="baseRoleName" type="string"/>
+		<field name="cityID" type="int32"/>
+		<field name="openTime" type="int32"/>
+		<field name="ownerGSID" type="int32"/>
+		<field name="ownerRoleID" type="int32"/>
+		<field name="ownerRoleName" type="string"/>
+		<field name="state" type="int32"/>
+		<field name="guardStartTime" type="int32"/>
+		<field name="guardLifeTime" type="int32"/>
+		<field name="lastBalanceTime" type="int32"/>
+		<field name="guardGenerals" type="int16" lst="Y"/>
+		<field name="guardPets" type="int16" lst="Y"/>
+		<field name="guardTimeLog" type="int32" lst="Y" />
+		<field name="attackGSID" type="int32"/>
+		<field name="attackRoleID" type="int32"/>
+		<field name="attackTime" type="int32"/>
+		<field name="totalIncome" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="DBCityReward" scope="1" kclone="d">
+		<field name="baseGSID" type="int32"/>
+		<field name="baseRoleID" type="int32"/>
+		<field name="baseRoleName" type="string"/>
+		<field name="cityID" type="int32"/>
+		<field name="guardStartTime" type="int32"/>
+		<field name="guardLifeTime" type="int32"/>
+		<field name="totalIncome" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="DBCitys" scope="1" kclone="d">
+		<field name="baseCitys" type="DBBaseCity" lst="Y"/>
+		<field name="occupiedCitys" type="DBBaseCity" lst="Y"/>
+		<field name="occupiedCitysRewardLog" type="DBCityReward" lst="Y"/>
+		<field name="lastBaseRewardTime" type="int32" />
+	</bean>
+	
+	<bean name="CityInfo" scope="1">
+		<field name="baseRoleID" type="GlobalRoleID"/>
+		<field name="baseRoleName" type="string"/>
+		<field name="cityID" type="int32"/>
+		<field name="ownerRoleID" type="GlobalRoleID"/>
+		<field name="ownerRoleName" type="string"/>
+		<field name="guardStartTime" type="int32"/>
+		<field name="guardLifeTime" type="int32"/>
+		<field name="guardGenerals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="guardPets" type="DBPetBrief" lst="Y"/>
+	</bean>
+	
+	<bean name="DBBanData" scope="1">
+		<field name="banTypeID" type="int32"/>
+		<field name="banEndTime" type="int32"/>
+		<field name="banReason" type="string"/>
+	</bean>
+	
+	<bean name="ShopGoodsGroup" scope="1">
+		<field name="goods" type="ShopGoods" lst="Y"/>
+	</bean>
+	
+	<bean name="ShopGoodsLevelCFGS" scope="1">
+		<field name="lvlCeil" type="int16"/>
+		<field name="groups" type="ShopGoodsGroup" lst="Y"/>
+	</bean>
+	
+	<bean name="ShopCFGS" scope="1">
+		<field name="type" type="int8"/>
+		<field name="refreshCount" type="int8"/>
+		<field name="lvlReq" type="int16"/>
+		<field name="lvlVIPReq" type="int8"/>
+		<field name="refreshCurUnit" type="int8"/>
+		<field name="refreshPrice" type="int32" lst="Y"/>
+		<field name="refreshTime" type="int16" lst="Y"/>
+		<field name="levels" type="ShopGoodsLevelCFGS" lst="Y"/>
+		<field name="randSummonPro" type="float"/>
+		<field name="randSummonTime" type="int32"/>
+		<field name="randSummonStone" type="int32"/>
+		<field name="randSummonVit" type="int16"/>
+		<field name="randSummonCID" type="int16"/>
+	</bean>
+	
+	<bean name="DlgTableEntry">
+		<field name="dlg" type="string"/>
+		<field name="pro" type="float"/>
+	</bean>
+	
+	<bean name="DlgTableCFG">
+		<field name="id" type="int16"/>
+		<field name="iconID" type="int16"/>
+		<field name="entryList" type="DlgTableEntry" lst="Y"/>
+	</bean>
+	
+	<bean name="TipsCFG">
+		<field name="id" type="int16"/>
+		<field name="effID" type="int16"/>
+		<field name="seq" type="int8"/>
+		<field name="count" type="int8"/>
+		<field name="title" type="string"/>
+		<field name="content" type="string"/>
+	</bean>
+	
+	<bean name="DropTableEntry" scope="1">
+		<field name="item" type="DropEntry"/>
+		<field name="pro" type="float"/>
+	</bean>
+	
+	<bean name="DropTableCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="srcList" type="DropEntry" lst="Y"/>
+		<field name="entryList" type="DropTableEntry" lst="Y"/>
+	</bean>
+	
+	<bean name="DailyTask2CFGS" scope="1">
+		<field name="id" type="int8"/>
+		<field name="lvlReq" type="int16"/>
+		<field name="times" type="int8"/>
+		<field name="reward1Type" type="int8"/>
+		<field name="reward1ID" type="int16"/>
+		<field name="reward1Arg1" type="int32"/>
+		<field name="reward1Arg2" type="int32"/>
+		<field name="reward2Type" type="int8"/>
+		<field name="reward2ID" type="int16"/>
+		<field name="reward2Arg1" type="int32"/>
+		<field name="reward2Arg2" type="int32"/>
+		<field name="activity" type="int32"/>
+	</bean>
+	<bean name="DailyTask2CFGC" scope="1">
+		<field name="cfgs" type="DailyTask2CFGS"/>
+		<field name="iconID" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="des" type="string"/>
+	</bean>
+	<bean name="DailyActivityRewardCFGS" scope="1">
+		<field name="activity" type="int32"/>
+		<field name="desc" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="drops" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="QQVIPRewardsCFGS" scope="1">
+		<field name="rewards" type="DropEntryNew"  lst="Y"/>
+	</bean>
+	
+	<!-- bean name="LevelLimitItemCFGS" scope="1">
+		<field name="level" type="int32"/>
+		<field name="minDuration" type="int32"/>
+		<field name="maxDuration" type="int32"/>
+		<field name="openSpan" type="int32"/>
+		<field name="showSpan" type="int32"/>
+		<field name="lessThan20ExpAdd" type="int32"/>
+		<field name="lessThan40ExpAdd" type="int32"/>
+	</bean>
+	
+	<bean name="LevelLimitCFGS" scope="1">
+		<field name="levels" type="LevelLimitItemCFGS"  lst="Y"/>
+		<field name="resorceLevelLimit" type="int32"/>
+		<field name="sampleCount" type="int32"/>
+		<field name="openCountReq" type="int32"/>
+	</bean-->
+	
+	<bean name="TopLevelAuraCFGS" scope="1">
+		<field name="sampleCount" type="int32"/>
+		<field name="lessThan20ExpAdd" type="int32"/>
+		<field name="lessThan40ExpAdd" type="int32"/>
+	</bean>
+	
+	<bean name="EggRankCFGS" scope="1">
+		<field name="porg" type="int32"/>
+		<field name="entryList" type="DropTableEntry" lst="Y"/>
+	</bean>
+	
+	<bean name="EggCFGS" scope="1">
+		<field name="id" type="int8"/>
+		<field name="cost" type="int32"/>
+		<field name="freeTimes" type="int8"/>
+		<field name="freeCool" type="int16"/>
+		<field name="firstDropTableID" type="int16"/>
+		<field name="firstFreeDropTableID" type="int16"/>
+		<field name="itemDropTableID" type="int16"/>
+		<field name="generalDropTableID" type="int16"/>
+		<field name="poolLow" type="int32"/>
+		<field name="poolHigh" type="int32"/>
+		<field name="generalUp" type="int32"/>
+		<field name="itemDown" type="int32"/>
+		<field name="propGeneral" type="float"/>
+		<field name="cost10" type="int32"/>
+		<field name="minGeneral10" type="int8"/>
+		<field name="maxGeneral10" type="int8"/>
+		<field name="proectTimes10" type="int8"/>
+		<field name="itemFixed" type="DropEntry"/>
+		<field name="dropTableIDsFirst10" type="int16" lst="Y"/>
+		<field name="cost10FirstBuy" type="int32" lst="Y"/>
+		<field name="dropTableIDs100" type="int16"/>
+	</bean>
+	
+	<bean name="HotPoint" scope="1">
+		<field name="generialID" type="int16"/>
+		<field name="soulItemID" type="int16"/>
+	</bean>
+	
+	<bean name="DayHotPoint" scope="1">
+		<field name="dayHotPoint" type="HotPoint" lst="Y"/>
+	</bean>
+	
+	<bean name="DropTimes" scope="1">
+		<field name="rate" type="float"/>
+		<field name="times" type="int8"/>
+	</bean>
+	<bean name="DropCount" scope="1">
+		<field name="rate" type="float"/>
+		<field name="count" type="int8"/>
+	</bean>
+	<bean name="SoulBoxCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="startTime" type="int32"/>
+		<field name="cost" type="int32"/>
+		<field name="normalDropTableID" type="int16"/>
+		<field name="weekHotPointFirstInterval" type="int8"/>
+		<field name="weekHotPointOtherInterval" type="int8"/>
+		<field name="weekHotPointMaxInterval" type="int8"/>
+		<field name="weekHotPointGeneralID" type="int16"/>
+		<field name="weekHotPointWeight" type="int8"/>
+		<field name="dayHotPoint" type="DayHotPoint" lst="Y"/>
+		<field name="dayHotPointDropTimes" type="DropTimes" lst="Y"/>
+		<field name="dayHotPointDropCount" type="DropCount" lst="Y"/>
+		<field name="optionalHotPoint" type="int16" lst="Y"/>
+	</bean>
+	
+	<bean name="OfficialBasicCFGS" scope="1">
+		<field name="officialResetRate" type="float"/>
+		<field name="officialResetStone" type="int32"/>
+		<field name="skillResetRate" type="float"/>
+		<field name="skillResetStone" type="int32"/>
+		<field name="openLvl" type="int16"/>
+		<field name="levelItemId" type="int16"/>
+		<field name="skillLevelItemId" type="int16"/>
+	</bean>
+	<bean name="OfficialLevelCFGS" scope="1">
+		<field name="name" type="string"/>
+		<field name="itemCount" type="int32"/>
+	</bean>
+	<bean name="OfficialSkillLevelCFGS" scope="1">
+		<field name="skillLvl" type="int16"/>
+		<field name="itemCount" type="int32"/>
+	</bean>
+	<bean name="OfficialCFGS" scope="1">
+		<field name="basic" type="OfficialBasicCFGS"/>
+		<field name="levels" type="OfficialLevelCFGS" lst="Y"/>
+		<field name="skillLevels" type="OfficialSkillLevelCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="ChannelCFGS" scope="1">
+		<field name="payID" type="int16"/>
+		<field name="name" type="string"/>
+	</bean>
+	
+	<bean name="TreasureMapBaseCFGS" scope="1">
+	   <field name="maxCount" type="int16"/>
+	   <field name="refreshTime" type="int8"/>
+	   <field name="refreshTimeAddCount" type="int8"/>
+	   <field name="addCountTime" type="int8"/>
+	   <field name="addCount" type="int8"/>
+	   <field name="dayUseTreasureMapCount" type="int8"/>
+	   <field name="mapDigMaxCount" type="int8"/>
+	   <field name="digOtherMaxCount" type="int8"/>
+	   <field name="mailTitle" type="string"/>
+	   <field name="mailContextDigger" type="string"/>
+	   <field name="mailContextUser" type="string"/>
+	   <field name="treasureMaps" type="TreasureMapCFGS" lst="Y"/>
+	</bean>
+	                                                                                                                                                                                                
+	<bean name="TreasureMapCFGS" scope="1">
+	   <field name="id" type="int8"/>
+	   <field name="name" type="string"/>
+	   <field name="itemId" type="int16"/>
+	   <field name="commonRewards" type="int16"/>
+	   <field name="treasureRewards" type="int16"/>
+	   <field name="userRewards1Id" type="int16"/>
+	   <field name="userRewards1Cnt" type="int16"/>
+	   <field name="userRewards2Id" type="int16"/>
+	   <field name="userRewards2Cnt" type="int16"/>
+	   <field name="userRewards3Id" type="int16"/>
+	   <field name="userRewards3Cnt" type="int16"/>
+	   <field name="rewardsMaxCnt" type="int8"/>
+	   <field name="digCost" type="int16"/> 
+	</bean>
+	
+	<bean name="BeMonsterReward" scope="1">
+	   <field name="numMin" type="int32"/>
+	   <field name="numMax" type="int32"/>
+	   <field name="rewrad" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="BeMonsterUpHpCFG" scope="1">
+	   <field name="cnt" type="int16"/>
+	   <field name="percent" type="int32"/>
+	   <field name="cost" type="int32"/>
+	</bean>
+	
+	<bean name="BeMonsterCFGS" scope="1">
+	   <field name="RegisterTime" type="int16" lst="Y"/>
+	   <field name="RegisterEndTime" type="int16" lst="Y"/>
+	   <field name="fightStartTime" type="int16" lst="Y"/>
+	   <field name="fightEndTime" type="int16" lst="Y"/>
+	   <field name="RegisterCostMin" type="int32"/>
+	   <field name="RegisterCostMax" type="int32"/>
+	   <field name="RegisterPoundage" type="int32"/>
+	   <field name="attackMacCnt" type="int8"/>
+	   <field name="defaultUpHpPercent" type="int8"/>
+	   <field name="upHpCfgs" type="BeMonsterUpHpCFG" lst="Y"/>
+	   <field name="monsterAliveRewards" type="DropEntryNew" lst="Y"/>
+	   <field name="monsterKillRoleRewrads" type="BeMonsterReward" lst="Y"/>
+	   <field name="perFightRewards" type="DropEntryNew" lst="Y"/>
+	   <field name="killedMonsterRewards" type="DropEntryNew" lst="Y"/>
+	   <field name="rankRewards" type="BeMonsterReward" lst="Y"/> 
+	</bean>
+	
+	<bean name="PayCFGLevelS" scope="1">
+		<field name="rmb" type="int32"/>
+		<field name="stone" type="int32"/>
+	</bean>
+	<bean name="PayCFGS" scope="1">
+		<field name="cid" type="int16"/>
+		<field name="flag" type="int8"/>
+		<field name="ceil" type="int32"/>
+		<field name="floor" type="int32"/>
+		<field name="levels" type="PayCFGLevelS" lst="Y"/>
+	</bean>
+	<bean name="MonthlyCardCFGS" scope="1">
+		<field name="price" type="int8"/>
+		<field name="days" type="int8"/>
+		<field name="reward" type="int16"/>
+	</bean>
+	
+	<bean name="GlobalRoleID" scope="1" kclone="d">
+		<field name="serverID" type="int32"/>
+		<field name="roleID" type="int32"/>
+	</bean>
+	<bean name="GlobalForceID" scope="1" kclone="d">
+		<field name="serverID" type="int32"/>
+		<field name="forceID" type="int32"/>
+	</bean>
+	
+	<bean name="OpenIDRecord" scope="1" kclone="s">
+		<field name="openID" type="string"/>
+		<field name="roleID" type="GlobalRoleID"/>
+	</bean>
+	
+	<bean name="SearchFriendsReq" scope="1">
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="openIDs" type="string" lst="Y"/>
+	</bean>
+	<bean name="SearchFriendsRes" scope="1">
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="record" type="OpenIDRecord"/>
+		<field name="prop" type="FriendProp"/>
+	</bean>
+	<bean name="QueryFriendPropReq" scope="1">
+		<field name="roleIDSrc" type="GlobalRoleID"/>
+		<field name="recordTarget" type="OpenIDRecord"/>
+	</bean>
+	<bean name="UpdateFriendPropReq" scope="1">
+		<field name="roleIDSrc" type="GlobalRoleID"/>
+		<field name="recordTargets" type="OpenIDRecord" lst="Y"/>
+	</bean>
+	<bean name="QueryFriendPropRes" scope="1">
+		<field name="req" type="QueryFriendPropReq"/>
+		<field name="prop" type="FriendProp"/>
+	</bean>
+	
+	<bean name="SearchCityReq" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="level" type="int32"/>
+		<field name="cityIDMax" type="int32" />
+		<field name="searchType" type="int32" />
+	</bean>
+	<bean name="SearchCityRes" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="error" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="cityInfo" type="CityInfo"/>
+	</bean>
+	<bean name="AttackCityStartReq" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="targetRoleID" type="GlobalRoleID"/>
+		<field name="baseRoleID" type="GlobalRoleID"/>
+		<field name="cityID" type="int32"/>
+	</bean>
+	<bean name="AttackCityStartRes" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="error" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="cityInfo" type="CityInfo"/>
+	</bean>
+	<bean name="AttackCityEndReq" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="roleName" type="string"/>
+		<field name="targetRoleID" type="GlobalRoleID"/>
+		<field name="baseRoleID" type="GlobalRoleID"/>
+		<field name="cityID" type="int32"/>
+		<field name="win" type="int8"/>
+	</bean>
+	<bean name="AttackCityEndRes" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="error" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="cityInfo" type="CityInfo"/>
+	</bean>
+	<bean name="NotifyCityOwnerChangedReq" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="roleName" type="string"/>
+		<field name="baseRoleID" type="GlobalRoleID"/>
+		<field name="cityID" type="int32"/>
+	</bean>
+	<bean name="QueryCityOwnerReq" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="targetRoleID" type="GlobalRoleID"/>
+		<field name="baseRoleID" type="GlobalRoleID"/>
+		<field name="cityID" type="int32"/>
+	</bean>
+	<bean name="QueryCityOwnerRes" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="error" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="cityInfo" type="CityInfo"/>
+	</bean>
+	
+	<bean name="DuelJoinReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="roleName" type="string"/>
+		<field name="serverName" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="level" type="int16"/>
+		<field name="winTimes" type="int8"/>
+		<field name="time" type="int32"/>
+	</bean>
+	<bean name="DuelJoinRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="type" type="int8"/>
+		<field name="error" type="int32"/>
+		<field name="matchId" type="int32"/>
+		<field name="first" type="int8"/>
+		<field name="oppoRoleID" type="GlobalRoleID"/>
+		<field name="oppoRoleName" type="string"/>
+		<field name="oppoServerName" type="string"/>
+		<field name="oppoHeadIconId" type="int16"/>
+		<field name="oppoLevel" type="int16"/>
+	</bean>
+	<bean name="DuelCancelJoinReq" scope="1">
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="type" type="int8"/>
+	</bean>
+	<bean name="DuelSelectGeneralReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="oppoRoleID" type="GlobalRoleID"/>
+		<field name="generals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pet" type="DBPetBrief" lst="Y"/>
+		<field name="relation" type="DBRelation" lst="Y"/>
+		<field name="matchId" type="int32"/>
+	</bean>
+	<bean name="DuelSelectGeneralRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="error" type="int32"/>
+		<field name="matchId" type="int32"/>
+	</bean>
+	<bean name="DuelStartAttackReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="oppoRoleID" type="GlobalRoleID"/>
+		<field name="index" type="int8"/>
+		<field name="matchId" type="int32"/>
+	</bean>
+	<bean name="DuelStartAttackRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="index" type="int8"/>
+		<field name="error" type="int32"/>
+		<field name="matchId" type="int32"/>
+	</bean>
+	<bean name="DuelFinishAttackReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="oppoRoleID" type="GlobalRoleID"/>
+		<field name="index" type="int8"/>
+		<field name="result" type="int8"/>
+		<field name="matchId" type="int32"/>
+	</bean>
+	<bean name="DuelFinishAttackRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="oppoRoleID" type="GlobalRoleID"/>
+		<field name="index" type="int8"/>
+		<field name="result" type="int8"/>
+		<field name="error" type="int32"/>
+	</bean>
+	<bean name="DuelOppoGiveupReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="oppoRoleID" type="GlobalRoleID"/>
+		<field name="matchId" type="int32"/>
+	</bean>
+	<bean name="DuelOppoGiveupRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="oppoRoleID" type="GlobalRoleID"/>
+		<field name="error" type="int32"/>
+	</bean>
+	<bean name="DuelFinishAttackOnOppoDownLineReq" scope="1">
+        <field name="id" type="int32"/>
+        <field name="roleID" type="GlobalRoleID"/>
+        <field name="oppoRoleID" type="GlobalRoleID"/>
+        <field name="matchId" type="int32"/>
+        <field name="attackResult" type="int8"/>
+    </bean>
+    <bean name="DuelFinishAttackOnOppoDownLineRes" scope="1">
+        <field name="id" type="int32"/>
+        <field name="roleID" type="GlobalRoleID"/>
+        <field name="oppoRoleID" type="GlobalRoleID"/>
+        <field name="attackResult" type="int8"/>
+        <field name="error" type="int32"/>
+    </bean>
+	<bean name="DuelRank" kclone="d" scope="1">
+		<field name="rank" type="int32"/>
+		<field name="serverName" type="string"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="rname" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="score" type="int32"/>
+	</bean>
+	<bean name="DuelRanksRes" scope="1">
+		<field name="serverId" type="int32"/>
+		<field name="ranks" type="DuelRank" lst="Y"/>
+	</bean>
+	<bean name="DuelGlobalRank" kclone="d" scope="1">
+		<field name="roleId" type="int32"/>
+		<field name="rank" type="int32"/>
+	</bean>
+	<bean name="ExpiratBossGlobalRank" kclone="d" scope="1">
+		<field name="roleId" type="int32"/>
+		<field name="rank" type="int32"/>
+	</bean>
+	<bean name="DuelGlobalRanksRes" scope="1">
+		<field name="ranks" type="DuelGlobalRank" lst="Y"/>
+	</bean>
+	<bean name="ExpiratBossGlobalRanksRes" scope="1">
+	    <field name="rankType" type="int16"/>
+		<field name="ranks" type="ExpiratBossGlobalRank" lst="Y"/>
+	</bean>
+	<bean name="ExpiratBossGlobalRanksRes2" scope="1">
+		<field name="ranks2" type="ExpiratBossGlobalRanksRes" lst="Y"/>
+	</bean>
+	<bean name="DuelRankReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+	</bean>
+	<bean name="DuelRankRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="rank" type="int32"/>
+		<field name="error" type="int32"/>
+	</bean>
+	<bean name="DuelTopRanksReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+	</bean>
+	<bean name="DuelTopRank" scope="1">
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="roleName" type="string"/>
+		<field name="serverName" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="score" type="int32"/>
+		<field name="rank" type="int32"/>
+	</bean>
+	<bean name="DuelTopRanksRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="ranks" type="DuelTopRank" lst="Y"/>
+		<field name="error" type="int32"/>
+	</bean>
+	
+	<bean name="SWarSearchReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="skipForceID" type="GlobalForceID"/>
+		<field name="level" type="int16"/>
+	</bean>
+	<bean name="SWarSearchRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="oppos" type="DBForceSWarBrief" lst="Y"/>
+		<field name="error" type="int32"/>
+	</bean>
+	<bean name="SWarAttackReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="oppoForceID" type="GlobalForceID"/>
+		<field name="bid" type="int8"/>
+		<field name="bindex" type="int16"/>
+		<field name="record" type="DBForceSWarMatchRecord"/>
+	</bean>
+	<bean name="SWarAttackRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="oppoForceID" type="GlobalForceID"/>
+		<field name="bid" type="int8"/>
+		<field name="bindex" type="int16"/>
+		<field name="result" type="int8"/>
+		<field name="error" type="int32"/>
+	</bean>
+	<bean name="SWarRank" kclone="d" scope="1">
+		<field name="rank" type="int32"/>
+		<field name="lvl" type="int16"/>
+		<field name="serverName" type="string"/>
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="fname" type="string"/>
+		<field name="iconId" type="int16"/>
+		<field name="score" type="int32"/>
+	</bean>
+	<bean name="SWarRanksRes" scope="1">
+		<field name="serverId" type="int32"/>
+		<field name="ranks" type="SWarRank" lst="Y"/>
+	</bean>
+	<bean name="SWarGlobalRank" kclone="d" scope="1">
+		<field name="forceId" type="int32"/>
+		<field name="rank" type="int32"/>
+	</bean>
+	<bean name="SWarGlobalRanksRes" scope="1">
+		<field name="ranks" type="SWarGlobalRank" lst="Y"/>
+	</bean>
+	<bean name="SWarRankReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="forceID" type="GlobalForceID"/>
+	</bean>
+	<bean name="SWarRankRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="rank" type="int32"/>
+		<field name="error" type="int32"/>
+	</bean>
+	<bean name="SWarTopRanksReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="forceID" type="GlobalForceID"/>
+	</bean>
+	<bean name="SWarTopRank" scope="1">
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="fname" type="string"/>
+		<field name="serverName" type="string"/>
+		<field name="iconId" type="int16"/>
+		<field name="score" type="int32"/>
+		<field name="rank" type="int32"/>
+		<field name="lvl" type="int16"/>
+	</bean>
+	<bean name="SWarTopRanksRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="ranks" type="SWarTopRank" lst="Y"/>
+		<field name="error" type="int32"/>
+	</bean>
+	<bean name="SWarVoteReq" scope="1">
+		<field name="forceID" type="GlobalForceID"/>
+		<field name="oppoForceID" type="GlobalForceID"/>
+		<field name="releaseForceID" type="GlobalForceID"/>
+		<field name="serverName" type="string"/>
+		<field name="fname" type="string"/>
+		<field name="lvl" type="int16"/>
+	</bean>
+	<bean name="SWarReleaseReq" scope="1">
+		<field name="forceID" type="GlobalForceID"/>
+	</bean>
+	
+	<bean name="ExpiratBossTopRanksRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="combatId" type="int16"/>
+		<field name="ranks" type="ExpiratBossTopRank" lst="Y"/>
+		<field name="error" type="int32"/>
+	</bean>
+	
+	<bean name="ExchangeChannelMessage" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="srcgs" type="int32"/>
+		<field name="dstgs" type="int32"/>
+		<field name="msg" type="string" lst="Y"/>
+	</bean>
+	
+	<bean name="ExpiratBossRankReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="type" type="int16"/>
+		<field name="roleID" type="GlobalRoleID"/>
+	</bean>
+	<bean name="ExpiratBossRankRes" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="rank" type="int32"/>
+		<field name="error" type="int32"/>
+	</bean>
+	
+	<bean name="HeroesBossSyncReq" kclone="d" scope="1">
+	    <field name="id" type="int32"/>
+	    <field name="roleID" type="GlobalRoleID"/>
+	    <field name="type" type="int16"/>
+	    <field name="gids" type="int16" lst="Y"/>
+	    <field name="gcnt" type="int16" />
+		<field name="ranks" type="HeroesRank" />
+	</bean>
+	
+	<bean name="HeroesBossFinishAttReq" kclone="d" scope="1">
+	    <field name="id" type="int32"/>
+	    <field name="roleID" type="GlobalRoleID"/>
+	    <field name="type" type="int16"/>
+	    <field name="rid" type="int32"/>
+	    <field name="type2" type="int16"/>
+	    <field name="score" type="int32"/>
+	    <field name="rank" type="HeroesRank" />
+	    <field name="serverIds" type="GlobalRoleID" lst="Y"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	
+	<bean name="HeroesBossInfoRes" kclone="d" scope="1">
+     	<field name="id" type="int32"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	<bean name="HeroesBossInfoReq" kclone="d" scope="1">
+     	<field name="id" type="int32"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	
+	<bean name="HeroesBossSyncRes" kclone="d" scope="1">
+     	<field name="id" type="int32"/>
+     	<field name="roleID" type="GlobalRoleID"/>
+	    <field name="type" type="int16"/>
+	    <field name="gids1" type="int16" lst="Y"/>
+	    <field name="gids2" type="int16" lst="Y"/>
+	    <field name="gids3" type="int16" lst="Y"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	
+	<bean name="HeroesBossFinishAttRes" kclone="d" scope="1">
+	    <field name="id" type="int32"/>
+	    <field name="roleID" type="GlobalRoleID"/>
+	    <field name="type" type="int16"/>
+	    <field name="type2" type="int16"/>
+	    <field name="score" type="int32"/>
+	    <field name="rank" type="HeroesRank" />
+	    <field name="serverIds" type="GlobalRoleID" lst="Y"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	
+	<bean name="ExpiratBossTopRanksReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+	</bean>
+	<bean name="ExpiratBossGlobalRanksReq" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+	</bean>
+	<bean name="ExpiratBossGlobalRanksReq2" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+	</bean>
+	<bean name="ExpiratBossTopRank" kclone="d" scope="1">
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="roleName" type="string"/>
+		<field name="serverName" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="damage" type="int32"/>
+		<field name="rank" type="int32"/>
+	</bean>
+	<bean name="ExpiratBossTopRanksRes2" scope="1">
+		<field name="id" type="int32"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		 <field name="type" type="int16"/>
+		<field name="ranks" type="ExpiratBossTopRank" lst="Y"/>
+		<field name="error" type="int32"/>
+	</bean>
+	
+	<bean name="ExpiratBossRank" kclone="d" scope="1">
+	    <field name="combatId" type="int16"/>
+		<field name="rank" type="int32"/>
+		<field name="serverName" type="string"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="rname" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="damage" type="int32"/>
+	</bean>
+	
+	<bean name="ExpiratBossRanks" kclone="d" scope="1">
+	    <field name="type" type="int16"/>
+		<field name="ranks" type="ExpiratBossRank" lst="Y"/>
+	</bean>
+	<bean name="ExpiratBossRanksRes" scope="1">
+		<field name="serverId" type="int32"/>
+		<field name="ranksList" type="ExpiratBossRanks" lst="Y"/>
+	</bean>
+	
+	<bean name="HeroesBossSync" kclone="d" scope="1">
+	    <field name="type" type="int16"/>
+	    <field name="gids" type="int16" lst="Y"/>
+	     <field name="gcnt" type="int16"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	
+	<bean name="HeroesBossFinishAtt" kclone="d" scope="1">
+	    <field name="type" type="int16"/>
+	    <field name="rid" type="int16"/>
+	    <field name="type2" type="int16"/>
+	    <field name="score" type="int16"/>
+	    <field name="serverIds" type="GlobalRoleID" lst="Y"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	
+	<bean name="HeroesBossInfo" kclone="d" scope="1">
+	    <field name="rid" type="int16"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	
+	<!--  <bean name="QueryHasRoleReq"  scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id"  type="int32"/>
+		<field name="srcgs" type="int32"/>
+		<field name="targs" type="int32"/>
+		<field name="area" type="int32"/>
+		<field name="plat" type="int32"/>
+		<field name="openid" type="string" lst="N"/>
+	</bean>
+	
+	<bean name="QueryHasRoleRes" scope="1">
+		<field name="tag" type="int32"/>
+		<field name="id"  type="int32"/>
+		<field name="srcgs" type="int32"/>
+		<field name="targs" type="int32"/>
+		<field name="area" type="int32"/>
+		<field name="plat" type="int32"/>
+		<field name="conflict_flag"  type="int32"/>
+		<field name="role_count" type="int32"/>
+		<field name="role_names" type="string"/>
+	</bean>
+    -->
+    
+    <bean name="ExpatriateTransRoleReq" scope="1">
+        <field name="tag" type="int32"/>
+        <field name="id" type="int32"/>
+        <field name="srcgs" type="int32"/>
+        <field name="targs" type="int32"/>
+        <field name="openid" type="string"/>
+        <field name="data" type="i3k.DBRole"/>
+    </bean>
+    
+    <bean name="ExpatriateTransRoleRes" scope="1" >
+        <field name="tag" type="int32"/>
+        <field name="id" type="int32"/>
+        <field name="srcgs" type="int32"/>
+        <field name="targs" type="int32"/>
+        <field name="operror" type="int32"/>
+        <field name="errordes" type="string"/>
+    </bean>
+    
+	<bean name="VIPCFGS" scope="1">
+		<field name="lvl" type="int8"/>
+		<field name="stoneReq" type="int32"/>
+		<field name="buyMoneyTimes" type="int16"/>
+		<field name="buyVitTimes" type="int16"/>
+		<field name="buySkillPointTimes" type="int16"/>
+		<field name="skillPointMax" type="int8"/>
+		<field name="buyArenaTimes" type="int16"/>
+		<field name="resetMarchTimes" type="int16"/>
+		<field name="mobaiTimes" type="int8"/>
+		<field name="superMobaiTimes" type="int8"/>
+		<field name="canSaodang1" type="int8"/>
+		<field name="canSaodang10" type="int8"/>
+		<field name="resetCombatTimes" type="int8"/>
+		<field name="marchRewardUp" type="int8"/>
+		<field name="canBuySoulBox" type="int8"/>
+		<field name="canOccupyCityCount" type="int8"/>
+		<field name="canSummonShopRand1" type="int8"/>
+		<field name="canSummonShopRand2" type="int8"/>
+		<field name="petZanOfferCount" type="int16"/>
+		<field name="mercCountMax" type="int8"/>
+	</bean>
+	
+	<bean name="FriendRecallLevelCFGS" scope="1">
+		<field name="lvlCeil" type="int16"/>
+		<field name="reward" type="int32"/>
+	</bean>
+	
+	<bean name="FriendCFGS" scope="1">
+		<field name="cap" type="int8"/>
+		<field name="pointMaxPerDay" type="int16"/>
+		<field name="vitBaoziMaxPerDay" type="int16"/>
+		<field name="vitPerBaozi" type="int16"/>
+		<field name="pointPerBaozi" type="int16"/>
+		<field name="minRecallDay" type="int8"/>
+		<field name="maxRecall" type="int8"/>
+		<field name="recallLevels" type="FriendRecallLevelCFGS" lst="Y"/>
+		<field name="breedRewardProp" type="float"/>
+		<field name="breedRewardMaxPerDay" type="int32"/>
+		<field name="petExpItemMaxPerDay" type="int16"/>
+	</bean>
+	
+	<bean name="EventEggLevelCFGS" scope="1">
+		<field name="dropID" type="int16"/>
+		<field name="stone" type="int32"/>
+	</bean>
+	
+	<bean name="EventCFGS" scope="1">
+		<field name="packIDFirstPay" type="int16"/>
+		<field name="stoneAllGeneralEggDropIDs" type="EventEggLevelCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="TaskReward">
+		<field name="type" type="int8"/>
+		<field name="arg1" type="float"/>
+		<field name="arg2" type="float"/>
+		<field name="arg3" type="float"/>
+	</bean>
+	
+	<bean name="TaskCFGS" scope="1">
+		<field name="lvlReq" type="int16"/>
+		<field name="gidReq" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="arg1" type="int32"/>
+		<field name="arg2" type="int32"/>
+		<field name="arg3" type="int32"/>
+		<field name="arg4" type="int32"/>
+		<field name="rewardExp" type="int32"/>
+		<field name="rewardMoney" type="int32"/>
+		<field name="rewardStone" type="int32"/>
+		<field name="rewards" type="DropEntry" lst="Y"/>
+	</bean>
+	<bean name="TaskGroupCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="tasks" type="TaskCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="ArenaRewardCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="money" type="int32"/>
+		<field name="stone" type="int32"/>
+		<field name="point" type="int16"/>
+		<field name="item1" type="int16"/>
+		<field name="item1Count" type="int8"/>
+		<field name="item2" type="int16"/>
+		<field name="item2Count" type="int8"/>
+	</bean>
+	<bean name="ArenaBestRankRewardCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="money" type="int32"/>
+		<field name="stone" type="int32"/>
+	</bean>
+	<bean name="ArenaTargetCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="deltaMin" type="int32" lst="Y"/>
+		<field name="deltaMax" type="int32" lst="Y"/>
+		<field name="seeMax" type="int32"/>
+	</bean>
+	<bean name="ArenaCFGS" scope="1">
+		<field name="refreshTime" type="int16"/>
+		<field name="lvlReq" type="int8"/>
+		<field name="freeTimes" type="int8"/>
+		<field name="stoneRefresh" type="int8"/>
+		<field name="coolTime" type="int8"/>
+		<field name="combatId" type="int16"/>
+		<field name="timesPrice" type="int16" lst="Y"/>
+		<field name="rankMax" type="int32"/>
+		<field name="rewards" type="ArenaRewardCFGS" lst="Y"/>
+		<field name="bestRankRewards" type="ArenaBestRankRewardCFGS" lst="Y"/>
+		<field name="targets" type="ArenaTargetCFGS" lst="Y"/>
+	</bean>
+	
+    <bean name="SuperArenaRewardCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="point" type="int32"/>
+	</bean>
+	
+	<bean name="SuperArenaRankCFGS" scope="1">
+		<field name="deltaMin" type="int32"/>
+		<field name="deltaMax" type="int32"/>
+	</bean>
+	
+	<bean name="SuperArenaTargetCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="deltaRanks" type="SuperArenaRankCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="SuperArenaCFGS" scope="1">
+		<field name="lvlReq" type="int8"/>
+		<field name="freeTimes" type="int8"/>
+		<field name="stoneRefresh" type="int8"/>
+		<field name="coolTime" type="int8"/>
+		<field name="combatId" type="int16"/>
+		<field name="timesPrice" type="int16" lst="Y"/>
+		<field name="hideTeamDaySpan" type="int32"/>
+		<field name="hideTeamCost" type="int32" lst="Y"/>
+		<field name="hideOrderVipReq" type="int32"/>
+		<field name="fightStartTime" type="int16"/>
+		<field name="fightEndTime" type="int16"/>
+		<field name="fightWinReward" type="int32"/>
+		<field name="fightLoseReward" type="int32"/>
+		<field name="targets" type="SuperArenaTargetCFGS" lst="Y"/>
+		<field name="rewards" type="SuperArenaRewardCFGS" lst="Y"/>
+	</bean>
+	<bean name="ArenaRecord" scope="1" kclone="d">
+		<field name="rid1" type="int32"/>
+		<field name="rid2" type="int32"/>
+		<field name="headIconId1" type="int32"/>
+		<field name="headIconId2" type="int32"/>
+		<field name="name1" type="string"/>
+		<field name="name2" type="string"/>
+		<field name="lvl1" type="int16"/>
+		<field name="lvl2" type="int16"/>
+		<field name="generals1" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="generals2" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets1" type="DBPetBrief" lst="Y"/>
+		<field name="pets2" type="DBPetBrief" lst="Y"/>
+		<field name="relation1" type="DBRelation" lst="Y"/>
+		<field name="relation2" type="DBRelation" lst="Y"/>
+		<field name="time" type="int32"/>
+		<field name="seed" type="int32"/>
+		<field name="result" type="int8"/>
+		<field name="index" type="int32"/>
+		<field name="gStones1" type="DBGeneralStone" lst="Y"/>
+		<field name="gStones2" type="DBGeneralStone" lst="Y"/>
+	</bean>
+	
+	<bean name="SuperArenaTeamDetail" scope="1" kclone="d">
+		<field name="generals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets" type="DBPetBrief" lst="Y"/>
+		<field name="relation" type="DBRelation" lst="Y"/>
+		<field name="gStones" type="DBGeneralStone" lst="Y"/>
+	</bean>
+	
+	<bean name="SuperArenaFightInfo" scope="1" kclone="d">
+		<field name="rid" type="int32"/>
+		<field name="headIconId" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="lvl" type="int16"/>
+		<field name="teams" type="SuperArenaTeamDetail" lst="Y"/>
+	</bean>
+	
+	<bean name="SuperArenaRecord" scope="1" kclone="d">
+		<field name="fteam1" type="SuperArenaFightInfo"/>
+		<field name="fteam2" type="SuperArenaFightInfo"/>
+		<field name="seed" type="int32"/>
+		<field name="time" type="int32"/>
+		<field name="result" type="int32" lst="Y"/>
+		<field name="id" type="int32"/>
+	</bean>
+	
+	<bean name="MarchDropCFGS" scope="1">
+		<field name="maxLvl" type="int8"/>
+		<field name="drop" type="int16"/>
+	</bean>
+	<bean name="MarchStageCFGS" scope="1">
+		<field name="combatId" type="int16"/>
+		<field name="money1" type="int32"/>
+		<field name="money2" type="int32"/>
+		<field name="point" type="int16"/>
+		<field name="drops" type="MarchDropCFGS" lst="Y"/>
+		<field name="fightPowerScale" type="float"/>
+	</bean>
+	<bean name="MarchTargetCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="deltaMin" type="int32" lst="Y"/>
+		<field name="deltaMax" type="int32" lst="Y"/>
+	</bean>
+	<bean name="MarchPowerUpCFGS" scope="1">
+		<field name="stage" type="int8"/>
+		<field name="powerUpByDay" type="int16"/>
+	</bean>
+	<bean name="MarchOpponentAdjustCFGS" scope="1">
+		<field name="roleLevelMax" type="int16"/>
+		<field name="hpScale" type="float" lst="Y"/>
+		<field name="attackScale" type="float" lst="Y"/>
+	</bean>
+	<bean name="MarchCFGS" scope="1">
+		<field name="refreshTime" type="int16"/>
+		<field name="lvlReq" type="int8"/>
+		<field name="wipeItemId" type="int16"/>
+		<field name="powerUpDays" type="int8"/>
+		<field name="powerDownDays" type="int8"/>
+		<field name="powerUpStage" type="int8"/>
+		<field name="powerDownStage" type="int8"/>
+		<field name="stages" type="MarchStageCFGS" lst="Y"/>
+		<field name="targets" type="MarchTargetCFGS" lst="Y"/>
+		<field name="powerUps" type="MarchPowerUpCFGS" lst="Y"/>
+		<field name="powerDowns" type="MarchPowerUpCFGS" lst="Y"/>
+		<field name="opponentAdjust" type="MarchOpponentAdjustCFGS" lst="Y"/>
+	</bean>
+
+	<bean name="PowerCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="initPower" type="int32"/>
+		<field name="upPower" type="int32"/>
+	</bean>
+
+	<bean name="RandomNameCFG">
+		<field name="lastNames" type="string" lst="Y"/>
+		<field name="mnames" type="string" lst="Y"/>
+		<field name="fnames" type="string" lst="Y"/>
+		<field name="robotNames" type="string" lst="Y"/>
+	</bean>
+	
+	<bean name="CombatServerCFG">
+		<field name="skipCombatItemID" type="int16"/>
+	</bean>
+	<bean name="CombatClientCFG">
+		<field name="skipCombatItemID" type="int16"/>
+		<field name="randomDamageRadius" type="float"/>
+		<field name="showGeneralName" type="int8"/>
+		<field name="shadowEffectID" type="int16"/>
+		<field name="moveTargetEffectID" type="int16"/>
+		<field name="enemySelectEffectID" type="int16"/>
+		<field name="allySelectEffectID" type="int16"/>
+		<field name="attackRangeEffectID" type="int16"/>
+		<field name="healEffectID" type="int16"/>
+		<field name="damageEffectID" type="int16"/>
+		<field name="healCriticalEffectID" type="int16"/>
+		<field name="damageCriticalEffectID" type="int16"/>
+		<field name="hseTime" type="int16"/>
+		<field name="generalRefreshInterval" type="int16"/>
+		<field name="deathDelTime" type="int8"/>
+		<field name="commonSkillCool" type="int16"/>
+		<field name="winEffectID" type="int16"/>
+		<field name="loseEffectID" type="int16"/>
+		<field name="ydbEffectID" type="int16"/>
+		<field name="winEffectTime" type="int16"/>
+		<field name="loseEffectTime" type="int16"/>
+		<field name="ydbEffectTime" type="int16"/>		
+		<field name="maxPersistantAttackTime" type = "int16"/>
+		<field name="escapeHP" type="float"/>
+		<field name="continueFightHP" type="float"/>
+		<field name="aoeEffectRange" type="float"/>
+		<field name="healHP" type="float"/>
+		<field name="aoeInterval" type="int16"/>
+		<field name="aoeEnemyCount" type="int8"/>
+		<field name="firstCombatID" type="int16"/>
+		<field name="firstCombatGeneralLevel" type="int8"/>
+		<field name="firstCombatGenerals" type="int16" lst="Y"/>
+		<field name="dlgIDGeneralStart" type="int16"/>
+		<field name="dlgIDAssistantGeneralStart" type="int16"/>
+		<field name="dlgIDEnemyGeneralStart" type="int16"/>
+		<field name="dlgIDDie" type="int16"/>
+		<field name="dlgIDIdle" type="int16"/>
+		<field name="dlgIDKill" type="int16"/>
+		<field name="dlgIDCry" type="int16"/>
+		<field name="dlgStartHeroProp" type="float"/>
+		<field name="dlgStartAssistantProp" type="float"/>
+		<field name="dlgStartEnemyProp" type="float"/>
+		<field name="dlgShoutProp" type="float"/>
+		<field name="dlgShoutUseProp" type="float"/>
+		<field name="dlgDieProp" type="float"/>
+		<field name="dlgIdleProp" type="float"/>
+		<field name="dlgKillProp" type="float"/>
+	</bean>
+	
+	<bean name="MusicCFG">
+		<field name="cityMusic" type="string"/>
+		<field name="combatMusic" type="string"/>
+		<field name="createRoleMusic" type="string"/>
+		<field name="pvpMusic" type="string"/>
+	</bean>
+	
+	<bean name="PVPMapCFG">
+		<field name="map" type="string"/>
+		<field name="pos" type="Float3" lst="Y"/>
+	</bean>
+	
+	<bean name="MapCFG">
+		<field name="cityMap" type="string"/>
+		<field name="createRoleMap" type="string"/>
+		<field name="createRoleScript" type="string"/>
+		<field name="createRoleMapSpeed" type="float"/>
+		<field name="createRoleMapEnable" type="int8"/>
+		<field name="pvpMaps" type="PVPMapCFG" lst="Y"/>
+		<field name="heroBoxName" type="string"/>
+		<field name="heroBoxName2" type="string"/>
+	</bean>
+	
+	<bean name="AlarmCFG">
+		<field name="time" type="int16"/>
+		<field name="content" type="string"/>
+	</bean>
+	
+	<bean name="PetFarmGrowthRateCFG" scope="1">
+		<field name="growthRateMax" type="int16"/>
+		<field name="addCount" type="int8"/>
+	</bean>
+	
+	<bean name="PetFarmCFGS" scope="1">
+		<field name="lvlOpen" type="int16"/>
+		<field name="lvlPet" type="int16"/>
+		<field name="firstHungry" type="int16"/>
+		<field name="hungryTimeBase" type="int16"/>
+		<field name="hungryTimeFloat" type="int16"/>
+		<field name="maxEatTimes" type="int8"/>
+		<field name="petMaxEatTimes" type="int8"/>
+		<field name="noHungryTimeBase" type="int16"/>
+		<field name="noHungryTimeSpan" type="int32"/>
+		<field name="eatGainBase" type="int8"/>
+		<field name="eatGainFloat" type="int8"/>
+		<field name="produceCost" type="int8"/>
+		<field name="hungryEffect" type="int16"/>
+		<field name="produceEffect" type="int16"/>
+		<field name="getProductEffect" type="int16"/>
+		<field name="loyaltyEffect" type="int16"/>
+		<field name="growthRateAffect" type="PetFarmGrowthRateCFG" lst="Y"/>
+	</bean>
+	
+	<bean name="UserInputCFGS" scope="1">
+		<field name="roleName" type="int8"/>
+		<field name="userName" type="int8"/>
+		<field name="forceName" type="int8"/>
+		<field name="forceAnnounce" type="int8"/>
+		<field name="forceQQ" type="int8"/>
+		<field name="worldChat" type="int8"/>
+		<field name="mail" type="int8"/>
+		<field name="sysMail" type="int16"/>
+		<field name="gmAnnounce" type="int8"/>
+	</bean>
+	
+	<bean name="EngineCFG">
+		<field name="horseHS" type="string"/>
+		<field name="horseCS" type="string"/>
+		<field name="horseTitleOffset" type="float"/>
+		<field name="texBloodGreen" type="string"/>
+		<field name="texBloodRed" type="string"/>
+		<field name="texNumberEffectGreen" type="string"/>
+		<field name="texNumberEffectRed" type="string"/>
+		<field name="durNumberEffect" type="int16"/>
+		<field name="gravity" type="float"/>
+		<field name="useCollision" type="int8"/>
+		<field name="useKPack" type="int8"/>
+		<field name="cameraFollowHero" type="int8"/>
+		<field name="showFPSOnHead" type="int8"/>
+		<field name="showErrorOnHead" type="int8"/>
+		<field name="defaultFont" type="string"/>
+		<field name="defaultStandAction" type="string"/>
+		<field name="defaultRunAction" type="string"/>
+		<field name="defaultAttackAction" type="string"/>
+		<field name="defaultHurtAction" type="string" lst="Y"/>
+		<field name="defaultDeathAction" type="string" lst="Y"/>
+		<field name="defaultDeathLoopAction" type="string" lst="Y"/>
+		<field name="defaultWinAction" type="string"/>
+		<field name="defaultLoseAction" type="string"/>
+		<field name="loadingInitMaxCool" type="int16"/>
+		<field name="dragMin" type="int16"/>
+		<field name="dragSpeed" type="float"/>
+		<field name="moveStopRange" type="float"/>
+		<field name="rotateStopRange" type="float"/>
+		<field name="attackGridSize" type="float"/>
+		<field name="roundBoxScale" type="float"/>
+		<field name="X2Speed" type="float"/>
+		<field name="X3Speed" type="float"/>
+		<field name="horseBaseSpeed" type="float"/>
+	</bean>
+	
+	<bean name="GameDataCFGC">
+		<field name="version" type="int32" default="1"/>
+		<field name="dlgtables" type="DlgTableCFG" lst="Y"/>
+		<field name="dlgtablesNew" type="DlgTableCFG" lst="Y"/>
+		<field name="tips" type="TipsCFG" lst="Y"/>
+		<field name="artEffects" type="ArtEffectCFG" lst="Y"/>
+		<field name="uiEffects" type="UIEffectCFG" lst="Y"/>
+		<field name="fightEffects" type="FightEffectCFG" lst="Y"/>
+		<field name="combatmaps" type="CombatMapCFG" lst="Y"/>
+		<field name="combatcats" type="CombatCatCFG" lst="Y"/>
+		<field name="loadingTips" type="LoadingCFG" lst="Y"/>
+		<field name="icons" type="IconCFG" lst="Y"/>
+		<field name="packages" type="PackageCFGC" lst="Y"/>
+		<field name="alarms" type="AlarmCFG" lst="Y"/>
+		<field name="randomNames" type="RandomNameCFG"/>
+		<field name="combat" type="CombatClientCFG"/>
+		<field name="music" type="MusicCFG"/>
+		<field name="map" type="MapCFG"/>
+		<field name="engine" type="EngineCFG"/>
+		<field name="luaCfg" type="string"/>
+	</bean>
+	<bean name="GeneralName" scope="1">
+		<field name="id" type="int16"/>
+		<field name="name" type="string"/>
+	</bean>
+	<bean name="GameDataCFGT" scope="1">
+		<field name="generals" type="GeneralName" lst="Y"/>
+		<field name="equips" type="GeneralName" lst="Y"/>
+		<field name="items" type="GeneralName" lst="Y"/>
+	</bean>
+	<bean name="QQDirtyWordCatCFGS" scope="1">
+		<field name="key" type="string"/>
+		<field name="words" type="string" lst="Y"/>
+	</bean>
+	<bean name="QQDirtyWordCFGS" scope="1">
+		<field name="words" type="string" lst="Y"/>
+		<field name="wordsICase" type="string" lst="Y"/>
+		<field name="cats" type="QQDirtyWordCatCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="IPadAreaCFGS" scope="1">
+		<field name="gsID" type="int32"/>
+		<field name="itemID" type="int16"/>
+		<field name="timeCheat" type="int32"/>
+	</bean>
+	
+	<bean name="IPadCFGS" scope="1">
+		<field name="state" type="int32"/>
+		<field name="timeStart" type="int32"/>
+		<field name="timeEnd" type="int32"/>
+		<field name="itemIDRand" type="int16"/>
+		<field name="prop" type="float"/>
+		<field name="areas" type="IPadAreaCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="GameDataCFGS" scope="1">
+		<field name="version" type="int32" default="1"/>
+		<field name="userInput" type="UserInputCFGS"/>
+		<field name="generals" type="GeneralCFGS" lst="Y"/>
+		<field name="pets" type="PetCFGS" lst="Y"/>
+		<field name="deformPets" type="PetCFGS" lst="Y"/>
+		<field name="generalsCmn" type="GeneralCmnCFGS"/>
+		<field name="petsCmn" type="PetCmnCFGS"/>
+		<field name="roleCmn" type="RoleCmnCFGS"/>
+		<field name="combatCmn" type="CombatCmnCFGS"/>
+		<field name="equipCmn" type="EquipCmnCFGS"/>
+		<field name="combats" type="CombatCFGS" lst="Y"/>
+		<field name="combatEvents" type="CombatEventCFGS" lst="Y"/>
+		<field name="combatcats" type="CombatCatCFG" lst="Y"/>
+		<field name="droptables" type="DropTableCFGS" lst="Y"/>
+		<field name="eggs" type="EggCFGS" lst="Y"/>
+		<field name="items" type="ItemCFGS" lst="Y"/>
+		<field name="packages" type="PackageCFGS" lst="Y"/>
+		<field name="equips" type="EquipCFGS" lst="Y"/>
+		<field name="shopNormal" type="ShopCFGS"/>
+		<field name="shopArena" type="ShopCFGS"/>
+		<field name="shopMarch" type="ShopCFGS"/>
+		<field name="shopRand1" type="ShopCFGS"/>
+		<field name="shopRand2" type="ShopCFGS"/>
+		<field name="shopForce" type="ShopCFGS"/>
+		<field name="shopRichStone" type="ShopCFGS"/>
+		<field name="shopRichPoint" type="ShopCFGS"/>
+		<field name="shopRichGold" type="ShopCFGS"/>
+		<field name="shopSuperArena" type="ShopCFGS"/>
+		<field name="shopDuel" type="ShopCFGS"/>
+		<field name="shopBless" type="ShopCFGS"/>
+		<field name="mcard" type="MonthlyCardCFGS"/>
+		<field name="cmnrewards" type="CmnRewardCFGS" lst="Y"/>
+		<field name="checkin" type="CheckinCFGS" lst="Y"/>
+		<field name="force" type="ForceCFGS"/>
+		<field name="dtask2" type="DailyTask2CFGS" lst="Y"/>
+		<field name="dailyActivity" type="DailyActivityRewardCFGS" lst="Y"/>
+		<field name="qqvipRewards" type="QQVIPRewardsCFGS" lst="Y"/>
+		<!-- field name="levelLimit" type="LevelLimitCFGS"/-->
+		<field name="topLevelAura" type="TopLevelAuraCFGS"/>
+		<field name="friend" type="FriendCFGS"/>
+		<field name="event" type="EventCFGS"/>
+		<field name="taskGroups" type="TaskGroupCFGS" lst="Y"/>
+		<field name="vip" type="VIPCFGS" lst="Y"/>
+		<field name="channels" type="ChannelCFGS" lst="Y"/>
+		<field name="pay" type="PayCFGS" lst="Y"/>
+		<field name="badnames" type="string" lst="Y"/>
+		<field name="badnames2" type="string" lst="Y"/>
+		<field name="qqDirtyWords" type="QQDirtyWordCFGS"/>
+		<field name="combat" type="CombatServerCFG"/>
+		<field name="arena" type="ArenaCFGS"/>
+		<field name="superArena" type="SuperArenaCFGS"/>
+		<field name="march" type="MarchCFGS"/>
+		<field name="power" type="PowerCFGS" lst="Y"/>
+		<field name="soulboxs" type="SoulBoxCFGS" lst="Y"/>
+		<field name="petFarm" type="PetFarmCFGS"/>
+		<field name="capturecity" type="CaptureCityCFGS"/>
+		<field name="weapon" type="WeaponCFGS"/>
+		<field name="forcebattles" type="ForceBattlesCFGS"/>
+		<field name="rich" type="RichCFGS"/>
+		<field name="invitation" type="InvitationCFGS"/>
+		<field name="dungeon" type="DungeonCFGS"/>
+		<field name="relation" type="RelationsCFGS"/>
+		<field name="generalStone" type="GeneralStoneCFGS"/>
+		<field name="generalSeyen" type="GeneralSeyenCFGS"/>
+		<field name="changeServer" type="ChangeServerCFGS"/>
+		<field name="expiratBoss" type="ExpiratBossCFGS"/>
+		<field name="heroesBoss" type="HeroesBossCFGS"/>
+		<field name="bestow" type="BestowCFGS"  lst="Y"/>
+		<field name="bless" type="BlessCFGS"  lst="Y"/>
+		<field name="common" type="CommomConstantCFGS" />
+		<field name="bestowItem" type="BestowItemCFGS" />
+		<field name="headicon" type="HeadIconCFGS"  lst="Y"/>
+		<field name="diskBet" type="DiskBetCFGS"/>
+		<field name="expatriateCost" type="int16"/>
+		<field name="bestowcost" type="int16"/>
+		<field name="bestowId" type="int16"/>
+		<field name="forceBattleCount" type="int16"/>
+		<field name="merc" type="MercCFGS"/>
+		<field name="duel" type="DuelCFGS"/>
+		<field name="sura" type="SuraCFGS"/>
+		<field name="swar" type="ForceSWarCFGS"/>
+		<field name="official" type="OfficialCFGS"/>
+		<field name="ipad" type="IPadCFGS"/>
+		<field name="treasureMap" type="TreasureMapBaseCFGS"/>
+		<field name="beMonster" type="BeMonsterCFGS"/>
+	</bean>
+	
+	<bean name="WeaponPropCFGS" scope="1">
+		<field name="propId" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="value" type="float"/>
+	</bean>
+	<bean name="WeaponBasicCFGS" scope="1">
+		<field name="gid" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="reqAdvLvl" type="int8"/>
+		<field name="iconId" type="int16"/>
+		<field name="desc" type="string"/>
+		<field name="recommend" type="string"/>
+		<field name="props" type="WeaponPropCFGS" lst="Y"/>
+	</bean>
+	<bean name="WeaponEnhanceStageCFGS" scope="1">
+		<field name="imageId" type="int16"/>
+		<field name="effectId" type="int16"/>
+		<field name="enhanceCount" type="int8"/>
+	</bean>
+	<bean name="WeaponCostCFGS" scope="1">
+		<field name="costMoney" type="int32"/> 
+		<field name="costStone" type="int32"/>
+	</bean>
+	<bean name="WeaponEvoCostCFGS" scope="1">
+		<field name="costMoney" type="int32"/>
+		<field name="costEquipID0" type="int16"/>
+		<field name="costEquipID1" type="int16"/>
+	</bean>
+	<bean name="WeaponEnhanceCFGS" scope="1">
+		<field name="gid" type="int16"/>
+		<field name="enhanceStages" type="WeaponEnhanceStageCFGS" lst="Y"/>
+		<field name="enhanceCosts" type="DropEntryNew" lst="Y"/>
+		<field name="enhanceProps" type="WeaponPropCFGS" lst="Y"/>
+	</bean>
+	<bean name="WeaponResetPropCFGS" scope="1">
+		<field name="propId" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="valueMin" type="float"/>
+		<field name="valueMax" type="float"/>
+		<field name="rule" type="int8"/>
+		<field name="poss" type="int16"/>
+	</bean>
+	<bean name="WeaponResetPropPassCFGS" scope="1">
+		<field name="pass" type="WeaponResetPropCFGS" lst="Y"/>
+	</bean>
+	<bean name="WeaponResetRuleCFGS" scope="1">
+		<field name="id" type="int8"/>
+		<field name="percent" type="int8" lst="Y"/>
+	</bean>
+	<bean name="WeaponResetNewPropCFGS" scope="1">
+		<field name="percent" type="int8" lst="Y"/>
+	</bean>
+	<bean name="WeaponResetCFGS" scope="1">
+		<field name="noLock" type="WeaponCostCFGS"/>
+		<field name="lock1" type="WeaponCostCFGS"/>
+		<field name="lock2" type="WeaponCostCFGS"/>
+		<field name="lock3" type="WeaponCostCFGS"/>
+		<field name="propPasses" type="WeaponResetPropPassCFGS" lst="Y"/>
+		<field name="rules" type="WeaponResetRuleCFGS" lst="Y"/>
+		<field name="newPropPurple" type="WeaponResetNewPropCFGS" lst="Y"/>
+		<field name="newPropOrange" type="WeaponResetNewPropCFGS" lst="Y"/>
+		<field name="nlock1" type="WeaponCostCFGS"/>
+		<field name="nlock2" type="WeaponCostCFGS"/>
+		<field name="nlock3" type="WeaponCostCFGS"/>
+		<field name="nlock4" type="WeaponCostCFGS"/>
+		<field name="nlock5" type="WeaponCostCFGS"/>
+	</bean>
+	<bean name="WeaponCFGS" scope="1">
+		<field name="basic" type="WeaponBasicCFGS" lst="Y"/>
+		<field name="enhance" type="WeaponEnhanceCFGS" lst="Y"/>
+		<field name="evoCosts" type="WeaponEvoCostCFGS" lst="Y"/>
+		<field name="reset" type="WeaponResetCFGS"/>
+	</bean>
+	
+	<bean name="GeneralStonePropCFGS" scope="1">
+	    <field name="pId" type="int16"/>
+		<field name="propId" type="int16"/>
+		<field name="type" type="int16"/>
+		<field name="value" type="int16"/>
+	</bean>
+	<bean name="GeneralStonePropValueCFGS" scope="1">
+		<field name="pId" type="int16"/>
+		<field name="weight" type="int16"/>
+		<field name="minvalue" type="float"/>
+		<field name="maxvalue" type="float"/>
+	</bean>
+	<bean name="GeneralStoneSkillPropCFGS" scope="1">
+		<field name="beskillId" type="int16"/>
+		<field name="afskillId" type="int16"/>
+	</bean>
+	<bean name="GeneralStonePosCFGS" scope="1">
+		<field name="gid" type="int16"/>
+		<field name="state1" type="int8"/>
+		<field name="state2" type="int8"/>
+		<field name="state3" type="int8"/>
+		<field name="state4" type="int8"/>
+		<field name="posType1" type="int8"/>
+		<field name="posType2" type="int8"/>
+		<field name="posType3" type="int8"/>
+		<field name="posType4" type="int8"/>
+		<field name="posSkill1" type="GeneralStoneSkillPropCFGS"/>
+		<field name="posSkill2" type="GeneralStoneSkillPropCFGS"/>
+		<field name="posSkill3" type="GeneralStoneSkillPropCFGS"/>
+		<field name="posSkill4" type="GeneralStoneSkillPropCFGS"/>		
+	</bean>
+	<bean name="GeneralStoneEvoCostCFGS" scope="1">
+		<field name="cid" type="int16"/>
+		<field name="totalLock" type="int8"/>
+		<field name="costStoneLock1" type="int32"/>
+		<field name="costMoneyLock1" type="int32"/>
+		<field name="costStoneLock2" type="int32"/>
+		<field name="costMoneyLock2" type="int32"/>		
+	</bean>
+	<bean name="GeneralStoneBasicCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="stype" type="int8"/>
+		<field name="maxSkillCount" type="int16"/>
+		<field name="skillAdd" type="int8"/>
+		<field name="exp" type="int32"/>
+		<field name="costExp" type="int32"/>
+		<field name="upCost" type="int32" />
+		<field name="upIid" type="int16" />
+		<field name="specialgid" type="int16" />
+		<field name="group" type="int16" />
+	</bean>
+	<bean name="GeneralStoneCFGS" scope="1">
+		<field name="basic" type="GeneralStoneBasicCFGS" lst="Y"/>
+		<field name="pos" type="GeneralStonePosCFGS" lst="Y"/>
+		<field name="evoCosts" type="GeneralStoneEvoCostCFGS" lst="Y"/>
+		<field name="sprop" type="GeneralStonePropCFGS" lst="Y"/>
+		<field name="spropValue" type="GeneralStonePropValueCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="GeneralSeyenCFGS" scope="1">
+		<field name="expAdd" type="GeneralSeyenExpAddCFGS" lst="Y"/>
+		<field name="sexp" type="GeneralSeyenExpCFGS" lst="Y"/>
+		<field name="commonValue" type="GeneralSeyenCommonCFGS"/>
+	</bean>
+	
+
+	<bean name="HeadIconCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="type" type="int16"/>
+		<field name="itemId" type="int16"/>
+		<field name="stime" type="int32"/>
+		<field name="etime" type="int32"/>
+	</bean>	
+	<bean name="DBDiskBetInfo" kclone="d" scope="1">
+	    <field name="id" type="int32"/>
+		<field name="score" type="int32"/>
+		<field name="rmb" type="int32"/>
+		<field name="times1" type="int16"/>
+		<field name="times2" type="int16"/>
+		<field name="times3" type="int16"/>
+		<field name="times4" type="int16"/>
+		<field name="bonusday" type="int32"/>
+		<field name="padding2" type="int32"/>
+		<field name="padding3" type="int32"/>
+		<field name="padding5" type="int8"/>
+		<field name="padding6" type="int8"/>
+		<field name="padding7" type="int8"/>
+		<field name="padding8" type="int8"/>
+	</bean>
+	
+	<bean name="DBBlessInfo" kclone="d" scope="1">
+	    <field name="gid" type="int16" lst="Y"/>
+		<field name="refresh1" type="int32"/>
+		<field name="refresh2" type="int32"/>
+		<field name="padding7" type="int8"/>
+		<field name="padding8" type="int8"/>
+	</bean>
+	
+	<bean name="DBDiskBet" kclone="d" scope="1">
+		<field name="ranks" type="DBDiskBetRankList" lst="Y"/>
+		<field name="roles" type="DBDiskBetRole" lst="Y"/>
+		<field name="rmbranks" type="DBDiskBetRankList" lst="Y"/>
+		<field name="ranksHis" type="DBDiskBetRank" lst="Y"/>
+		<field name="day" type="int32"/>
+		<field name="pool" type="int32"/>
+		<field name="statime" type="int32"/>
+		<field name="endtime" type="int32"/>
+		<field name="minscore" type="int32"/>
+		<field name="minRmb" type="int32"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBDiskBetRankList" kclone="d" scope="1">
+	    <field name="combatId" type="int16"/>
+		<field name="DiskBetRank" type="DBDiskBetRank" lst="Y"/>
+	</bean>
+	
+	<bean name="DBDiskBetRole" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="combat" type="int16"/>
+		<field name="rank" type="int32"/>
+		<field name="r12" type="int16"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBDiskBetRank" kclone="d" scope="1">
+	    <field name="tId" type="int16"/>
+		<field name="serverName" type="string"/>
+		<field name="rid" type="int32"/>
+		<field name="rname" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="score" type="int32"/>
+		<field name="rmb" type="int32"/>
+	</bean>
+	
+	<bean name="DiskBetCFGS" scope="1">
+	    <field name="cLevel" type="int16"/>
+		<field name="rate" type="int16"/>
+		<field name="drop1" type="int16"/>
+		<field name="drop2" type="int16"/>
+		<field name="minScore" type="int32"/>
+	    <field name="cost" type="DiskBetCostCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="DiskBetItemsCFGS" scope="1">
+		<field name="type" type="int16"/>
+		<field name="rankmin" type="int16"/>
+		<field name="rankmax" type="int16"/>
+		<field name="eItems" type="DropEntryNew" lst="Y"/>
+	</bean>	
+	
+	<bean name="DiskBetCostCFGS" scope="1">
+	    <field name="sid" type="int16"/>
+		<field name="cost" type="int16" lst="Y"/>	
+	</bean>
+	
+	<bean name="BestowCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="level" type="int16"/>
+		<field name="gid" type="int16" />
+		<field name="eItems" type="DropEntryNew" lst="Y"/>
+	</bean>
+	<bean name="BestowItemCFGS" scope="1">
+	    <field name="iid1" type="int16"/>
+		<field name="iid2" type="int16" />
+		<field name="item1" type="int16" lst="Y"/>	
+		<field name="item2" type="int16" lst="Y"/>
+	</bean>
+	
+	<bean name="BlessCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="p1" type="float"/>
+		<field name="p2" type="float"/>
+		<field name="p3" type="float"/>
+		<field name="p1Max" type="float"/>
+		<field name="p2Max" type="float"/>
+		<field name="p3Max" type="float"/>
+		<field name="eItems" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="CommomConstantCFGS" scope="1">
+		<field name="blessMaxNum" type="int16"/>
+		<field name="blessCnt" type="int16"/>
+		<field name="blessTime1" type="int32"/>
+		<field name="blessTime2" type="int32"/>
+		<field name="blessMaxP1" type="float"/>
+		<field name="blessMaxP2" type="float"/>
+		<field name="blessMaxP3" type="float"/>
+		
+	</bean>
+	
+	<bean name="HeroesBossCFGS" scope="1">
+		<field name="cLevel" type="int16"/>
+		<field name="battlecount" type="int16"/>
+		<field name="cost1" type="int16"/>
+		<field name="gids" type="int16" lst="Y"/>
+		<field name="gcount" type="int16"/>
+		<field name="heroesBossScore" type="HeroesBossScoreCFGS" lst="Y"/>
+		<field name="heroesBossItems" type="HeroesBossItemsCFGS" lst="Y"/>
+		<field name="heroesBossType" type="HeroesBossTypeCFGS" lst="Y"/>
+		<field name="heroesBossBuff" type="HeroesBossBuffCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="HeroesBossTypeCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="type" type="int16"/>
+		<field name="levelmin" type="int16"/>
+		<field name="levelmax" type="int16"/>
+	</bean>	
+	<bean name="HeroesBossItemsCFGS" scope="1">
+		<field name="rank" type="int16"/>
+		<field name="eItems" type="DropEntryNew" lst="Y"/>
+	</bean>	
+	
+	<bean name="HeroesBossBuffCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="cost" type="int16"/>
+	</bean>	
+	
+	<bean name="HeroesBossScoreCFGS" scope="1">
+	    <field name="sid" type="int16"/>
+		<field name="rank" type="int16"/>
+		<field name="type" type="int16"/>
+		<field name="score" type="int16"/>
+	</bean>	
+	
+	<bean name="ExpiratBossCFGS" scope="1">
+		<field name="cLevel" type="int16"/>
+		<field name="count" type="int16"/>
+		<field name="cost1" type="int16"/>
+		<field name="cost2" type="int16"/>
+		<field name="expiratBossBasic" type="ExpiratBossBasicCFGS" lst="Y"/>
+		<field name="expiratBossItems" type="ExpiratBossItemsCFGS" lst="Y"/>
+	</bean>
+	<bean name="ExpiratBossBasicCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="tid" type="int16"/>
+		<field name="dropId" type="int32" lst="Y"/>
+		<field name="cmax" type="int16"/>
+	</bean>	
+	<bean name="ExpiratBossItemsCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="type" type="int16"/>
+		<field name="rankmin" type="int16"/>
+		<field name="rankmax" type="int16"/>
+		<field name="eItems" type="DropEntryNew" lst="Y"/>
+	</bean>	
+	<bean name="ChangeServerCFGS" scope="1">
+		<field name="cLevel" type="int16"/>
+		<field name="serverList" type="ChangeServerListCFGS" lst="Y"/>
+		<field name="changServerItems" type="ChangServerItemsCFGS" lst="Y"/>
+	</bean>
+	<bean name="ChangeServerListCFGS" scope="1">
+		<field name="sid" type="int32"/>
+		<field name="toid" type="int32"/>
+		<field name="days" type="int16"/>
+	</bean>
+	<bean name="ChangServerItemsCFGS" scope="1">
+		<field name="sid" type="int16"/>
+		<field name="iid" type="int16"/>
+		<field name="itemType" type="int8"/>		
+		<field name="icount" type="int16"/>
+	</bean>	
+	<bean name="GeneralSeyenExpAddCFGS" scope="1">		
+		<field name="sid" type="int16"/>
+		<field name="weight" type="int16" />
+		<field name="exp" type="int32" />
+	</bean>
+	
+	<bean name="GeneralSeyenExpCFGS" scope="1">		
+		<field name="level" type="int32"/>
+		<field name="exp" type="int32" />
+		<field name="limitLvl" type="int32" />
+	</bean>
+	
+	<bean name="GeneralSeyenCommonCFGS" scope="1">		
+		<field name="reversCost" type="int32"/>
+		<field name="expRate" type="float" />
+		<field name="sItemId" type="int16" />
+		<field name="reversRate" type="float" />
+	</bean>
+	<bean name="DungeonBasicCFGS" scope="1">
+		<field name="dailyTimes" type="int8"/>
+		<field name="boxStone" type="int16"/>
+		<field name="deployMinutes" type="int16"/>
+	</bean>
+	<bean name="DungeonTreasureCFGS" scope="1">
+		<field name="percent" type="int8"/>
+		<field name="drops" type="int16" lst="Y"/>
+	</bean>
+	<bean name="DungeonStageCFGS" scope="1">
+		<field name="combatId" type="int16"/>
+		<field name="boxDropIds" type="int16" lst="Y"/>
+		<field name="treasureDrops" type="DungeonTreasureCFGS" lst="Y"/>
+		<field name="cupCount" type="int16"/>
+		<field name="cupPoss" type="int8"/>
+	</bean>
+	<bean name="DungeonApplyCFGS" scope="1">
+		<field name="type" type="int8"/>
+		<field name="id" type="int16"/>
+	</bean>
+	<bean name="DungeonChapterCFGS" scope="1">
+		<field name="openLvl" type="int16"/>
+		<field name="resetActivity" type="int32"/>
+		<field name="stages" type="DungeonStageCFGS" lst="Y"/>
+		<field name="applies" type="DungeonApplyCFGS" lst="Y"/>
+	</bean>
+	<bean name="DungeonRewardCFGS" scope="1">
+		<field name="rankFloor" type="int32"/>
+		<field name="point" type="int32"/>
+		<field name="money" type="int32"/>
+	</bean>
+	<bean name="DungeonBeyondRewardCFGS" scope="1">
+		<field name="chapter" type="int8"/>
+		<field name="stone" type="int32"/>
+	</bean>
+	<bean name="DungeonCFGS" scope="1">
+		<field name="basic" type="DungeonBasicCFGS"/>
+		<field name="chapters" type="DungeonChapterCFGS" lst="Y"/>
+		<field name="rewards" type="DungeonRewardCFGS" lst="Y"/>
+		<field name="beyondRewards" type="DungeonBeyondRewardCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="RelationPropCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="value" type="float"/>
+	</bean>
+	<bean name="RelationCFGS" scope="1">
+		<field name="id" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="activateItems" type="int16" lst="Y"/>
+		<field name="props" type="RelationPropCFGS" lst="Y"/>
+	</bean>
+	<bean name="RelationItemCFGS" scope="1">
+		<field name="iid" type="int16"/>
+		<field name="gid" type="int16"/>
+	</bean>
+	<bean name="RelationConsumeCFGS" scope="1">
+		<field name="gid" type="int16"/>
+		<field name="consume" type="int32" lst="Y"/>
+	</bean>
+	<bean name="RelationsCFGS" scope="1">
+		<field name="relations" type="RelationCFGS" lst="Y"/>
+		<field name="items" type="RelationItemCFGS" lst="Y"/>
+		<field name="consumes" type="RelationConsumeCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="MercCFGS" scope="1">
+		<field name="maxHours" type="int32"/>
+		<field name="minGeneralLevel" type="int16"/>
+		<field name="timeGainA" type="int32"/>
+		<field name="timeGainB" type="int32"/>
+		<field name="hireGainA" type="float"/>
+		<field name="timedisk1" type="int16"/>
+		<field name="timedisk2" type="int16"/>
+	</bean>
+	
+	<bean name="DuelStarsCFGS" scope="1">
+		<field name="lvlMin" type="int16"/>
+		<field name="win2Stars" type="int16"/>
+		<field name="win3Stars" type="int16"/>
+		<field name="win4Stars" type="int16"/>
+	</bean>
+	<bean name="DuelRewardCFGS" scope="1">
+		<field name="drops" type="DropEntryNew" lst="Y"/>
+		<field name="point" type="int32"/>
+	</bean>
+	<bean name="DuelTimeCFGS" scope="1">
+		<field name="begin" type="int16"/>
+		<field name="end" type="int16"/>
+	</bean>
+	<bean name="DuelCFGS" scope="1">
+		<field name="specialTimes" type="DuelTimeCFGS" lst="Y"/>
+		<field name="playTimes" type="int8"/>
+		<field name="rewardTimes" type="int8"/>
+		<field name="specialLegendRewardPoints" type="int32"/>
+		<field name="specialRewardPoints" type="int32"/>
+		<field name="rewardPoints" type="int32"/>
+		<field name="upgrade" type="int16" lst="Y"/>
+		<field name="winStars" type="DuelStarsCFGS" lst="Y"/>
+		<field name="loseStars" type="DuelStarsCFGS" lst="Y"/>
+		<field name="legendWinStars" type="DuelStarsCFGS" lst="Y"/>
+		<field name="legendLoseStars" type="DuelStarsCFGS" lst="Y"/>
+		<field name="resetLevels" type="int16" lst="Y"/>
+		<field name="rewards" type="DuelRewardCFGS" lst="Y"/>
+		<field name="buyTimeCosts" type="int32" lst="Y"/>
+		<field name="resetTime" type="int16" />
+	</bean>
+	
+	<bean name="SuraRandomGroupCFGS" scope="1">
+		<field name="count" type="int8"/>
+		<field name="gids" type="int16" lst="Y"/>
+	</bean>
+	<bean name="SuraMiniStageCFGS" scope="1">
+		<field name="rankMin" type="int32"/>
+		<field name="rankMax" type="int32"/>
+	</bean>
+	<bean name="SuraStageCFGS" scope="1">
+		<field name="money" type="int32"/>
+		<field name="dropId" type="int16"/>
+	</bean>
+	<bean name="SuraCFGS" scope="1">
+		<field name="reqLvl" type="int16"/>
+		<field name="fixedGids" type="int16" lst="Y"/>
+		<field name="randomGroups" type="SuraRandomGroupCFGS" lst="Y"/>
+		<field name="miniStages" type="SuraMiniStageCFGS" lst="Y"/>
+		<field name="stages" type="SuraStageCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="ForceSWarBasicCFGS" scope="1">
+		<field name="winScore" type="int32"/>
+		<field name="occupyScore" type="int32" lst="Y"/>
+		<field name="badgePrice" type="int32"/>
+		<field name="globalProtect" type="int32"/>
+	</bean>
+	<bean name="ForceSWarExpCFGS" scope="1">
+		<field name="attackWinExp" type="int32"/>
+		<field name="attackLoseExp" type="int32"/>
+		<field name="defendWinExp" type="int32"/>
+		<field name="defendLoseExp" type="int32"/>
+	</bean>
+	<bean name="ForceSWarLevelCFGS" scope="1">
+		<field name="expNeed" type="int32"/>
+		<field name="badgeNeed" type="int32"/>
+		<field name="winRate" type="float"/>
+	</bean>
+	<bean name="ForceSWarRewardCFGS" scope="1">
+		<field name="winReward" type="DropEntryNew" lst="Y"/>
+		<field name="loseReward" type="DropEntryNew" lst="Y"/>
+	</bean>
+	<bean name="ForceSWarBadgeItemCFGS" scope="1">
+		<field name="itemId" type="int16"/>
+		<field name="badgeCount" type="int32"/>
+	</bean>
+	<bean name="ForceSWarWeakBufCFGS" scope="1">
+		<field name="bufId" type="int16"/>
+		<field name="loseTimes" type="int32"/>
+	</bean>
+	<bean name="ForceSWarCFGS" scope="1">
+		<field name="basic" type="ForceSWarBasicCFGS"/>
+		<field name="exp" type="ForceSWarExpCFGS" lst="Y"/>
+		<field name="level" type="ForceSWarLevelCFGS" lst="Y"/>
+		<field name="reward" type="ForceSWarRewardCFGS" lst="Y"/>
+		<field name="badgeItem" type="ForceSWarBadgeItemCFGS" lst="Y"/>
+		<field name="weakBuf" type="ForceSWarWeakBufCFGS" lst="Y"/>
+	</bean>
+	
+	<bean name="DropEntry" scope="1" kclone="d">
+		<field name="type" type="int8"/>
+		<field name="arg" type="int8"/>
+		<field name="id" type="int16"/>
+	</bean>
+	
+	<bean name="DropEntryNew" scope="1" kclone="d">
+		<field name="type" type="int8"/>
+		<field name="id" type="int16"/>
+		<field name="arg" type="int32"/>
+	</bean>
+	
+	<bean name="CombatBonus" scope="1">
+		<field name="money" type="int32"/>
+		<field name="exp" type="int32"/>
+		<field name="generalExp" type="int32"/>
+		<field name="stoneTimes" type="int8"/>
+		<field name="stone" type="int16"/>
+		<field name="entryIDs" type="DropEntryNew" lst="Y"/>
+	</bean>
+	
+	<bean name="UserLoginRequest" scope="1">
+		<int8const name="eLoginNormal" val="0"/>
+		<int8const name="eLoginReconnect" val="1"/>
+		<int8const name="eLoginGod" val="2"/>
+		<field name="userName" type="string"/>
+		<field name="deviceID" type="string"/>
+		<field name="verMajor" type="int32"/>
+		<field name="verMinor" type="int32"/>
+		<field name="loginType" type="int8"/>
+		<field name="key" type="string"/>
+	</bean>
+	
+	<bean name="SetPayResult" scope="1">
+		<field name="userName" type="string"/>
+		<field name="id" type="string"/>
+		<field name="pay" type="float"/>
+		<field name="res" type="int8"/>
+	</bean>
+	
+	<bean name="DBGeneralEquip" kclone="d" scope="1">
+		<field name="lvl" type="int8"/>
+		<field name="exp" type="int16"/>
+	</bean>
+
+	<bean name="DBGeneralSeyen" kclone="d" scope="1">
+		<field name="lvl" type="int16"/>
+		<field name="exp" type="int32"/>
+		<field name="seyenCount" type="int32"/>
+		<field name="seyenTotal" type="int32"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+		
+	<bean name="DBBestowLevel" kclone="d" scope="1">
+		<field name="lvl" type="int16"/>
+		<field name="gid" type="int16"/>
+	</bean>
+	<bean name="DBGeneralBestow" kclone="d" scope="1">
+		<field name="lvl" type="int16"/>
+		<field name="bestowLevel" type="DBBestowLevel" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBGeneralBless" kclone="d" scope="1">
+	    <field name="state" type="int16"/>
+		<field name="p1" type="float"/>
+		<field name="p2" type="float"/>
+		<field name="p3" type="float"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBGeneralOfficial" kclone="d" scope="1">
+		<field name="lvl" type="int16"/>
+		<field name="exp" type="int32"/>
+		<field name="skillLvl" type="int16"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<!-- bean name="DBRoleGeneral" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="exp" type="int32"/>
+		<field name="advLvl" type="int8"/>
+		<field name="evoLvl" type="int8"/>
+		<field name="weapon" type="DBWeapon"/>
+		<field name="skills" type="int16" lst="Y"/>
+		<field name="equips" type="DBGeneralEquip" lst="Y"/>
+	</bean-->
+	<bean name="DBPet" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="exp" type="int32"/>
+		<field name="evoLvl" type="int8"/>
+		<field name="lastBreedTime" type="int32"/>
+		<field name="growthRate" type="int8"/>
+		<field name="awakeLvl" type="int8"/>
+		<field name="name" type="string"/>
+		<field name="feedGain" type="int8"/>
+		<field name="feedMode" type="int8"/>
+		<field name="feedTime" type="int32"/>
+		<field name="feedNeed" type="DropEntry"/>
+		<field name="hungryTimes" type="int8"/>		
+		<field name="hungryDay" type="int32"/>		
+	</bean>
+	<bean name="DBPetDeform" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="deformStage" type="int8"/>
+		<field name="happiness" type="int32"/>
+		<field name="growth" type="int16"/>
+		<field name="feedTime" type="int32"/>
+		<field name="feedTimes" type="int8"/>
+		<field name="zanTimes" type="int8"/>
+		<field name="zanOfferTime" type="int32"/>
+		<field name="takeTimes" type="int8"/>
+		<field name="drops" type="DropEntry" lst="Y"/>
+		<field name="tryTimes" type="int8"/>
+		<field name="buyTryTimes" type="int8"/>
+		<field name="totalReward" type="int32"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBPetZanPet" kclone="d" scope="1">
+		<field name="pid" type="int16"/>
+		<field name="reward" type="int16"/>
+		<field name="count" type="int16"/>
+		<field name="time" type="int32"/>
+		<field name="rids" type="int32" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBPetZan" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="totalTimes" type="int16"/>
+		<field name="maxTimes" type="int16"/>
+		<field name="pets" type="DBPetZanPet" lst="Y"/>
+		<field name="vip" type="int8"/>
+		<field name="day" type="int16"/>
+		<field name="r14" type="int8"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBPetBrief" kclone="d" scope="1">
+		<field name="id" type="int8"/>
+		<field name="awakLvl" type="int8"/>
+		<field name="lvl" type="int16"/>
+		<field name="evoLvl" type="int8"/>
+		<field name="growthRate" type="int8"/>
+		<field name="deformStage" type="int8"/>
+		<field name="name" type="string"/>
+	</bean>
+	<bean name="DBFeedingPetOld" kclone="s" scope="1">
+		<field name="pid" type="int16"/>
+		<field name="lvlStart" type="int16"/>
+		<field name="timeStart" type="int32"/>		
+	</bean>
+	<bean name="DBFeedingPet" kclone="s" scope="1">
+		<field name="pid" type="int16"/>
+		<field name="lvlStart" type="int16"/>
+		<field name="timeStart" type="int32"/>		
+	</bean>
+	<bean name="DBRoleItem" scope="1">
+		<field name="id" type="int16"/>
+		<field name="count" type="int16"/>
+	</bean>
+	<bean name="DBRoleItem2" scope="1">
+		<field name="id" type="int16"/>
+		<field name="count" type="int32"/>
+	</bean>
+	<bean name="DBCheckinLog" scope="1" kclone="s">
+		<field name="lastID" type="int8"/>
+		<field name="lastDay" type="int8"/>
+		<field name="nFinished" type="int8"/>
+		<field name="reserved" type="int16"/>
+	</bean>
+	<bean name="DBItemDropLog" scope="1">
+		<field name="id" type="int16"/>
+		<field name="times" type="int16"/>
+	</bean>
+	<bean name="DBTaskPos" scope="1" kclone="s">
+		<field name="groupID" type="int16"/>
+		<field name="seqComp" type="int16"/>
+	</bean>
+	<bean name="DBRoleEquip">
+		<field name="id" type="int16"/>
+		<field name="count" type="int16"/>
+	</bean>
+	<bean name="DBCombatTypeScore" kclone="d">
+		<int8const name="eNull" val="0"/>
+		<int8const name="eAllComplete" val="1"/>
+		<field name="catID" type="int16"/>
+		<field name="flag" type="int8"/>
+		<field name="score" type="int8" lst="Y"/>
+	</bean>
+	<bean name="DBCombatScore" kclone="d">
+		<field name="combatType" type="int8"/>
+		<field name="scores" type="DBCombatTypeScore" lst="Y"/>
+	</bean>
+	<bean name="DBCombatLog" scope="1">
+		<field name="id" type="int16"/>
+		<field name="times" type="int8"/>
+	</bean>
+	<bean name="DBDailyTask2Log" kclone="s" scope="1">
+		<field name="id" type="int8"/>
+		<field name="times" type="int8"/>
+		<field name="reward" type="int16"/>
+	</bean>
+	<bean name="DBCombatPos" scope="1">
+		<field name="catIndex" type="int8"/>
+		<field name="combatIndex" type="int8"/>
+	</bean>
+	<bean name="DBEggLog" scope="1" kclone="s">
+		<field name="eggID" type="int8"/>
+		<field name="firstEgg" type="int8"/>
+		<field name="timesToday" type="int8"/>
+		<field name="lastTime" type="int32"/>
+		<field name="timesAll10" type="int8"/>
+		<field name="poolPos" type="int32"/>
+	</bean>
+	<bean name="DBSoulBoxLog" scope="1" kclone="s">
+		<field name="boxID" type="int16"/>
+		<field name="times" type="int16"/>
+		<field name="lastWHPTime" type="int16"/>
+	</bean>
+	<bean name="DBCombatEventLog" scope="1" kclone="s">
+		<field name="id" type="int8"/>
+		<field name="timesToday" type="int8"/>
+		<field name="lastTime" type="int32"/>
+	</bean>
+	<bean name="DBForceItemLog">
+		<field name="id" type="int16"/>
+		<field name="lastTime" type="int32"/>
+	</bean>
+	<bean name="DBShop" scope="1" kclone="d">
+		<field name="refreshTimes" type="int8"/>
+		<field name="flag1" type="int8"/>
+		<field name="flag2" type="int8"/>
+		<field name="stamp" type="int32"/>
+		<field name="timeout" type="int32"/>
+		<field name="ids" type="int16" lst="Y"/>
+		<field name="logs" type="int8" lst="Y"/>
+	</bean>
+	<bean name="DBRoleBrief" kclone="s" scope="1">
+		<field name="id" type="int32"/>
+		<field name="lvl" type="int16"/>
+		<field name="headIconID" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="fname" type="string"/>
+		<field name="flag" type="int32"/>
+	</bean>
+	<bean name="DBArenaRankEntry" scope="1">
+		<field name="rank" type="int32"/>
+		<field name="roleID" type="int32"/>
+	</bean>
+	<bean name="DBArenaRank" scope="1">
+		<field name="stamp" type="int16"/>
+		<field name="ranks" type="DBArenaRankEntry" lst="Y"/>
+	</bean>
+	<bean name="DBSuperArena" scope="1">
+		<field name="ranks" type="DBArenaRankEntry" lst="Y"/>
+		<field name="lastRewardTime" type="int32"/>
+	</bean>
+	<bean name="DBRoleArenaState" kclone="d" scope="1">
+		<field name="winTimes" type="int32"/>
+		<field name="point" type="int32"/>
+		<field name="timesUsed" type="int8"/>
+		<field name="timesBuy" type="int8"/>
+		<field name="rewardStamp" type="int16"/>
+		<field name="lastTime" type="int32"/>
+	</bean>
+	<bean name="DBRoleArenaLogOld" kclone="s" scope="1">
+		<field name="win" type="int8"/>
+		<field name="rankUp" type="int32"/>
+		<field name="time" type="int32"/>
+		<field name="id" type="int32"/>
+	</bean>
+	<bean name="DBRoleArenaLog" kclone="d" scope="1">
+		<field name="win" type="int8"/>
+		<field name="rankUp" type="int32"/>
+		<field name="time" type="int32"/>
+		<field name="id" type="int32"/>
+		<field name="recordId" type="int32"/>
+	</bean>
+	
+	<bean name="DBRoleArenaFightTeam" kclone="d" scope="1">
+		<field name="generals" type="int16" lst="Y"/>
+		<field name="pets" type="int16" lst="Y"/>
+	</bean>
+	
+	
+	<bean name="DBRoleSuperArenaTeam" kclone="d" scope="1">
+		<field name="teams" type="DBRoleArenaFightTeam" lst="Y"/>
+		<field name="hiddenTeams" type="int32"/>
+		<field name="hideTime" type="int32"/>
+		<field name="orders" type="int32"  lst="Y"/>
+		<field name="curOrderIndex" type="int32" />
+	</bean>
+	
+	
+	<bean name="DBRoleSuperArena" kclone="d" scope="1">
+		<field name="team" type="DBRoleSuperArenaTeam"/>
+		<field name="logs" type="DBRoleArenaLog"  lst="Y"/>
+		<field name="winTimes" type="int32"/>
+		<field name="timesUsed" type="int8"/>
+		<field name="timesBuy" type="int8"/>
+		<field name="lastFightTime" type="int32"/>
+		<field name="point" type="int32"/>
+		<field name="rankRewards" type="int32"/>
+		<field name="padding1" type="int32"/>
+		<field name="padding2" type="int32"/>
+		<field name="padding3" type="int32"/>
+		<field name="padding4" type="int32"/>
+	</bean>
+	
+	<bean name="DBRoleCheckinGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="checkinDay" type="int32"/>
+		<field name="lastCheckinTime" type="int32"/>
+	</bean>
+	
+	<bean name="DBRoleFirstPayGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="pay" type="int32"/>
+		<field name="reward" type="int32"/>
+	</bean>
+	
+	<bean name="DBRolePayGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="pay" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleDiskGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="pay" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleRechargeGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="pay" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleConsumeGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="consume" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleConsumeRebate" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="consume" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleUpgradeGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleGatherGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBGiftBuyLog" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="count" type="int32"/>
+	</bean>
+	
+	<bean name="DBRoleLimitedShop" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="buglogs" type="DBGiftBuyLog" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleLoginGift" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="loginDays" type="int32"/>
+		<field name="lastLoginTime" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleWarGoods" kclone="d" scope="1">
+		<field name="type" type="int32"/>
+		<field name="buyCnt" type="int32"/>
+		<field name="reward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBRoleTradingCenter" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="goods" type="DBRoleWarGoods" lst="Y"/>
+	</bean>
+	
+    <bean name="FreeVit" kclone="d" scope="1">
+		<field name="startTime" type="int32"/>
+		<field name="endTime" type="int32"/>
+		<field name="vit" type="int32"/>
+	</bean>
+	
+	<bean name="FriendPets" scope="1" kclone="d">
+		<field name="petsG1" type="DBPetBrief" lst="Y"/>
+		<field name="petsTop" type="DBPetBrief" lst="Y"/>
+	</bean>
+	
+	<bean name="FriendPetDeform" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="deformStage" type="int8"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="FriendProp" scope="1" kclone="d">
+		<field name="lvl" type="int16"/>
+		<field name="lastLoginTime" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="arenaGenerals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="arenaPets" type="DBPetBrief" lst="Y"/>
+		<field name="pets" type="FriendPets"/>
+		<field name="fname" type="string"/>
+		<field name="headIconID" type="int16"/>
+		<field name="flag" type="int8"/>
+		<field name="petDeformsTop" type="FriendPetDeform" lst="Y"/>
+		<field name="relation" type="DBRelation" lst="Y"/>
+		<field name="gStones" type="DBGeneralStone" lst="Y"/>
+		<field name="r24" type="int8"/>
+	</bean>
+	
+	<bean name="DBFriendData" scope="1" kclone="d">
+		<field name="openID" type="string"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="flag" type="int8"/>
+		<field name="lastPropSyncTime" type="int32"/>
+		<field name="cool" type="int32"/>
+		<field name="haogan" type="int32"/>
+		<field name="prop" type="FriendProp"/>
+	</bean>
+	<bean name="DBFriendSearching" scope="1" kclone="d">
+		<field name="openID" type="string"/>
+		<field name="lastSearchTime" type="int32"/>
+		<field name="cool" type="int32"/>
+	</bean>
+	<bean name="FriendBreedPet" scope="1" kclone="d">
+		<field name="openID" type="string"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="pet" type="DBPetBrief"/>
+	</bean>	
+	<bean name="DBFriendMessage" scope="1" kclone="d">
+		<field name="openID" type="string"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="type" type="int8"/>
+		<field name="flag" type="int8"/>
+		<field name="arg1" type="int16"/>
+		<field name="arg2" type="int32"/>
+		<field name="time" type="int32"/>
+	</bean>
+	<bean name="DBFriendApply" scope="1" kclone="d">
+		<field name="roleID" type="int32"/>
+		<field name="lvl" type="int16"/>
+		<field name="headIconID" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="fname" type="string"/>
+		<field name="time" type="int32"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	
+	<bean name="DBRoleMarchGeneralState" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="hp" type="int32"/>
+		<field name="mp" type="int32"/>
+		<field name="state" type="int32"/>
+	</bean>
+	<bean name="DBRoleMarchState" kclone="s" scope="1">
+		<field name="stage" type="int8"/>
+		<field name="point" type="int32"/>
+		<field name="timesUsed" type="int8"/>
+		<field name="rewardTaken" type="int8"/>
+	</bean>
+	<bean name="DBRoleMarchEnemy" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="lvl" type="int16"/>
+		<field name="headIconID" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="fname" type="string"/>
+		<field name="generals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets" type="DBPetBrief" lst="Y"/>
+	</bean>
+	
+	<bean name="DBWeaponProp" kclone="d" scope="1">
+		<field name="propId" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="rank" type="int8"/>
+		<field name="value" type="float"/>
+	</bean>
+	<bean name="DBWeapon" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="evo" type="int8"/>
+		<field name="passes" type="DBWeaponProp" lst="Y"/>
+		<field name="resetPasses" type="DBWeaponProp" lst="Y"/>
+	</bean>
+
+	<bean name="RoleBrief" scope="1">
+		<field name="id" type="int32"/>
+		<field name="day" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="flag" type="int32"/>
+		<field name="helpFlag1" type="int32"/>
+		<field name="helpFlag2" type="int32"/>
+		<field name="money" type="int32"/>
+		<field name="yuanbao" type="int32"/>
+		<field name="exp" type="int32"/>
+		<field name="vit" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="headIconID" type="int16"/>
+		<field name="vitRecoverStart" type="int32"/>
+		<field name="skillPoint" type="int16"/>
+		<field name="skillPointRecoverStart" type="int32"/>
+		<field name="timeSync" type="int32"/>
+		<field name="allscore" type="int32"/>
+		<field name="buyMoneyTimes" type="int16"/>
+		<field name="buyVitTimes" type="int16"/>
+		<field name="buySkillPointTimes" type="int16"/>
+	</bean>
+	
+	<bean name="SkipCombatReq" scope="1">
+		<field name="type" type="int8"/>
+		<field name="times" type="int8"/>
+		<field name="catIndex" type="int8"/>
+		<field name="combatIndex" type="int8"/>
+	</bean>
+	<bean name="PVPGeneral">
+		<field name="id" type="int16"/>
+		<field name="lvl3" type="int8"/>
+		<field name="horseID" type="int16"/>
+	</bean>
+	<bean name="CheckFunctionStateReq">
+		<field name="countNeed" type="int8"/>
+		<field name="funcs" type="int8" lst="Y"/>
+	</bean>
+	<bean name="ClearFunctionCoolReq">
+		<field name="funcID" type="int8"/>
+		<field name="stone" type="int16"/>
+	</bean>
+	<bean name="CheckFunctionStateRes">
+		<field name="funcs" type="int8" lst="Y"/>
+		<field name="states" type="int8" lst="Y"/>
+	</bean>
+	<bean name="RPCRes">
+		<int8const name="eOK" val="0"/>
+		<int8const name="eFailed" val="1"/>
+		<int8const name="eCool" val="2"/>
+		<int8const name="eVit" val="4"/>
+		<int8const name="eYuanbao" val="5"/>
+		<int8const name="eMoney" val="6"/>
+		<int8const name="eMaxTimes" val="7"/>
+		<int8const name="eLevel" val="8"/>
+		<int8const name="eRoleType" val="11"/>
+		<int8const name="eNotFound" val="30"/>
+		<field name="ret" type="int8"/>
+	</bean>
+	
+	<bean name="DataModifyReq" scope="1">		
+		<int8const name="eAdd" val="1"/>
+		<int8const name="eSet" val="2"/>
+		<int8const name="eStone" val="1"/>
+		<int8const name="eMoney" val="2"/>
+		<int8const name="eItem" val="3"/>
+		<int8const name="eEquip" val="4"/>
+		<int8const name="eGeneral" val="5"/>
+		<int8const name="eLevel" val="6"/>
+		<int8const name="eForceScore" val="8"/>
+		<int8const name="eForceID" val="9"/>
+		<int8const name="eSeyen" val="10"/>
+		<field name="gm" type="int32"/>
+		<field name="rid" type="int32"/>
+		<field name="mtype" type="int8"/>
+		<field name="dtype" type="int8"/>
+		<field name="mail" type="int8"/>
+		<field name="id" type="int16"/>
+		<field name="val" type="int32"/>
+	</bean>
+	<bean name="DataModifyRes" scope="1">
+		<int8const name="eOK" val="0"/>
+		<int8const name="eFailed" val="1"/>
+		<int8const name="eBusy" val="2"/>
+		<field name="res" type="int8"/>
+		<field name="req" type="DataModifyReq"/>
+		<field name="oldVal" type="int32"/>
+		<field name="newVal" type="int32"/>
+	</bean>
+	<bean name="DataQueryReq" scope="1">
+		<int8const name="eOnlineUser" val="1"/>
+		<int8const name="eRoleBrief" val="2"/>
+		<int8const name="eRoleID" val="3"/>
+		<int8const name="eSendMail" val="4"/>
+		<field name="qtype" type="int8"/>
+		<field name="iArg1" type="int32"/>
+		<field name="iArg2" type="int32"/>
+		<field name="sArg1" type="string"/>
+		<field name="sArg2" type="string"/>
+	</bean>
+	<bean name="DataQueryRes" scope="1">
+		<int8const name="eOK" val="0"/>
+		<int8const name="eFailed" val="1"/>
+		<int8const name="eBusy" val="2"/>
+		<int8const name="eNotFound" val="3"/>
+		<field name="res" type="int8"/>
+		<field name="req" type="DataQueryReq"/>
+		<field name="iRes1" type="int32"/>
+		<field name="iRes2" type="int32"/>
+		<field name="sRes1" type="string"/>
+		<field name="sRes2" type="string"/>
+	</bean>
+	
+	<bean name="RoleDataReq" scope="1">
+		<intconst name="eBrief" val="1"/>
+		<intconst name="eGeneral" val="2"/>
+		<intconst name="eEquip" val="4"/>
+		<intconst name="eItem" val="8"/>
+		<intconst name="eArenaGeneral" val="16"/>
+		<intconst name="eSuperArenaTeam" val="32"/>
+		<field name="qtype" type="int32"/>
+		<field name="id" type="int32"/>
+	</bean>
+	
+	<bean name="RoleDataBrief" scope="1">
+		<field name="id" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="uname" type="string"/>
+		<field name="fname" type="string"/>
+		<field name="lvl" type="int16"/>
+		<field name="money" type="int32"/>
+		<field name="stone" type="int32"/>
+		<field name="gcount" type="int32"/>
+		<field name="icount" type="int32"/>
+		<field name="ecount" type="int32"/>
+		<field name="headIconID" type="int16"/>
+		<field name="arenaPower" type="int32"/>
+		<field name="arenaWinTimes" type="int32"/>
+	</bean>
+	
+	<bean name="RoleDataGeneral" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="advLvl" type="int8"/>
+		<field name="evoLvl" type="int8"/>
+		<field name="weaponLvl" type="int16"/>
+		<field name="weaponEvo" type="int8"/>
+	</bean>
+	
+	<bean name="RoleDataPet" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="evoLvl" type="int8"/>
+		<field name="growthRate" type="int16"/>
+		<field name="name" type="string"/>
+	</bean>
+	
+	<bean name="RoleDataFightTeam" scope="1">
+		<field name="generals" type="RoleDataGeneral" lst="Y"/>
+		<field name="pets" type="RoleDataPet" lst="Y"/>
+	</bean>
+	
+	<bean name="RoleDataSuperArena" scope="1">
+		<field name="teams" type="RoleDataFightTeam" lst="Y"/>
+		<field name="winTimes" type="int32"/>
+	</bean>
+	
+	<bean name="RoleDataRes" scope="1">
+		<int8const name="eOK" val="0"/>
+		<int8const name="eFailed" val="1"/>
+		<int8const name="eBusy" val="2"/>
+		<field name="req" type="RoleDataReq"/>
+		<field name="res" type="int8"/>
+		<field name="brief" type="RoleDataBrief"/>
+		<field name="generals" type="RoleDataGeneral" lst="Y"/>
+		<field name="equips" type="DBRoleEquip" lst="Y"/>
+		<field name="items" type="DBRoleItem" lst="Y"/>
+		<field name="arenagenerals" type="RoleDataGeneral" lst="Y"/>
+		<field name="arenapets" type="RoleDataPet" lst="Y"/>
+		<field name="superArena" type="RoleDataSuperArena"/>
+	</bean>
+	
+	<bean name="DBPowerRank" kclone="d" scope="1">
+		<field name="roleid" type="int32"/>
+		<field name="power" type="int32"/>
+		<field name="generals" type="int16" lst="Y"/>
+		<field name="pets" type="int16"/>
+		<field name="updateTime" type="int32"/>
+	</bean>
+	<bean name="DBPowerRankList" kclone="d" scope="1">
+		<field name="ranks" type="DBPowerRank" lst="Y"/>
+	</bean>
+	
+    <bean name="DBForceWarRolePlayerOld" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="level" type="int16"/>
+		<field name="power" type="int32"/>
+		<field name="generals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets" type="DBPetBrief" lst="Y"/>
+		<field name="plusItems" type="int32" lst="Y"/>
+	</bean>
+	
+    <bean name="DBForceWarRolePlayer" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="level" type="int16"/>
+		<field name="power" type="int32"/>
+		<field name="generals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets" type="DBPetBrief" lst="Y"/>
+		<field name="relation" type="DBRelation" lst="Y"/>
+		<field name="plusItems" type="int32" lst="Y"/>
+	</bean>
+	<bean name="DBForceWarForcePlayerOld" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="level" type="int16"/>
+		<field name="headId" type="int32"/>
+		<field name="headName" type="string"/>
+		<field name="froles" type="int32" lst="Y"/>
+		<field name="players" type="DBForceWarRolePlayerOld" lst="Y"/>
+		<field name="plusItems" type="int32" lst="Y"/>
+	</bean>
+
+	<bean name="DBForceWarForcePlayer" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="level" type="int16"/>
+		<field name="headId" type="int32"/>
+		<field name="headName" type="string"/>
+		<field name="froles" type="int32" lst="Y"/>
+		<field name="players" type="DBForceWarRolePlayer" lst="Y"/>
+		<field name="plusItems" type="int32" lst="Y"/>
+	</bean>
+	
+	
+	<bean name="DBForceWarGeneralStatus" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="hp" type="int32"/>
+		<field name="mp" type="int32"/>
+		<field name="state" type="int32"/>
+	</bean>
+	<bean name="DBForceWarMatchRecord" scope="1" kclone="d">
+		<field name="name1" type="string"/>
+		<field name="name2" type="string"/>
+		<field name="index1" type="int8"/>
+		<field name="index2" type="int8"/>
+		<field name="result" type="int8"/>
+		<field name="generals1" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="generals2" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets1" type="DBPetBrief" lst="Y"/>
+		<field name="pets2" type="DBPetBrief" lst="Y"/>
+		<field name="status1" type="DBForceWarGeneralStatus" lst="Y"/>
+		<field name="status2" type="DBForceWarGeneralStatus" lst="Y"/>
+		<field name="eff1" type="int8" lst="Y"/>
+		<field name="eff2" type="int8" lst="Y"/>
+		<field name="relation1" type="DBRelation" lst="Y"/>
+		<field name="relation2" type="DBRelation" lst="Y"/>
+		<field name="seed" type="int32"/>
+	</bean>
+	<bean name="DBForceWarMatchRecordBrief" scope="1" kclone="d">
+		<field name="index1" type="int8"/>
+		<field name="index2" type="int8"/>
+		<field name="result" type="int8"/>
+		<field name="status1" type="DBForceWarGeneralStatus" lst="Y"/>
+		<field name="status2" type="DBForceWarGeneralStatus" lst="Y"/>
+		<field name="seed" type="int32"/>
+	</bean>
+	<bean name="DBForceWarRecord" kclone="d" scope="1">
+		<field name="fid1" type="int32"/>
+		<field name="fid2" type="int32"/>
+		<field name="fname1" type="string"/>
+		<field name="fname2" type="string"/>
+		<field name="result" type="int8"/>
+		<field name="matches" type="DBForceWarMatchRecordBrief" lst="Y"/>
+	</bean>
+	<bean name="DBForceWarRoleStatus" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="generalStatus" type="DBForceWarGeneralStatus" lst="Y"/>
+	</bean>
+	<bean name="DBForceWarStatus" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="oppoFid" type="int32"/>
+		<field name="warIndex" type="int8"/>
+		<field name="scores" type="int32" lst="Y"/>
+		<field name="leagueSeqIndex" type="int16"/>
+		<field name="roleStatus" type="DBForceWarRoleStatus" lst="Y"/>
+	</bean>
+	<bean name="DBForceWarRoleScore" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="score" type="int32"/>
+	</bean>
+	<bean name="DBForceWarCupWin" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="cupWin" type="int32"/>
+	</bean>
+	
+   <bean name="DBForceWarQuiz" kclone="d" scope="1">
+		<field name="f1WinRoles" type="int32" lst="Y"/>
+		<field name="f2WinRoles" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBForceWarOld" kclone="d" scope="1">
+		<field name="bid" type="int32"/>
+		<field name="players" type="DBForceWarForcePlayerOld" lst="Y"/>
+		<field name="stage" type="int8"/>
+		<field name="status" type="DBForceWarStatus" lst="Y"/>
+		<field name="roleScores" type="DBForceWarRoleScore" lst="Y"/>
+		<field name="cupWins" type="DBForceWarCupWin" lst="Y"/>
+		<field name="cupResults" type="int32" lst="Y"/>
+		<field name="leagueRecords" type="DBForceWarRecord" lst="Y"/>
+		<field name="leagueSequence" type="int32" lst="Y"/>
+		<field name="cupRecords" type="DBForceWarRecord" lst="Y"/>
+		<field name="cupQuizs" type="DBForceWarQuiz" lst="Y"/>
+	</bean>
+	
+	<bean name="DBForceWar" kclone="d" scope="1">
+		<field name="bid" type="int32"/>
+		<field name="players" type="DBForceWarForcePlayer" lst="Y"/>
+		<field name="stage" type="int8"/>
+		<field name="status" type="DBForceWarStatus" lst="Y"/>
+		<field name="roleScores" type="DBForceWarRoleScore" lst="Y"/>
+		<field name="cupWins" type="DBForceWarCupWin" lst="Y"/>
+		<field name="cupResults" type="int32" lst="Y"/>
+		<field name="leagueRecords" type="DBForceWarRecord" lst="Y"/>
+		<field name="leagueSequence" type="int32" lst="Y"/>
+		<field name="cupRecords" type="DBForceWarRecord" lst="Y"/>
+		<field name="cupQuizs" type="DBForceWarQuiz" lst="Y"/>
+	</bean>
+	
+	<bean name="DBForceThiefStatus" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="startTime" type="int32"/>
+		<field name="killed" type="int32"/>
+		<field name="stamp" type="int32"/>
+		<field name="roles" type="int32" lst="Y"/>
+		<field name="bossRoles" type="int32" lst="Y"/>
+		<field name="bossStatus" type="DBForceWarGeneralStatus" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<!--bean name="DBForceThiefCombat" kclone="d" scope="1">
+		<field name="groupIndex" type="int8"/>
+		<field name="generalType" type="int8"/>
+		<field name="combatId" type="int16"/>
+	</bean>
+	<bean name="DBForceThiefGroup" kclone="d" scope="1">
+		<field name="thiefIndex" type="int8"/>
+		<field name="bossType" type="int8"/>
+		<field name="combats" type="DBForceThiefCombat" lst="Y"/>
+	</bean-->
+	<bean name="DBForceThiefGeneralBrief" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="advLvl" type="int8"/>
+		<field name="evoLvl" type="int8"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBForceThiefBossDamage" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="rid" type="int32"/>
+		<field name="damage" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="generals" type="DBForceThiefGeneralBrief" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBForceThief" kclone="d" scope="1">
+		<field name="bid" type="int32"/>
+		<!-- field name="thiefGroups" type="DBForceThiefGroup" lst="Y"/-->
+		<field name="thiefStatus" type="DBForceThiefStatus" lst="Y"/>
+		<field name="bossDamage" type="DBForceThiefBossDamage" lst="Y"/>
+		<field name="thiefStartTime" type="int32"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBForceBeast" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="general" type="i3k.DBRoleGeneral"/>
+		<field name="attackProp" type="int8"/>
+		<field name="mainProp" type="int8"/>
+		<field name="props" type="int16" lst="Y"/>
+		<field name="resetPropTimes" type="int16"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBForceWarBeast" kclone="d" scope="1">
+		<field name="beasts" type="DBForceBeast" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBInvitationGroupTask" kclone="d" scope="1">
+		<field name="groupId" type="int32"/>
+		<field name="seq" type="int32"/>
+		<field name="reqCurVal" type="int32"/>
+	</bean>
+	
+	<bean name="DBInvitationTasks" kclone="d" scope="1">
+		<field name="type" type="int32"/>
+		<field name="tasks" type="DBInvitationGroupTask" lst="Y"/>
+		<field name="points" type="int32"/>
+		<field name="pointsReward" type="int32" lst="Y"/>
+	</bean>
+	
+	<bean name="DBInvitationFriend" kclone="d" scope="1">
+		<field name="gsid" type="int32"/>
+		<field name="roleid" type="int32"/>
+		<field name="rolename" type="string"/>
+		<field name="level" type="int32"/>
+		<field name="vip" type="int32"/>
+		<field name="icon" type="int16"/>
+		<field name="lastSyncTime" type="int32"/>
+		<field name="lastLoginTime" type="int32"/>
+	</bean>
+	
+	<bean name="DBInvitationSelf" kclone="d" scope="1">
+		<field name="gsid" type="int32"/>
+		<field name="roleid" type="int32"/>
+	</bean>
+	
+	<bean name="DBInvitation" kclone="d" scope="1">
+		<field name="tasks" type="DBInvitationTasks" lst="Y"/>
+		<field name="friends" type="DBInvitationFriend" lst="Y"/>
+		<field name="selfInvitated" type="DBInvitationSelf"/>
+	</bean>
+	
+	<bean name="DBRichTech" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="level" type="int32"/>
+	</bean>
+	
+	<bean name="DBRichDailyTask" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="reqCurVal" type="int32"/>
+		<field name="reward" type="int8"/>
+	</bean>
+	
+	<bean name="DBRichMapBuilding" kclone="d" scope="1">
+		<field name="type" type="int8"/>
+		<field name="status" type="int32"/>
+		<field name="params" type="int32" lst="Y"/>
+	</bean>
+   <bean name="DBRichMapObject" kclone="d" scope="1">
+		<field name="type" type="int8"/>
+		<field name="pos" type="int16"/>
+	</bean>
+   <bean name="DBRichMapObjectExt" kclone="d" scope="1">
+		<field name="type" type="int8"/>
+		<field name="pos" type="int16"/>
+		<field name="params" type="int32" lst="Y"/>
+	</bean>
+	<bean name="DBRichMap" kclone="d" scope="1">
+		<field name="buildings" type="DBRichMapBuilding" lst="Y"/>
+		<field name="objects" type="DBRichMapObject" lst="Y"/>
+		<field name="miniobjects" type="DBRichMapObject" lst="Y"/>
+	</bean>
+	<bean name="DBRichMapExt" kclone="d" scope="1">
+		<field name="objects" type="DBRichMapObjectExt" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBRichRoleGold" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="gold" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="minReward" type="int32"/>
+	</bean>
+	<bean name="DBRichRoleGeneralBrief" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="advLvl" type="int8"/>
+		<field name="evoLvl" type="int8"/>
+	</bean>
+	<bean name="DBRichRoleBossDamage" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="damage" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="combatId" type="int16"/>
+		<field name="generals" type="DBRichRoleGeneralBrief" lst="Y"/>
+	</bean>
+	<bean name="DBRichRoleLotery" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="lotery" type="int8" lst="Y"/>
+	</bean>
+	<bean name="DBRich" kclone="d" scope="1">
+		<field name="day" type="int32"/>
+		<field name="map" type="DBRichMap"/>
+		<field name="gold" type="DBRichRoleGold" lst="Y"/>
+		<field name="bossDamage" type="DBRichRoleBossDamage" lst="Y"/>
+		<field name="lotery" type="DBRichRoleLotery" lst="Y"/>
+		<field name="mapExt" type="DBRichMapExt" lst="Y"/>
+		<field name="padding12" type="int8"/>
+		<field name="padding13" type="int8"/>
+		<field name="padding14" type="int8"/>
+		<field name="padding2" type="int32"/>
+		<field name="padding3" type="int32"/>
+		<field name="padding4" type="int32"/>
+		<field name="padding5" type="int32"/>
+	</bean>
+   	<bean name="DBRichRole" kclone="d" scope="1">
+		<field name="day" type="int32"/>
+		<field name="map" type="DBRichMap"/>
+		<field name="mapType" type="int8"/>
+		<field name="pos" type="int16"/>
+		<field name="minipos" type="int8"/>
+		<field name="gold" type="int32"/>
+		<field name="goldTotal" type="int32"/>
+		<field name="movement" type="int16"/>
+		<field name="angelLeft" type="int8"/>
+		<field name="devilLeft" type="int8"/>
+		<field name="turtleLeft" type="int8"/>
+		<field name="boomLeft" type="int8"/>
+		<field name="boomUpRate" type="float"/>
+		<field name="thiefHpDownRate" type="float"/>
+		<field name="thiefHpDownEndRate" type="float"/>
+		<field name="thiefDefenseDownRate" type="float"/>
+		<field name="thiefDefenseDownEndRate" type="float"/>
+		<field name="building" type="int8"/>
+		<field name="bossTimes" type="int8"/>
+		<field name="bossDamage" type="int32"/>
+		<field name="lotery" type="int8" lst="Y"/>
+		<field name="techTree" type="DBRichTech" lst="Y"/>
+		<field name="dailyTask" type="DBRichDailyTask" lst="Y"/>
+		<field name="dailyTaskNotice" type="int8"/>
+		<field name="point" type="int32"/>
+		<field name="status" type="int32"/>
+		<field name="buyMovementTimes" type="int8"/>
+		<field name="gender" type="int8"/>
+		<field name="mapExt" type="DBRichMapExt" lst="Y"/>
+		<field name="padding12" type="int8"/>
+		<field name="padding13" type="int8"/>
+		<field name="padding14" type="int8"/>
+		<field name="goldHistory" type="int32"/>
+		<field name="padding3" type="int32"/>
+		<field name="padding4" type="int32"/>
+		<field name="padding5" type="int32"/>
+	</bean>
+	
+	<bean name="DBForceChapterGeneralStatus" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="hp" type="int32"/>
+		<field name="mp" type="int32"/>
+		<field name="state" type="int32"/>
+	</bean>
+	<bean name="DBForceChapterBox" kclone="d" scope="1">
+		<field name="stage" type="int8"/>
+		<field name="rids" type="int32" lst="Y"/>
+	</bean>
+	<bean name="DBForceTreasureApply" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="lvl" type="int16"/>
+	</bean>
+	<bean name="DBForceChapterTreasure" kclone="d" scope="1">
+		<field name="type" type="int8"/>
+		<field name="id" type="int16"/>
+	</bean>
+	<bean name="DBForceTotalTreasure" kclone="d" scope="1">
+		<field name="type" type="int8"/>
+		<field name="id" type="int16"/>
+		<field name="count" type="int32"/>
+		<field name="time" type="int32"/>
+		<field name="apply" type="DBForceTreasureApply" lst="Y"/>
+	</bean>
+	<bean name="DBForceTreasureLog" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="id" type="int16"/>
+		<field name="time" type="int32"/>
+	</bean>
+	<bean name="DBForceChapterGeneralBrief" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="advLvl" type="int8"/>
+		<field name="evoLvl" type="int8"/>
+	</bean>
+	<bean name="DBForceChapterDamage" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="rid" type="int32"/>
+		<field name="chapter" type="int8"/>
+		<field name="damage" type="int32"/>
+		<field name="fname" type="string"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="generals" type="DBForceChapterGeneralBrief" lst="Y"/>
+	</bean>
+	<bean name="DBForceChapter" kclone="d" scope="1">
+		<field name="stage" type="int8"/>
+		<field name="enemyStatus" type="DBForceChapterGeneralStatus" lst="Y"/>
+		<field name="boxTaken" type="DBForceChapterBox" lst="Y"/>
+		<field name="rids" type="int32" lst="Y"/>
+		<field name="reward" type="int8"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBForceDungeon" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="day" type="int32"/>
+		<field name="chapters" type="DBForceChapter" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBForceTreasureList" kclone="d" scope="1">
+		<field name="list" type="DBForceChapterTreasure" lst="Y"/>
+	</bean>
+	<bean name="DBForceTreasure" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="treasure" type="DBForceTreasureList" lst="Y"/>
+		<field name="totalTreasure" type="DBForceTotalTreasure" lst="Y"/>
+		<field name="logs" type="DBForceTreasureLog" lst="Y"/>
+	</bean>
+	<bean name="DBForceTreasureDeploy" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="deployTimes" type="int16"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBForceDungeonGlobal" kclone="d" scope="1">
+		<field name="treasure" type="DBForceTreasure" lst="Y"/>
+		<field name="damages" type="DBForceChapterDamage" lst="Y"/>
+		<field name="forceDamages" type="DBForceChapterDamage" lst="Y"/>
+		<field name="deploys" type="DBForceTreasureDeploy" lst="Y"/>
+		<field name="r12" type="int8"/>
+		<field name="r13" type="int8"/>
+		<field name="r14" type="int8"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBRelation" kclone="d" scope="1">
+		<field name="id" type="int16"/>
+		<field name="lvls" type="int16" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBGeneralStoneProp" kclone="d" scope="1">
+		<field name="propId" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="rank" type="int8"/>
+		<field name="value" type="float"/>
+	</bean>
+	<bean name="DBGeneralStone" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="itemId" type="int32"/>
+		<field name="exp" type="int32"/>
+		<field name="gid" type="int16"/>
+		<field name="pos" type="int8"/>
+		<field name="passes" type="DBGeneralStoneProp" lst="Y"/>
+		<field name="resetPasses" type="DBGeneralStoneProp" lst="Y"/>
+		<field name="padding1" type="int8"/>
+		<field name="padding2" type="int8"/>
+		<field name="padding3" type="int8"/>
+		<field name="padding4" type="int8"/>
+	</bean>
+	
+	<bean name="DBRoleSeyen" kclone="d" scope="1">		
+		<field name="seyen" type="int32"/>
+		<field name="seyenTotal" type="int32"/>
+		<field name="padding1" type="int32"/>
+		<field name="padding2" type="int32"/>
+		<field name="padding3" type="int8"/>
+		<field name="padding4" type="int8"/>
+	</bean>
+	
+	<bean name="DBGeneralStoneInfo" kclone="d" scope="1">
+		<field name="stoneId" type="int32"/>
+		<field name="generalStone" type="DBGeneralStone"  lst="Y"/>
+		<field name="generalSeyen" type="DBRoleSeyen" lst="Y"/>
+		<field name="padding2" type="int8"/>
+		<field name="padding3" type="int8"/>
+		<field name="padding4" type="int8"/>
+		<field name="padding5" type="int8"/>
+		<field name="padding6" type="int8"/>
+		<field name="padding7" type="int8"/>
+		<field name="padding8" type="int8"/>
+	</bean>
+	
+	<bean name="DBExpiratBossTimes" kclone="d" scope="1">
+	    <field name="id" type="int16"/>
+		<field name="times" type="int8"/>
+		<field name="buytimes" type="int8"/>
+		<field name="bonusday" type="int32"/>
+		<field name="damage" type="int32"/>
+	</bean>
+	
+	<bean name="DBExpiratBossDamage" kclone="d" scope="1">
+	    <field name="id" type="int16"/>
+		<field name="damage" type="int32"/>
+	</bean>
+	
+	<bean name="DBExpiratBossInfo" kclone="d" scope="1">
+		<field name="damage" type="int32"/>
+		<field name="times" type="DBExpiratBossTimes"  lst="Y"/>
+		<field name="damageHis" type="DBExpiratBossDamage"  lst="Y"/>
+		<field name="bonusday" type="int32"/>
+		<field name="level" type="int16"/>
+		<field name="padding2" type="int32"/>
+		<field name="padding3" type="int32"/>
+		<field name="padding4" type="int32"/>
+		<field name="padding5" type="int8"/>
+		<field name="padding6" type="int8"/>
+		<field name="padding7" type="int8"/>
+		<field name="padding8" type="int8"/>
+	</bean>
+	
+	<bean name="DBRoleDuel" kclone="d" scope="1">
+		<field name="point" type="int32"/>
+		<field name="rewardTimes" type="int8"/>
+		<field name="fightTimes" type="int8"/>
+		<field name="buyTimes" type="int8"/>
+		<field name="r14" type="int8"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBDuelRole" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="lvl" type="int16"/>
+		<field name="score" type="int32"/>
+		<field name="rank" type="int32"/>
+		<field name="lastResults" type="int16"/>
+		<field name="r12" type="int16"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBDuelRank" kclone="d" scope="1">
+		<field name="serverName" type="string"/>
+		<field name="rid" type="int32"/>
+		<field name="rname" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="score" type="int32"/>
+	</bean>
+	
+	<bean name="DBExpiratBossRole" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="combat" type="int16"/>
+		<field name="rank" type="int32"/>
+		<field name="r12" type="int16"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBExpiratBossRank" kclone="d" scope="1">
+	    <field name="combatId" type="int16"/>
+		<field name="serverName" type="string"/>
+		<field name="rid" type="int32"/>
+		<field name="rname" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="damage" type="int32"/>
+	</bean>
+	<bean name="DBExpiratBossRankList" kclone="d" scope="1">
+	    <field name="combatId" type="int16"/>
+		<field name="expiratBossRank" type="DBExpiratBossRank" lst="Y"/>
+	</bean>
+	<bean name="DBExpiratBossRankList2" kclone="d" scope="1">
+	    <field name="combatId" type="int16"/>
+		<field name="expiratBossRank2" type="ExpiratBossTopRank" lst="Y"/>
+	</bean>
+	<bean name="DBDuelMatchRecord" scope="1" kclone="d">
+		<field name="generals1" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="generals2" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets1" type="DBPetBrief" lst="Y"/>
+		<field name="pets2" type="DBPetBrief" lst="Y"/>
+		<field name="relation1" type="DBRelation" lst="Y"/>
+		<field name="relation2" type="DBRelation" lst="Y"/>
+		<field name="seed" type="int32"/>
+		<field name="result" type="int8"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBDuelRecord" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="rname1" type="string"/>
+		<field name="rname2" type="string"/>
+		<field name="headIconId1" type="int16"/>
+		<field name="headIconId2" type="int16"/>
+		<field name="level1" type="int16"/>
+		<field name="level2" type="int16"/>
+		<field name="first" type="int8"/>
+		<field name="result" type="int8"/>
+		<field name="time" type="int32"/>
+		<field name="matches" type="DBDuelMatchRecord" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBDuel" kclone="d" scope="1">
+		<field name="roles" type="DBDuelRole" lst="Y"/>
+		<field name="ranks" type="DBDuelRank" lst="Y"/>
+		<field name="records" type="DBDuelRecord" lst="Y"/>
+		<field name="day" type="int32"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBExpiratBoss" kclone="d" scope="1">
+		<field name="ranks" type="DBExpiratBossRankList" lst="Y"/>
+		<field name="ranksHis" type="DBExpiratBossRankList2" lst="Y"/>
+		<field name="roles" type="DBExpiratBossRole" lst="Y"/>
+		<field name="day" type="int32"/>
+		<field name="bossId" type="int16"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DropTableEntryNew" scope="1">
+		<field name="item" type="DropEntryNew"/>
+		<field name="pro" type="float"/>
+	</bean>
+	
+	<bean name="HeroesRanks" kclone="d" scope="1">
+	    <field name="type" type="int32"/>
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+	</bean>
+	
+	<bean name="HeroesRank" kclone="d" scope="1">
+	    <field name="rid" type="int32"/>
+	    <field name="type" type="int8"/>
+		<field name="roleID" type="GlobalRoleID"/>
+		<field name="roleName" type="string"/>
+		<field name="serverName" type="string"/>
+		<field name="headIconId" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="power" type="int32"/>
+		<field name="score1" type="int32"/>
+		<field name="score2" type="int32"/>
+		<field name="score3" type="int32"/>
+		<field name="buffLvl" type="int16"/>
+		<field name="attc" type="int16"/>
+		<field name="padid1" type="int32"/>
+		<field name="padid2" type="int32"/>
+	</bean>
+	
+	<bean name="DBHeadIcon" kclone="d" scope="1">
+		<field name="headcur" type="int16"/>
+		<field name="headicon" type="DBHeadIconList" lst="Y"/>
+		<field name="day" type="int32"/>
+		<field name="mail" type="int16"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBHeadIconList" kclone="d" scope="1">
+		<field name="headid" type="int16"/>
+		<field name="headtime" type="int32"/>
+	</bean>
+	
+	<bean name="DBHeroesBoss" kclone="d" scope="1">
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+		<field name="roles" type="int32" lst="Y"/>
+		<field name="gids1" type="int16" lst="Y"/>
+		<field name="gids2" type="int16" lst="Y"/>
+		<field name="gids3" type="int16" lst="Y"/>
+		<field name="day" type="int32"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBHeroesBossTimes" kclone="d" scope="1">
+	    <field name="id" type="int16"/>
+		<field name="times" type="int8"/>
+		<field name="buytimes" type="int8"/>
+		<field name="bonusday" type="int32"/>
+		<field name="damage" type="int32"/>
+	</bean>
+	
+	<bean name="DBHeroesBossInfo" kclone="d" scope="1">
+		<field name="ranks" type="HeroesRank" lst="Y"/>
+		<field name="times" type="DBHeroesBossTimes" lst="Y"/>
+		<field name="buffCount" type="int16"/>
+		<field name="score1" type="int32"/>
+		<field name="score2" type="int32"/>
+		<field name="score3" type="int32"/>
+		<field name="day" type="int32"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBMercUsed" kclone="d" scope="1">
+		<field name="day" type="int32"/>
+		<field name="rid" type="int32"/>
+	</bean>
+	<bean name="DBMercGeneral" kclone="d" scope="1">
+		<field name="general" type="i3k.DBRoleGeneral"/>
+		<field name="time" type="int32"/>
+		<field name="mercIncome" type="int32"/>
+		<field name="used" type="DBMercUsed" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBMarchMercGeneral" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="rname" type="string"/>
+		<field name="general" type="i3k.DBRoleGeneral"/>
+		<field name="status" type="DBRoleMarchGeneralState"/>
+		<field name="type" type="int8"/>
+		<field name="r12" type="int8"/>
+		<field name="r13" type="int8"/>
+		<field name="r14" type="int8"/>
+	</bean>
+	<bean name="DBRoleMerc" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="rname" type="string"/>
+		<field name="generals" type="DBMercGeneral" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBMerc" kclone="d" scope="1">
+		<field name="roleMercs" type="DBRoleMerc" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBRoleSura" kclone="d" scope="1">
+		<field name="stage" type="int8"/>
+		<field name="deadGids" type="int16" lst="Y"/>
+		<field name="activatedGids" type="int16" lst="Y"/>
+		<field name="r12" type="int8"/>
+		<field name="r13" type="int8"/>
+		<field name="r14" type="int8"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBSuraEnemy" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="lvl" type="int16"/>
+		<field name="headIconID" type="int16"/>
+		<field name="name" type="string"/>
+		<field name="fname" type="string"/>
+		<field name="generals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets" type="DBPetBrief" lst="Y"/>
+	</bean>
+	<bean name="DBSura" kclone="d" scope="1">
+		<field name="day" type="int32"/>
+		<field name="gids" type="int16" lst="Y"/>
+		<field name="enemies" type="DBSuraEnemy" lst="Y"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBOptionalHotPoint" kclone="d" scope="1">
+		<field name="sbid" type="int32"/>
+		<field name="gid" type="int16"/>
+	</bean>
+
+	<bean name="DBForceSWarBuf" scope="1" kclone="d">
+		<field name="id" type="int16"/>
+		<field name="type" type="int8"/>
+		<field name="value" type="float"/>
+	</bean>
+	<bean name="DBForceSWarMatchRecord" scope="1" kclone="d">
+		<field name="time" type="int32"/>
+		<field name="name1" type="string"/>
+		<field name="name2" type="string"/>
+		<field name="lvl1" type="int16"/>
+		<field name="lvl2" type="int16"/>
+		<field name="icon1" type="int16"/>
+		<field name="icon2" type="int16"/>
+		<field name="result" type="int8"/>
+		<field name="generals1" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="generals2" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets1" type="DBPetBrief" lst="Y"/>
+		<field name="pets2" type="DBPetBrief" lst="Y"/>
+		<field name="relation1" type="DBRelation" lst="Y"/>
+		<field name="relation2" type="DBRelation" lst="Y"/>
+		<field name="gStones1" type="DBGeneralStone" lst="Y"/>
+		<field name="gStones2" type="DBGeneralStone" lst="Y"/>
+		<field name="seed" type="int32"/>
+		<field name="bufs1" type="DBForceSWarBuf" lst="Y"/>
+		<field name="bufs2" type="DBForceSWarBuf" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+    <bean name="DBForceSWarTeam" kclone="d" scope="1">
+		<field name="id" type="int32"/>
+		<field name="name" type="string"/>
+		<field name="icon" type="int16"/>
+		<field name="level" type="int16"/>
+		<field name="power" type="int32"/>
+		<field name="status" type="int32"/>
+		<field name="winTimes" type="int16"/>
+		<field name="generals" type="i3k.DBRoleGeneral" lst="Y"/>
+		<field name="pets" type="DBPetBrief" lst="Y"/>
+		<field name="relation" type="DBRelation" lst="Y"/>
+		<field name="gStones" type="DBGeneralStone" lst="Y"/>
+		<field name="records" type="DBForceSWarMatchRecord" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+    <bean name="DBForceSWarBuilding" kclone="d" scope="1">
+		<field name="bid" type="int8"/>
+		<field name="teams" type="DBForceSWarTeam" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+    <bean name="DBForceSWarLog" kclone="d" scope="1">
+		<field name="type" type="int8"/>
+		<field name="time" type="int32"/>
+		<field name="result" type="int32"/>
+		<field name="oppoServerName" type="string"/>
+		<field name="oppoName" type="string"/>
+		<field name="dead" type="int16"/>
+		<field name="oppoDead" type="int16"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBForceSWarBrief" kclone="d" scope="1">
+		<field name="fid" type="int32"/>
+		<field name="iconId" type="int16"/>
+		<field name="fname" type="string"/>
+		<field name="lvl" type="int16"/>
+		<field name="exp" type="int32"/>
+		<field name="winTimes" type="int32"/>
+		<field name="serverId" type="int32"/>
+		<field name="serverName" type="string"/>
+		<field name="buildings" type="DBForceSWarBuilding" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBForceSWarOppo" kclone="d" scope="1">
+		<field name="oppoBriefs" type="DBForceSWarBrief"/>
+		<field name="votes" type="int32" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBForceSWarRole" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="usedGIds" type="int16" lst="Y"/>
+		<field name="usedPIds" type="int16" lst="Y"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBForceSWarDonateRank" kclone="d" scope="1">
+		<field name="rid" type="int32"/>
+		<field name="rname" type="string"/>
+		<field name="iconId" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="donate" type="int32"/>
+		<field name="totalDonate" type="int32"/>
+		<field name="r1" type="int32"/>
+	</bean>
+	<bean name="DBForceSWar" kclone="d" scope="1">
+		<field name="brief" type="DBForceSWarBrief"/>
+		<field name="opponents" type="DBForceSWarOppo" lst="Y"/>
+		<field name="attacked" type="DBForceSWarOppo" lst="Y"/>
+		<field name="attackDay" type="int32"/>
+		<field name="defendDay" type="int32"/>
+		<field name="attackBadges" type="int32"/>
+		<field name="logs" type="DBForceSWarLog" lst="Y"/>
+		<field name="roles" type="DBForceSWarRole" lst="Y"/>
+		<field name="protectDays" type="int32"/>
+		<field name="loseTimes" type="int32"/>
+		<field name="weakBufId" type="int16"/>
+		<field name="donateRanks" type="DBForceSWarDonateRank" lst="Y"/>
+		<field name="r12" type="int8"/>
+		<field name="r13" type="int8"/>
+		<field name="r14" type="int8"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	<bean name="DBForceSWarRank" kclone="d" scope="1">
+		<field name="serverName" type="string"/>
+		<field name="fid" type="int32"/>
+		<field name="fname" type="string"/>
+		<field name="iconId" type="int16"/>
+		<field name="lvl" type="int16"/>
+		<field name="score" type="int32"/>
+	</bean>
+	<bean name="DBForceSWarGlobal" kclone="d" scope="1">
+		<field name="swar" type="DBForceSWar" lst="Y"/>
+		<field name="ranks" type="DBForceSWarRank" lst="Y"/>
+		<field name="day" type="int32"/>
+		<field name="r1" type="int32"/>
+		<field name="r2" type="int32"/>
+	</bean>
+	
+	<bean name="DBTreasureMap" kclone="d" scope="1">
+	    <field name="id" type="int8"/>
+	    <field name="rid" type="int32"/>
+	    <field name="rname" type="string"/>
+	    <field name="diggers" type="int32" lst="Y"/>
+	    <field name="rewards" type="DBTreaureReward" lst="Y"/>
+	    <field name="openedCells" type="int8" lst="Y"/>
+	    <field name="treasureCell" type="int8"/>
+	    <field name="otherDigCnt" type="int8"/>
+	    <field name="createTime" type="int32"/>
+	</bean>
+	
+	<bean name="DBTreasure" kclone="d" scope="1">
+	   <field name="treasureMaps" type="DBTreasureMap" lst="Y"/>
+	</bean>
+
+    <bean name="DBTreaureReward" kclone="d" scope="1">
+        <field name="num" type="int8"/>
+        <field name="dropEntry" type="DropEntry"/>
+        <field name="isOpen" type="int8"/>
+        <field name="diggerName" type="string"/>
+    </bean>
+    
+    <bean name="DBTreasureLimitCnt" kclone="d" scope="1">
+        <field name="useTreasureCnt" type="int8"/>
+        <field name="digOtherCnt" type="int8"/>
+        <field name="isTimeCntAdd" type="int8"/>
+        <field name="lastAddTime" type="int32"/> 
+    </bean>
+    
+    <bean name="DBBeMonsterAttacker" kclone="d" scope="1">
+        <field name="rid" type="int32" />
+        <field name="rname" type="string" />
+        <field name="attackValue" type="int32" />
+        <field name="attackCnt" type="int8" />
+    </bean>
+
+    <bean name="DBBeMonsterGeneral" kclone="d" scope="1">
+        <field name="gid" type="int16"/>
+        <field name="general" type="i3k.DBRoleGeneral"/>
+        <field name="baseHp" type="int32"/>
+        <field name="hp" type="int32"/>
+    </bean>
+    
+    <bean name="DBBeMonsterLineup" kclone="d" scope="1">
+        <field name="id" type="int8"/>
+        <field name="generals" type="DBBeMonsterGeneral" lst="Y"/>
+        <field name="pet" type="DBPetBrief" />
+        <field name="hpPercent" type="int16"/>
+        <field name="upHpCnt" type="int16"/>
+    </bean>
+    
+    <bean name="DBBeMonsterBoss" kclone="d" scope="1">
+        <field name="rid" type="int32" />
+        <field name="rname" type="string" />
+        <field name="lineup" type="DBBeMonsterLineup" lst="Y"/>
+        <field name="bidPirce" type="int32" />
+        <field name="killCnt" type="int32"/>
+        <field name="bidTime" type="int32"/>
+    </bean>
+    
+    <bean name="DBBeMonster" kclone="d" scope="1">
+        <field name="boss" type="DBBeMonsterBoss" lst="Y" />
+        <field name="attacker" type="DBBeMonsterAttacker" lst="Y" />
+    </bean>
+    
+	<channel name="S2C" comment="server to client">
+		<packet name="ServerChallenge" id="1">
+			<field name="istate" type="int32"/>
+			<field name="sstate" type="string"/>
+			<field name="flag" type="int32"/>
+			<field name="key" type="uint8" lst="Y"/>
+		</packet>
+		<packet name="ServerResponse" id="2">
+			<field name="res" type="int32"/>
+		</packet>
+		<packet name="LuaChannel" id="5">
+			<field name="data" type="string"/>
+		</packet>
+		<packet name="LuaChannel2" id="7">
+			<field name="data" type="string" lst="Y"/>
+		</packet>
+		<packet name="CmnRPCResponse" id="100">
+			<field name="res" type="RPCRes"/>
+		</packet>
+		<packet name="AntiData" id="31">
+			<field name="data" type="TSSAntiData"/>
+		</packet>
+	</channel>
+
+	<channel name="C2S" comment="client to server">
+		<packet name="ClientResponse" id="10001">
+			<field name="key" type="uint8" lst="Y"/>
+		</packet>
+		<packet name="LuaChannel" id="10004">
+			<field name="data" type="string"/>
+		</packet>
+		<packet name="LuaChannel2" id="10005">
+			<field name="data" type="string" lst="Y"/>
+		</packet>
+		<packet name="DataSync" id="10030">
+			<int8const name="eBattleData" val="9"/>
+			<int8const name="eAutoUserID" val="12"/>
+			<field name="dataType" type="int8"/>
+		</packet>
+		<packet name="AntiData" id="10031">
+			<field name="data" type="TSSAntiData"/>
+		</packet>
+	</channel>
+	
+	<channel name="G2C" comment="global to client">
+		<packet name="LuaChannel" id="80001">
+			<field name="data" type="string"/>
+		</packet>
+		<packet name="LuaChannel2" id="80002">
+			<field name="data" type="string" lst="Y"/>
+		</packet>
+	</channel>
+
+	<channel name="C2G" comment="client to global">
+		<packet name="LuaChannel" id="90001">
+			<field name="data" type="string"/>
+		</packet>
+		<packet name="LuaChannel2" id="90002">
+			<field name="data" type="string" lst="Y"/>
+		</packet>
+	</channel>
+	
+	<peer name="TCPGameServer" type="tcpserver" package="gs" maxidle="handler">
+		<channelref name="C2S">
+			<packetref name="ClientResponse"/>
+			<packetref name="LuaChannel"/>
+			<packetref name="LuaChannel2"/>
+			<packetref name="DataSync"/>
+			<packetref name="AntiData"/>
+		</channelref>
+	</peer>
+	<peer name="TCPGameClient" type="tcpclient" package="gs.test">
+		<channelref name="S2C">
+			<packetref name="ServerChallenge"/>
+			<packetref name="ServerResponse"/>
+			<packetref name="LuaChannel"/>
+			<packetref name="LuaChannel2"/>
+			<packetref name="CmnRPCResponse"/>
+			<packetref name="AntiData"/>
+		</channelref>
+	</peer>
+	<peer name="TCPGlobalServer" type="tcpserver" package="global" maxidle="handler">
+		<channelref name="C2G">
+			<packetref name="LuaChannel"/>
+			<packetref name="LuaChannel2"/>
+		</channelref>
+	</peer>
+	<peer name="TCPGlobalClient" type="tcpclient" package="gs.test">
+		<channelref name="G2C">
+			<packetref name="LuaChannel"/>
+			<packetref name="LuaChannel2"/>
+		</channelref>
+	</peer>
+	<channel name="M2S" comment="manager to server" scope="1">
+		<packet name="Shutdown" id="20001">
+			<field name="stype" type="int8"/>
+			<field name="timeStart" type="int32"/>
+			<field name="timeUse" type="int32"/>
+		</packet>
+		<packet name="DataQuery" id="20002">
+			<field name="req" type="DataQueryReq"/>
+		</packet>
+		<packet name="Announce" id="20003">
+			<field name="msg" type="string"/>
+			<field name="times" type="int8"/>
+		</packet>
+		<packet name="DataModify" id="20004">
+			<field name="req" type="DataModifyReq"/>
+		</packet>
+		<packet name="SysMessage" id="20005">
+			<field name="mail" type="SysMail"/>
+		</packet>
+		<packet name="RoleData" id="20006">
+			<field name="req" type="RoleDataReq"/>
+		</packet>
+		<packet name="WorldGift" id="20007">
+			<field name="itemID" type="int16"/>
+			<field name="time" type="int32"/>
+			<field name="mail" type="string"/>
+		</packet>
+	</channel>
+	<channel name="S2M" comment="server to manager" scope="1">
+		<packet name="Shutdown" id="30001">
+			<field name="res" type="int8"/>
+		</packet>
+		<packet name="OnlineUser" id="30002">
+			<field name="rcnt" type="int32"/>
+			<field name="scnt" type="int32"/>
+		</packet>
+		<packet name="QueryRoleBrief" id="30003">
+			<field name="brief" type="RoleBrief"/>
+		</packet>
+		<packet name="Announce" id="30004">
+			<field name="res" type="int8"/>
+		</packet>
+		<packet name="DataModify" id="30005">
+			<field name="res" type="DataModifyRes"/>
+		</packet>
+		<packet name="SysMessage" id="30006">
+			<field name="res" type="int8"/>
+		</packet>
+		<packet name="DataQuery" id="30007">
+			<field name="res" type="DataQueryRes"/>
+		</packet>
+		<packet name="RoleData" id="30008">
+			<field name="res" type="RoleDataRes"/>
+		</packet>
+		<packet name="WorldGift" id="30009">
+			<field name="res" type="int8"/>
+		</packet>
+	</channel>
+	<channel name="E2S" comment="exchange to server" scope="1">
+		<packet name="StateAnnounce" id="60001">
+			<field name="serverID" type="int32"/>
+		</packet>
+		<packet name="SearchCity" id="60006">
+			<field name="res" type="SearchCityRes"/>
+		</packet>
+		<packet name="SearchCityForward" id="60007">
+			<field name="req" type="SearchCityReq"/>
+		</packet>
+		<packet name="AttackCityStart" id="60008">
+			<field name="res" type="AttackCityStartRes"/>
+		</packet>
+		<packet name="AttackCityStartForward" id="60009">
+			<field name="req" type="AttackCityStartReq"/>
+		</packet>
+		<packet name="AttackCityEnd" id="60010">
+			<field name="res" type="AttackCityEndRes"/>
+		</packet>
+		<packet name="AttackCityEndForward" id="60011">
+			<field name="req" type="AttackCityEndReq"/>
+		</packet>
+		<packet name="QueryCityOwner" id="60012">
+			<field name="res" type="QueryCityOwnerRes"/>
+		</packet>
+		<packet name="QueryCityOwnerForward" id="60013">
+			<field name="req" type="QueryCityOwnerReq"/>
+		</packet>
+		<packet name="NotifyCityOwnerChangedForward" id="60014">
+			<field name="req" type="NotifyCityOwnerChangedReq"/>
+		</packet>
+		<packet name="ChannelMessageReq" id="60015">
+			<field name="data" type="ExchangeChannelMessage"/>
+		</packet>
+		<packet name="ChannelMessageRes" id="60016">
+			<field name="data" type="ExchangeChannelMessage"/>
+		</packet>
+		<packet name="DuelJoin" id="60017">
+			<field name="res" type="DuelJoinRes"/>
+		</packet>
+		<packet name="DuelSelectGeneral" id="60018">
+			<field name="res" type="DuelSelectGeneralRes"/>
+		</packet>
+		<packet name="DuelSelectGeneralForward" id="60019">
+			<field name="req" type="DuelSelectGeneralReq"/>
+		</packet>
+		<packet name="DuelStartAttack" id="60020">
+			<field name="res" type="DuelStartAttackRes"/>
+		</packet>
+		<packet name="DuelStartAttackForward" id="60021">
+			<field name="req" type="DuelStartAttackReq"/>
+		</packet>
+		<packet name="DuelFinishAttack" id="60022">
+			<field name="res" type="DuelFinishAttackRes"/>
+		</packet>
+		<packet name="DuelRanks" id="60023">
+		</packet>
+		<packet name="DuelRank" id="60024">
+			<field name="res" type="DuelRankRes"/>
+		</packet>
+		<packet name="DuelTopRanks" id="60025">
+			<field name="res" type="DuelTopRanksRes"/>
+		</packet>
+		<packet name="DuelOppoGiveup" id="60026">
+			<field name="res" type="DuelOppoGiveupRes"/>
+		</packet>
+		<packet name="DuelOppoGiveupForward" id="60027">
+			<field name="res" type="DuelOppoGiveupRes"/>
+		</packet>
+		<packet name="DuelGlobalRanks" id="60028">
+			<field name="res" type="DuelGlobalRanksRes"/>
+		</packet>
+
+		<!--<packet name="QueryUserHasRoles" id="60031">
+			<field name="res" type="QueryHasRoleRes"/>
+		</packet>
+		<packet name="QueryUserHasRolesForward" id="60032">
+			<field name="req" type="QueryHasRoleReq"/>
+		</packet>
+        -->
+        <packet name="ExpatriateDBRole" id="60029">
+            <field name="res" type="ExpatriateTransRoleRes"/>
+        </packet>
+        <packet name="ExpatriateDBRoleForward" id="60030">
+            <field name="req"  type="ExpatriateTransRoleReq"/>
+        </packet>
+        
+        <packet name="ExpiratBossRanks" id="60031">
+		</packet>
+		<packet name="ExpiratBossRank" id="60032">
+			<field name="res" type="ExpiratBossRankRes"/>
+		</packet>
+		<packet name="ExpiratBossTopRanks" id="60033">
+			<field name="res" type="ExpiratBossTopRanksRes"/>
+		</packet>
+		<packet name="ExpiratBossGlobalRanks" id="60034">
+			<field name="res" type="ExpiratBossGlobalRanksRes"/>
+		</packet>
+		<packet name="ExpiratBossGlobalRanks2" id="60051">
+			<field name="res" type="ExpiratBossGlobalRanksRes2"/>
+		</packet>
+		
+		<packet name="HeroesBossSync" id="60052">
+			<field name="res" type="HeroesBossSyncRes"/>
+		</packet>	
+		<packet name="HeroesBossFinishAtt" id="60053">
+			<field name="res" type="HeroesBossFinishAttRes"/>
+		</packet>
+		<packet name="HeroesBossInfo" id="60054">
+			<field name="res" type="HeroesBossInfoRes"/>
+		</packet>	
+		
+		<packet name="SWarSearch" id="60035">
+			<field name="res" type="SWarSearchRes"/>
+		</packet>
+		<packet name="SWarSearchForward" id="60036">
+			<field name="req" type="SWarSearchReq"/>
+		</packet>
+		<packet name="SWarAttack" id="60039">
+			<field name="res" type="SWarAttackRes"/>
+		</packet>
+		<packet name="SWarAttackForward" id="60040">
+			<field name="req" type="SWarAttackReq"/>
+		</packet>
+		<packet name="SWarRanks" id="60041">
+		</packet>
+		<packet name="SWarRank" id="60042">
+			<field name="res" type="SWarRankRes"/>
+		</packet>
+		<packet name="SWarTopRanks" id="60043">
+			<field name="res" type="SWarTopRanksRes"/>
+		</packet>
+		<packet name="SWarGlobalRanks" id="60044">
+			<field name="res" type="SWarGlobalRanksRes"/>
+		</packet>
+		<packet name="SWarVoteForward" id="60045">
+			<field name="req" type="SWarVoteReq"/>
+		</packet>
+		<packet name="SWarRelease" id="60046">
+			<field name="req" type="SWarReleaseReq"/>
+		</packet>
+		<packet name="DuelFinishAttackOnOppoDownLine" id="60047">
+            <field name="res" type="DuelFinishAttackOnOppoDownLineRes"/>
+        </packet>
+        <packet name="DuelFinishAttackOnOppoDownLineForward" id="60048">
+            <field name="res" type="DuelFinishAttackOnOppoDownLineRes"/>
+        </packet>
+	</channel>
+	<channel name="S2E" comment="server to exchange" scope="1">
+		<packet name="WhoAmI" id="70001">
+			<field name="platID" type="int8"/>
+			<field name="serverID" type="int32"/>
+		</packet>
+		<packet name="SearchCity" id="70007">
+			<field name="req" type="SearchCityReq"/>
+		</packet>
+		<packet name="SearchCityForward" id="70008">
+			<field name="res" type="SearchCityRes"/>
+		</packet>
+		<packet name="AttackCityStart" id="70009">
+			<field name="req" type="AttackCityStartReq"/>
+		</packet>
+		<packet name="AttackCityStartForward" id="70010">
+			<field name="res" type="AttackCityStartRes"/>
+		</packet>
+		<packet name="AttackCityEnd" id="70011">
+			<field name="req" type="AttackCityEndReq"/>
+		</packet>
+		<packet name="AttackCityEndForward" id="70012">
+			<field name="res" type="AttackCityEndRes"/>
+		</packet>
+		<packet name="QueryCityOwner" id="70013">
+			<field name="req" type="QueryCityOwnerReq"/>
+		</packet>
+		<packet name="QueryCityOwnerForward" id="70014">
+			<field name="res" type="QueryCityOwnerRes"/>
+		</packet>
+		<packet name="NotifyCityOwnerChanged" id="70015">
+			<field name="req" type="NotifyCityOwnerChangedReq"/>
+		</packet>
+		<packet name="ChannelMessageReq" id="70016">
+			<field name="data" type="ExchangeChannelMessage"/>
+		</packet>
+		<packet name="ChannelMessageRes" id="70017">
+			<field name="data" type="ExchangeChannelMessage"/>
+		</packet>
+		<packet name="DuelJoin" id="70018">
+			<field name="req" type="DuelJoinReq"/>
+		</packet>
+		<packet name="DuelSelectGeneral" id="70019">
+			<field name="req" type="DuelSelectGeneralReq"/>
+		</packet>
+		<packet name="DuelSelectGeneralForward" id="70020">
+			<field name="res" type="DuelSelectGeneralRes"/>
+		</packet>
+		<packet name="DuelStartAttack" id="70021">
+			<field name="req" type="DuelStartAttackReq"/>
+		</packet>
+		<packet name="DuelStartAttackForward" id="70022">
+			<field name="res" type="DuelStartAttackRes"/>
+		</packet>
+		<packet name="DuelFinishAttack" id="70023">
+			<field name="req" type="DuelFinishAttackReq"/>
+		</packet>
+		<packet name="DuelRanks" id="70024">
+			<field name="res" type="DuelRanksRes"/>
+		</packet>
+		<packet name="DuelRank" id="70025">
+			<field name="req" type="DuelRankReq"/>
+		</packet>
+		<packet name="DuelTopRanks" id="70026">
+			<field name="req" type="DuelTopRanksReq"/>
+		</packet>
+		<packet name="DuelOppoGiveup" id="70027">
+			<field name="req" type="DuelOppoGiveupReq"/>
+		</packet>
+		<packet name="DuelCancelJoin" id="70028">
+			<field name="req" type="DuelCancelJoinReq"/>
+		</packet>
+		<!--<packet name="QueryUserHasRoles" id="70029">
+			<field name="req" type="QueryHasRoleReq"/>
+		</packet>
+		<packet name="QueryUserHasRolesForward" id="70030">
+			<field name="res" type="QueryHasRoleRes"/>
+		</packet>  -->
+        <packet name="ExpatriateDBRole" id="70031">
+            <field name="req" type="ExpatriateTransRoleReq"/>
+        </packet>
+        <packet name="ExpatriateDBRoleForward" id="70032">
+            <field name="res"  type="ExpatriateTransRoleRes"/>
+        </packet>
+        <packet name="ExpiratBossRanks" id="70033">
+			<field name="res" type="ExpiratBossRanksRes"/>
+		</packet>
+		<packet name="ExpiratBossRank" id="70034">
+			<field name="req" type="ExpiratBossRankReq"/>
+		</packet>
+		<packet name="ExpiratBossTopRanks" id="70035">
+			<field name="req" type="ExpiratBossTopRanksReq"/>
+		</packet>
+		<packet name="ExpiratBossGlobalRanks" id="70036">
+			<field name="req" type="ExpiratBossGlobalRanksReq"/>
+		</packet>
+		<packet name="ExpiratBossGlobalRanks2" id="70051">
+			<field name="req" type="ExpiratBossGlobalRanksReq2"/>
+		</packet>
+		
+		<packet name="HeroesBossSync" id="70052">
+			<field name="req" type="HeroesBossSyncReq"/>
+		</packet>	
+		<packet name="HeroesBossFinishAtt" id="70053">
+			<field name="req" type="HeroesBossFinishAttReq"/>
+		</packet>	
+		<packet name="HeroesBossInfo" id="70054">
+			<field name="req" type="HeroesBossInfoReq"/>
+		</packet>
+		
+		<packet name="SWarSearch" id="70037">
+			<field name="req" type="SWarSearchReq"/>
+		</packet>
+		<packet name="SWarSearchForward" id="70038">
+			<field name="res" type="SWarSearchRes"/>
+		</packet>
+		<packet name="SWarAttack" id="70041">
+			<field name="req" type="SWarAttackReq"/>
+		</packet>
+		<packet name="SWarAttackForward" id="70042">
+			<field name="res" type="SWarAttackRes"/>
+		</packet>
+		<packet name="SWarRanks" id="70043">
+			<field name="res" type="SWarRanksRes"/>
+		</packet>
+		<packet name="SWarRank" id="70044">
+			<field name="req" type="SWarRankReq"/>
+		</packet>
+		<packet name="SWarTopRanks" id="70045">
+			<field name="req" type="SWarTopRanksReq"/>
+		</packet>
+		<packet name="SWarVote" id="70046">
+			<field name="req" type="SWarVoteReq"/>
+		</packet>
+		<packet name="DuelFinishAttackOnOppoDownLine" id="70047">
+            <field name="req" type="DuelFinishAttackOnOppoDownLineReq"/>
+        </packet>
+	</channel>
+	<channel name="F2S" comment="friend to server" scope="1">
+		<packet name="StateAnnounce" id="100001">
+			<field name="serverID" type="int32"/>
+		</packet>
+		<packet name="SearchFriends" id="100002">
+			<field name="res" type="SearchFriendsRes"/>
+		</packet>
+		<packet name="QueryFriendProp" id="100003">
+			<field name="req" type="QueryFriendPropReq"/>
+		</packet>
+		<packet name="SendMessageToFriend" id="100004">
+			<field name="srcID" type="GlobalRoleID"/>
+			<field name="dstID" type="GlobalRoleID"/>
+			<field name="msgType" type="int8"/>
+			<field name="arg1" type="int16"/>
+			<field name="arg2" type="int32"/>
+		</packet>
+		<packet name="CreateRole" id="100005">
+			<field name="roleID" type="GlobalRoleID"/>
+		</packet>
+	</channel>
+	<channel name="S2F" comment="server to friend" scope="1">
+		<packet name="WhoAmI" id="110001">
+			<field name="platID" type="int8"/>
+			<field name="serverID" type="int32"/>
+		</packet>
+		<packet name="CreateRole" id="110002">
+			<field name="openID" type="string"/>
+			<field name="roleID" type="GlobalRoleID"/>
+		</packet>
+		<packet name="SearchFriends" id="110003">
+			<field name="req" type="SearchFriendsReq"/>
+		</packet>
+		<packet name="QueryFriendProp" id="110004">
+			<field name="res" type="QueryFriendPropRes"/>
+		</packet>
+		<packet name="UpdateFriendProp" id="110005">
+			<field name="req" type="UpdateFriendPropReq"/>
+		</packet>
+		<packet name="SendMessageToFriend" id="110006">
+			<field name="srcID" type="GlobalRoleID"/>
+			<field name="dstID" type="GlobalRoleID"/>
+			<field name="msgType" type="int8"/>
+			<field name="arg1" type="int16"/>
+			<field name="arg2" type="int32"/>
+		</packet>
+	</channel>
+	<peer name="TCPControlServer" type="tcpserver" package="gs">
+		<channelref name="M2S">
+			<packetref name="Shutdown"/>
+			<packetref name="Announce"/>
+			<packetref name="DataQuery"/>
+			<packetref name="DataModify"/>
+			<packetref name="SysMessage"/>
+			<packetref name="RoleData"/>
+			<packetref name="WorldGift"/>
+		</channelref>
+	</peer>
+	<peer name="TCPControlClient" type="tcpclient" package="gm">
+		<channelref name="S2M">
+			<packetref name="Shutdown"/>
+			<packetref name="Announce"/>
+			<packetref name="OnlineUser"/>
+			<packetref name="QueryRoleBrief"/>
+			<packetref name="DataModify"/>
+			<packetref name="SysMessage"/>
+			<packetref name="DataQuery"/>
+			<packetref name="RoleData"/>
+			<packetref name="WorldGift"/>
+		</channelref>
+	</peer>
+	<peer name="TCPExchangeServer" type="tcpserver" package="exchange" bufsize="1048576">
+		<channelref name="S2E">
+			<packetref name="WhoAmI"/>
+			<packetref name="SearchCity"/>
+			<packetref name="SearchCityForward"/>
+			<packetref name="AttackCityStart"/>
+			<packetref name="AttackCityStartForward"/>
+			<packetref name="AttackCityEnd"/>
+			<packetref name="AttackCityEndForward"/>
+			<packetref name="QueryCityOwner"/>
+			<packetref name="QueryCityOwnerForward"/>
+			<packetref name="NotifyCityOwnerChanged"/>
+			<packetref name="ChannelMessageReq"/>
+			<packetref name="ChannelMessageRes"/>
+			<packetref name="DuelJoin"/>
+			<packetref name="DuelSelectGeneral"/>
+			<packetref name="DuelSelectGeneralForward"/>
+			<packetref name="DuelStartAttack"/>
+			<packetref name="DuelStartAttackForward"/>
+			<packetref name="DuelFinishAttack"/>
+			<packetref name="DuelRanks"/>
+			<packetref name="DuelRank"/>
+			<packetref name="DuelTopRanks"/>
+			<packetref name="DuelOppoGiveup"/>
+			<packetref name="DuelFinishAttackOnOppoDownLine"/>
+			<packetref name="DuelCancelJoin"/>
+			<!-- <packetref name="QueryUserHasRoles"/>
+			<packetref name="QueryUserHasRolesForward"/>
+             -->
+            <packetref name="ExpatriateDBRole"/>
+            <packetref name="ExpatriateDBRoleForward"/>
+            <packetref name="ExpiratBossRanks"/>
+			<packetref name="ExpiratBossRank"/>
+			<packetref name="ExpiratBossTopRanks"/>	
+			<packetref name="ExpiratBossGlobalRanks"/>
+			<packetref name="ExpiratBossGlobalRanks2"/>	
+			
+            <packetref name="HeroesBossSync"/>
+			<packetref name="HeroesBossFinishAtt"/>	
+			<packetref name="HeroesBossInfo"/>
+			
+			<packetref name="SWarSearch"/>	
+			<packetref name="SWarSearchForward"/>		
+			<packetref name="SWarAttack"/>	
+			<packetref name="SWarAttackForward"/>	
+			<packetref name="SWarRanks"/>
+			<packetref name="SWarRank"/>
+			<packetref name="SWarTopRanks"/>
+			<packetref name="SWarVote"/>
+		</channelref>
+	</peer>
+	<peer name="TCPExchangeClient" type="tcpclient" package="gs" bufsize="1048576">
+		<channelref name="E2S">
+			<packetref name="StateAnnounce"/>
+			<packetref name="SearchCity"/>
+			<packetref name="SearchCityForward"/>
+			<packetref name="AttackCityStart"/>
+			<packetref name="AttackCityStartForward"/>
+			<packetref name="AttackCityEnd"/>
+			<packetref name="AttackCityEndForward"/>
+			<packetref name="QueryCityOwner"/>
+			<packetref name="QueryCityOwnerForward"/>
+			<packetref name="NotifyCityOwnerChangedForward"/>
+			<packetref name="ChannelMessageReq"/>
+			<packetref name="ChannelMessageRes"/>
+			<packetref name="DuelJoin"/>
+			<packetref name="DuelSelectGeneral"/>
+			<packetref name="DuelSelectGeneralForward"/>
+			<packetref name="DuelStartAttack"/>
+			<packetref name="DuelStartAttackForward"/>
+			<packetref name="DuelFinishAttack"/>
+			<packetref name="DuelRanks"/>
+			<packetref name="DuelRank"/>
+			<packetref name="DuelTopRanks"/>
+			<packetref name="DuelOppoGiveup"/>
+			<packetref name="DuelOppoGiveupForward"/>
+			<packetref name="DuelFinishAttackOnOppoDownLineForward"/>
+			<packetref name="DuelFinishAttackOnOppoDownLine"/>
+			<packetref name="DuelGlobalRanks"/>
+			<!-- <packetref name="QueryUserHasRoles"/>
+			<packetref name="QueryUserHasRolesForward"/>
+             -->
+            <packetref name="ExpatriateDBRole"/>
+            <packetref name="ExpatriateDBRoleForward"/>
+            <packetref name="ExpiratBossRanks"/>
+			<packetref name="ExpiratBossRank"/>
+			<packetref name="ExpiratBossTopRanks"/>
+			<packetref name="ExpiratBossGlobalRanks"/>
+			<packetref name="ExpiratBossGlobalRanks2"/>
+			
+			<packetref name="HeroesBossSync"/>
+			<packetref name="HeroesBossFinishAtt"/>
+			<packetref name="HeroesBossInfo"/>
+			
+			<packetref name="SWarSearch"/>	
+			<packetref name="SWarSearchForward"/>		
+			<packetref name="SWarAttack"/>	
+			<packetref name="SWarAttackForward"/>	
+			<packetref name="SWarRanks"/>
+			<packetref name="SWarRank"/>
+			<packetref name="SWarTopRanks"/>
+			<packetref name="SWarGlobalRanks"/>
+			<packetref name="SWarVoteForward"/>
+			<packetref name="SWarRelease"/>
+		</channelref>
+	</peer>
+	<peer name="TCPFriendServer" type="tcpserver" package="friend">
+		<channelref name="S2F">
+			<packetref name="WhoAmI"/>
+			<packetref name="CreateRole"/>
+			<packetref name="SearchFriends"/>
+			<packetref name="QueryFriendProp"/>
+			<packetref name="UpdateFriendProp"/>
+			<packetref name="SendMessageToFriend"/>
+		</channelref>
+	</peer>
+	<peer name="TCPFriendClient" type="tcpclient" package="gs">
+		<channelref name="F2S">
+			<packetref name="StateAnnounce"/>
+			<packetref name="SearchFriends"/>
+			<packetref name="QueryFriendProp"/>
+			<packetref name="SendMessageToFriend"/>
+			<packetref name="CreateRole"/>
+		</channelref>
+	</peer>
+	<defaulthandler name="RPCManager" vname="managerRPC" package=""/>
+	<handler name="RPCManagerClient" vname="managerRPC" package="gs.test">
+		<peerref name="gs.test.TCPGameClient"/>
+		<peerref name="gs.test.TCPGlobalClient"/>
+	</handler>
+	<handler name="RPCManagerControlClient" vname="managerRPC" package="gm">
+		<peerref name="gm.TCPControlClient"/>
+	</handler>
+	<handler name="RPCManagerExchangeServer" vname="managerRPC" package="exchange">
+		<peerref name="exchange.TCPExchangeServer"/>
+	</handler>
+	<handler name="RPCManagerFriendServer" vname="managerRPC" package="friend">
+		<peerref name="friend.TCPFriendServer"/>
+	</handler>
+	<handler name="RPCManager" vname="managerRPC" package="gs">
+		<peerref name="gs.TCPGameServer"/>
+		<peerref name="gs.TCPControlServer"/>
+		<peerref name="gs.TCPExchangeClient"/>
+		<peerref name="gs.TCPFriendClient"/>
+	</handler>
+	<handler name="RPCManager" vname="managerRPC" package="global">
+		<peerref name="global.TCPGlobalServer"/>
+	</handler>
+			
+</application>
+
+

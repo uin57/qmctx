@@ -1,0 +1,33 @@
+
+<project name="kpx" default="dist">
+	
+	<property name="jketdir" location=".."/>
+	<property name="rpcgenoutdir" location="./rpcgenout"/>
+	
+	<target name="clean">
+		<delete includeemptydirs="true" quiet="true">
+		    <fileset dir="${jketdir}/kio/bin" includes="**/*"/>
+			<fileset dir="${jketdir}/kutil/bin" includes="**/*"/>
+			<fileset dir="${rpcgenoutdir}" includes="**/*"/>
+		</delete>
+	</target>
+	
+	<target name="kutil">
+		<javac srcdir="${jketdir}/kutil/src" destdir="${jketdir}/kutil/bin" includeantruntime="on"/>
+	</target>
+	<target name="kio" depends="kutil">
+		<javac srcdir="${jketdir}/kio/src" classpath = "${jketdir}/kutil/bin" destdir="${jketdir}/kio/bin" includeantruntime="on"/>
+	</target>
+	<target name="kpx" depends="kio">
+		<javac srcdir="./src" classpath = "${jketdir}/kutil/bin;${jketdir}/kio/bin;../extlib/log4j-1.2.16.jar" destdir="./bin" includeantruntime="on"/>
+	</target>
+	<target name="rpcgen" depends="kio">
+		<java classname="ket.kio.RPCGen" classpath="${jketdir}/kutil/bin;${jketdir}/kio/bin">
+			<arg value="--src=rpc.xml"/>
+			<arg value="--outdir=${rpcgenoutdir}"/>
+		</java>
+	</target>
+	<target name="dist" depends="kpx, rpcgen"/>
+</project>
+
+

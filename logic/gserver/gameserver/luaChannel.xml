@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<app>
+	
+	<luachannel name="S2C" comment="server to client">
+		
+		<!-- 登录 结果-->
+		<packet name="userlogin" space="">
+			<!-- 登录结果，0  表示成功 -->
+			<field name="loginRes" type="int8"/>
+		</packet>
+		<!-- 需要创建角色-->
+		<packet name="createrole" space="">
+			<!-- reason，0: 无角色  1: 重名  2: 名字非法-->
+			<field name="reason" type="int8"/>
+		</packet>
+		
+		<!-- 强制断线，客户端收到后会断线-->
+		<packet name="forceclose" space="">
+			<!-- 原因 2: 相同账号登陆被踢 3: 版本不对 -->
+			<field name="err" type="int8"/>
+		</packet>
+		
+		<!--=============== 关卡相关 combats space start =====================-->
+		<!--开始关卡回应-->
+		<packet name="start" space="combats">
+			<!--0: 普通关卡 1: 精英关卡 -->
+			<field name="ctype" type="int8"/>
+			<!--大关卡索引 base 0-->
+			<field name="cindex" type="int8"/>
+			<!--小关卡索引 base 0-->
+			<field name="bindex" type="int8"/>
+			<!--关卡唯一ID -->
+			<field name="cid" type="int16"/>
+			<!--1: 成功 0: 失败 -->
+			<field name="res" type="int8"/>
+		</packet>		
+						
+		<!--结束关卡回应-->
+		<packet name="finish" space="combats">
+			<!--0: 普通关卡 1: 精英关卡 -->
+			<field name="ctype" type="int8"/>
+			<!--大关卡索引 base 0-->
+			<field name="cindex" type="int8"/>
+			<!--小关卡索引 base 0-->
+			<field name="bindex" type="int8"/>
+			<!--关卡唯一ID -->
+			<field name="cid" type="int16"/>
+			<!--结果 <=0: 失败 >0: 星数 -->
+			<field name="score" type="int8"/>
+			<!--参战武将-->
+			<field name="generalIDs" type="int16" lst="Y"/>
+			<!--1: 成功 0: 失败 -->
+			<field name="res" type="int8"/>
+
+		</packet>
+		<!--=============== 关卡相关 combats space end   =====================-->
+		
+		<!--=============== 充值相关 pay space start =====================-->
+		<!--请求充值价格表 成功回应-->
+		<packet name="table" space="pay">
+		</packet>
+		<!--请求充值价格表 失败回应-->
+		<packet name="tableerr" space="pay">
+		</packet>
+		<!--发起充值 回应-->
+		<packet name="init" space="pay">
+			<!--1: 成功 0: 失败 -->
+			<field name="res" type="int8"/>
+			<!--单号-->
+			<field name="payNO" type="string"/>
+			<!--充值RMB -->
+			<field name="rmb" type="int32"/>
+			<!--充值分区ID-->
+			<field name="zoneID" type="int32"/>
+		</packet>
+		<!--同步充值结果-->
+		<packet name="sync" space="pay">
+			<!--当前钻石-->
+			<field name="stone" type="int32"/>
+			<!--1: 月卡 0: 非月卡-->
+			<field name="bMCard" type="int8"/>
+			<!--累积充值钻石数-->
+			<field name="payTotal" type="int32"/>
+		</packet>
+		<!--=============== 充值相关 pay space end   =====================-->
+		
+		<!--=============== 抽卡相关 egg space start =====================-->
+		<!--单抽 回应-->
+		<packet name="take" space="egg">
+			<!--1: 金币 2: 钻石 -->
+			<field name="eggID" type="int8"/>
+			<!--1: 成功 0: 失败 -->
+			<field name="res" type="int8"/>
+		</packet>
+		<!--十连 回应-->
+		<packet name="take10" space="egg">
+			<!--1: 金币 2: 钻石 -->
+			<field name="eggID" type="int8"/>
+			<!--1: 成功 0: 失败 -->
+			<field name="res" type="int8"/>
+		</packet>
+		<!--=============== 抽卡相关 egg space end   =====================-->
+		
+		<!--=============== 商城 shopnormal space start =====================-->
+		<!--请求同步商城信息 回应-->
+		<packet name="sync" space="shopnormal">
+			<!--1: 成功 0: 失败 -->
+			<field name="res" type="int8"/>
+		</packet>
+		<!--购买商城物品 回应-->
+		<packet name="buy" space="shopnormal">
+			<!-- 商品序号 -->
+			<field name="seq" type="int8"/>
+			<!-- 商品类型 -->
+			<field name="type" type="int8"/>
+			<!-- 商品ID -->
+			<field name="id" type="int16"/>
+			<!--1: 成功 0: 失败 -->
+			<field name="res" type="int8"/>
+		</packet>
+		<!--请求刷新商城 回应-->
+		<packet name="refresh" space="shopnormal">
+			<!--1: 成功 0: 失败 -->
+			<field name="res" type="int8"/>
+		</packet>
+		<!--=============== 商城 shopnormal space end =====================-->
+	</luachannel>
+	
+    <luachannel name="C2S" comment="client to server">
+		
+		<!-- 登录 -->
+		<packet name="login" space="" channel="2">
+			<!-- 账号 “aqq_” + openID -->
+			<field name="userName" type="string"/>
+			<!-- 设备ID -->
+			<field name="deviceID" type="string"/>
+			<!-- 版本号，本版本固定为 verMajor=1 verMinor=4218 -->
+			<field name="verMajor" type="int32"/>
+			<field name="verMinor" type="int32"/>
+			<!-- 登录类型，正常登录固定为 loginType=0 -->
+			<field name="loginType" type="int8"/>
+			<!-- MSDK登录返回的SID，用于登录校验 -->
+			<field name="key" type="string"/>
+
+			<!-- 以下均为按照MSDK文档规范从MSDK取得的信息 -->
+			<field name="gameappID" type="string"/>
+			<field name="platID" type="int32"/>
+			<field name="openID" type="string"/>
+			<field name="clientVer" type="int32"/>
+			<field name="systemHardware" type="string"/>
+			<field name="telecomOper" type="string"/>
+			<field name="network" type="string"/>
+			<field name="loginChannel" type="int32"/>
+			<field name="openKey" type="string"/>
+			<field name="payToken" type="string"/>
+			<field name="pf" type="string"/>
+			<field name="pfKey" type="string"/>
+		</packet>
+		
+		<packet name="createrole" space="" channel="2">
+			<!-- 账号 “aqq_” + openID -->
+			<field name="userName" type="string"/>
+			<!-- 设备ID -->
+			<field name="deviceID" type="string"/>
+			<!-- 版本号，本版本固定为 verMajor=1 verMinor=4218 -->
+			<field name="verMajor" type="int32"/>
+			<field name="verMinor" type="int32"/>
+			<!-- 登录类型，正常登录固定为 loginType=0 -->
+			<field name="loginType" type="int8"/>
+			<!-- MSDK登录返回的SID，用于登录校验 -->
+			<field name="key" type="string"/>
+
+			<!-- 玩家选择的角色名 -->
+			<field name="roleName" type="string"/>
+			<!-- 玩家选择的头像ID -->
+			<field name="headIconID" type="int16"/>
+			<!-- 尝试从MSDK取得的玩家昵称 -->
+			<field name="userNameOrg" type="string"/>
+
+			<!-- 以下均为按照MSDK文档规范从MSDK取得的信息 -->
+			<field name="gameappID" type="string"/>
+			<field name="platID" type="int32"/>
+			<field name="openID" type="string"/>
+			<field name="clientVer" type="int32"/>
+			<field name="systemSoftware" type="string"/>
+			<field name="systemHardware" type="string"/>
+			<field name="telecomOper" type="string"/>
+			<field name="network" type="string"/>
+			<field name="screenWidth" type="int32"/>
+			<field name="screenHeight" type="int32"/>
+			<field name="density" type="float"/>
+			<field name="loginChannel" type="int32"/>
+			<field name="cpuHardware" type="string"/>
+			<field name="memory" type="int32"/>
+			<field name="gLRender" type="string"/>
+			<field name="gLVersion" type="string"/>
+			<field name="deviceID2" type="string"/>
+			<field name="openKey" type="string"/>
+			<field name="payToken" type="string"/>
+			<field name="pf" type="string"/>
+			<field name="pfKey" type="string"/>
+		</packet>
+		
+		<!--=============== 关卡相关 combats space start =====================-->
+		<!--开始关卡-->
+		<packet name="start" space="combats">
+			<!--0: 普通关卡 1: 精英关卡 -->
+			<field name="ctype" type="int8"/>
+			<!--大关卡索引 base 0-->
+			<field name="cindex" type="int8"/>
+			<!--小关卡索引 base 0-->
+			<field name="bindex" type="int8"/>
+			<!--关卡唯一ID -->
+			<field name="cid" type="int16"/>
+		</packet>		
+						
+		<!--结束关卡-->
+		<packet name="finish" space="combats">
+			<!--0: 普通关卡 1: 精英关卡 -->
+			<field name="ctype" type="int8"/>
+			<!--大关卡索引 base 0-->
+			<field name="cindex" type="int8"/>
+			<!--小关卡索引 base 0-->
+			<field name="bindex" type="int8"/>
+			<!--关卡唯一ID -->
+			<field name="cid" type="int16"/>
+			<!--结果 <=0: 失败 >0: 星数 -->
+			<field name="score" type="int8"/>
+
+			<!--战斗时长，秒 -->
+			<field name="playTime" type="int32"/>
+			<!--参战武将-->
+			<field name="generalIDs" type="int16" lst="Y"/>
+
+		</packet>
+		<!--=============== 关卡相关 combats space end   =====================-->
+		
+		
+		<!--=============== 充值相关 pay space start =====================-->
+		<!--请求充值价格表-->
+		<packet name="table" space="pay">
+		</packet>
+		<!--发起充值-->
+		<packet name="init" space="pay">
+			<!--充值RMB -->
+			<field name="rmb" type="int32"/>
+			<!--充值档次 1: 6元 ...-->
+			<field name="lvl" type="int8"/>
+		</packet>
+		<!--报告充值结果-->
+		<packet name="initres" space="pay">
+			<!--充值单号 -->
+			<field name="payNO" type="string"/>
+			<!--MSDK充值接口回调返回的4个状态-->
+			<field name="retCode" type="int32"/>
+			<field name="payState" type="int32"/>
+			<field name="provideState" type="int32"/>
+			<field name="realSave" type="int32"/>
+		</packet>
+		<!--=============== 充值相关 pay space end   =====================-->
+		
+		<!--=============== 抽卡相关 egg space start =====================-->
+		<!--单抽-->
+		<packet name="take" space="egg">
+			<!--1: 金币 2: 钻石 -->
+			<field name="eggID" type="int8"/>
+		</packet>
+		<!--十连-->
+		<packet name="take10" space="egg">
+			<!--1: 金币 2: 钻石 -->
+			<field name="eggID" type="int8"/>
+		</packet>
+		<!--=============== 抽卡相关 egg space end   =====================-->
+		
+		<!--=============== 商城 shopnormal space start =====================-->
+		<!--请求同步商城信息-->
+		<packet name="sync" space="shopnormal">
+		</packet>
+		<!--购买商城物品-->
+		<packet name="buy" space="shopnormal">
+			<!-- 商品序号 -->
+			<field name="seq" type="int8"/>
+			<!-- 商品类型 -->
+			<field name="type" type="int8"/>
+			<!-- 商品ID -->
+			<field name="id" type="int16"/>
+		</packet>
+		<!--请求刷新商城-->
+		<packet name="refresh" space="shopnormal">
+		</packet>
+		<!--=============== 商城 shopnormal space end =====================-->
+	</luachannel>
+</app>

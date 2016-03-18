@@ -1,0 +1,11 @@
+
+<project name="jket" default="dist">
+
+<target name="dist">
+	<jar jarfile="./kutil.jar" basedir="../../../kutil/bin/"/>
+	<jar jarfile="./kio.jar" basedir="../../../kio/bin/"/>
+	<jar jarfile="./kpx.jar" basedir="../../../kpx/bin/"/>
+	<jar jarfile="./kdb.jar" basedir="../../../kdb/bin/"/>
+</target>
+
+</project>

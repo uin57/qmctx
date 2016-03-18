@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="**/.svn/**" kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/extlib/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/extlib/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/extlib/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="/extlib/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/extlib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/extlib/stax-api-1.0.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

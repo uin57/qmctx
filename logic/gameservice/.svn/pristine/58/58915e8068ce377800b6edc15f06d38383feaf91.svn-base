@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<project name="gameservice" default="dist" basedir=".">
+    <description>
+build gameservice project!
+    </description>
+  <!-- set global properties for this build -->
+  <property file="build.properties" />
+  <property name="src.dir" location="src"/>
+  <property name="web.dir" location="WebContent" />
+  <property name="web.info.dir" location="${web.dir}/WEB-INF" />
+  <property name="web.lib.dir" location="${web.info.dir}/lib" />
+  <property name="build.dir" location="build"/>
+  <property name="build.classes.dir" location="${build.dir}/classes" />
+  <property name="dist.dir"  location="dist"/>
+  <property name="artres.dir"  location="../../../artres/datatools/lib"/>
+  <property name="genkey" value="com.joypiegame.gameservice.service.cdkey.CDKeyGen" />
+  <property name="cdkey.dir" location="cdkey" />
+  <property name="conf.dir" location="sql" />
+  <property name="webxml.file" value="web.xml" />
+  <property name="database.file" value="database.xml" />
+  <property name="args" value="" />
+  <property environment="env" />
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+  </target>
+
+
+  <target name="compile" depends="init">
+    <!-- Compile the java code from ${src} into ${build} -->
+  	<condition property="tomcat.dir" value="${env.CATALINA_HOME}">
+  		<isset property="env.CATALINA_HOME" />
+  	</condition>
+  	<condition property="tomcat.lib.dir" value="${tomcat.dir}/lib">
+  	  		<isset property="tomcat.dir" />
+  	</condition>
+  	<fail unless="tomcat.lib.dir">not found tomcat lib dir, need set env CATALINA_HOME or property tomcat.dir!</fail>
+  	<mkdir dir="${build.classes.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${build.classes.dir}">
+    	<include name="**/*.java" />
+        <classpath>
+        	<fileset dir="${tomcat.lib.dir}">
+        		<include name="*.jar" />
+        	</fileset>
+        	<fileset dir="${web.lib.dir}">
+        		<include name="*.jar" />
+        	</fileset>
+        </classpath>
+    </javac>
+  </target>
+	
+  <target name="package" depends="compile" description="package the distribution war or jar file">
+  	<property name="build.lib.dir"  location="${build.dir}/lib" />
+  	<!-- Create the generate lib directory -->
+  	<mkdir dir="${build.lib.dir}"/>
+  	<property name="prjoect.lib" location="${build.lib.dir}/gameservice.jar" />
+  	<property name="target.war" value="${build.lib.dir}/gs.war"/>
+  	<!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+  	<jar jarfile="${prjoect.lib}" basedir="${build.classes.dir}"/>
+  	<war destfile="${target.war}" webxml="${web.dir}/WEB-INF/web.xml" duplicate="fail">
+  		<fileset dir="${web.dir}" />
+  		<classes dir="${build.classes.dir}" />
+  	</war>
+	<mkdir dir="${build.lib.dir}/WEB-INF"/>
+	<copy todir="${build.lib.dir}/WEB-INF" overwrite="true">
+  		<filelist dir="${conf.dir}" files="${webxml.file}" />
+  	</copy>
+	<!--<mkdir dir="${build.lib.dir}/gsconf"/>
+	<copy todir="${build.lib.dir}/gsconf" overwrite="true">
+  		<filelist dir="${conf.dir}" files="${database.file}" />
+  	</copy>
+	<exec executable="jar" dir="${build.lib.dir}" failonerror="true">
+		<arg line="-uvf ${target.war} WEB-INF/${webxml.file} gsconf/${database.file}" />
+	</exec>-->
+	<exec executable="jar" dir="${build.lib.dir}" failonerror="true">
+		<arg line="-uvf ${target.war} WEB-INF/${webxml.file}" />
+	</exec>
+  </target>
+	
+  <target name="dist" depends="package" description="generate the distribution" >
+    <!-- Create the distribution directory -->
+  	<copy todir="${dist.dir}">
+  		<fileset dir="${build.lib.dir}">
+			<include name="*.jar" />
+			<include name="*.war" />
+  		</fileset>
+  	</copy>
+	<copy todir="${artres.dir}">
+  		<fileset dir="${build.lib.dir}">
+			<include name="*.jar" />
+  		</fileset>
+  	</copy>
+  </target>
+
+  <target name="clean" description="clean up">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
+  </target>
+	
+  <target name="all" depends="clean, dist">
+  </target>
+
+  <target name="gen" depends="compile">
+	<java classname="${genkey}" fork="true" dir="${cdkey.dir}">
+		<classpath>
+			<pathelement path="${build.classes.dir}" />
+		</classpath>
+		<arg line="${args}" />
+	</java>
+  </target>
+</project>
+
+

@@ -1,0 +1,36 @@
+
+<project name="kio" default="dist">
+	
+	<property name="jketdir" location=".."/>
+	<property name="rpcgenoutdir" location="./rpcgenout"/>
+	
+	<target name="clean">
+		<delete includeemptydirs="true" quiet="true">
+		    <fileset dir="${jketdir}/kio/bin" includes="**/*"/>
+			<fileset dir="${jketdir}/kutil/bin" includes="**/*"/>
+			<fileset dir="${rpcgenoutdir}" includes="**/*"/>
+		</delete>
+	</target>
+	
+	<target name="kutil">
+		<javac srcdir="${jketdir}/kutil/src" destdir="${jketdir}/kutil/bin" includeantruntime="false"/>
+	</target>
+	<target name="kio" depends="kutil">
+		<javac srcdir="${jketdir}/kio/src" classpath = "${jketdir}/kutil/bin" destdir="${jketdir}/kio/bin" includeantruntime="false"/>
+	</target>
+	<target name="kiotest" depends="kio">
+		<jar jarfile="${jketdir}/kio/kio.jar" basedir="${jketdir}/kio/bin"/>
+		<java classname="ket.kio.NetManagerTest" classpath="${jketdir}/kutil/bin;${jketdir}/kio/bin">
+			<sysproperty key="java.net.preferIPv4Stack " value="true"/>
+		</java>
+	</target>
+	<target name="httpgettest" depends="kio">
+			<jar jarfile="${jketdir}/kio/kio.jar" basedir="${jketdir}/kio/bin"/>
+			<java classname="ket.kiox.HTTPGetClient" classpath="${jketdir}/kutil/bin;${jketdir}/kio/bin">
+				<sysproperty key="java.net.preferIPv4Stack " value="true"/>
+			</java>
+		</target>
+	<target name="dist" depends="kio"/>
+</project>
+
+

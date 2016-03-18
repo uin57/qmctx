@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="**/.svn/**" kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="../../jket/dist/1/jket/kdb.jar"/>
+	<classpathentry kind="lib" path="../../jket/dist/1/jket/kio.jar" sourcepath="C:/i3k/NewEngine/logic/jket/kio/src"/>
+	<classpathentry kind="lib" path="../../jket/dist/1/jket/kutil.jar" sourcepath="c:/i3k/NewEngine/logic/jket/kutil/src"/>
+	<classpathentry kind="lib" path="../../jket/extlib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="../../jket/extlib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="../../jket/extlib/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="../../jket/extlib/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="../../jket/extlib/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="../../jket/extlib/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="../../jket/extlib/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="../../gameservice/gs/dist/gameservice.jar"/>
+	<classpathentry kind="lib" path="lib/org.json.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<application>
+	
+	<datadir name="data"/>
+	<logdir name="log"/>
+	<backupdir name="backup"/>
+	
+	<table name="maxids" cacheLow="2" cacheHigh="10" keyType="java.lang.String" valueType="java.lang.Integer"/>
+	<table name="rolename" cacheLow="2" cacheHigh="10" keyType="java.lang.String" valueType="java.lang.Integer"/>
+
+	<table name="table1" cacheLow="2" cacheHigh="10" keyType="java.lang.Integer" valueType="java.lang.String"/>
+	<table name="table2" cacheLow="2" cacheHigh="10"/>
+	
+	<threadpool corePoolSize="3" maxTaskCount="100000"/>
+	<checkpoint intervalMax="30" intervalMin="1"/>
+			
+</application>

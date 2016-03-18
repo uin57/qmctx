@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channel name="test" update="false">
+        <version major="1" minor="0" inner="3708"/>
+        <verifyserver ip="dirfc.qjctx.qq.com" port="8000"/>
+        <server name="蛮荒时代" ip="aqqfc.qjctx.qq.com" port="8001"  gsid="1003" state="0" device="0"/>
+</channel>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<peercfg>
+
+	<tracker_list> 
+		<tracker host="168.160.224.81" port="1106"/>
+	</tracker_list>
+</peercfg>

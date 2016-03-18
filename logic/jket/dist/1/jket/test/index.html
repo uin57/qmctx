@@ -1,0 +1,1604 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+<head>
+<title>JDK 6 Documentation</title>
+
+<style type="text/css">
+<!--
+h1, b           { font-family: Arial, Helvetica, sans-serif }
+.atext, .ahead  { font-size: 80%; font-family: Arial, Helvetica, sans-serif; color: black; text-decoration: none;}
+.atext          { font-weight: bold; }
+.ahead          { font-size: 70%; text-align: right; line-height: 90%; }
+.table          { border-width: 0px 0px 0px 0px }
+.tdbody         { padding-left: .4em; padding-right: .4em; line-height: 90%; text-align: center; vertical-align: middle;
+ height: 1.7em; }
+.tdleftside     { padding-left: .25em; text-align: left; border-width: 2px 0px 2px 2px; vertical-align: middle; }
+.tdrightside    { padding-left: .25em; padding-right: .25em; text-align: center; vertical-align: middle; }
+.tdhead         { padding-right: .5em; border-width: 0px 0px 0px 0px; text-align: right; vertical-align: middle; }
+.TM             { font-size: 6px; }
+-->
+</style>
+
+</head>
+         <!-- style="border-width: 0px 0px 0px 0px;  -->
+<body>
+
+<!-- ==================BEGINNING OF TITLE HEADING================= -->
+<table summary="layout" border="0" width="100%">
+<tr>
+<td width=100>
+   <img src="images/javalogo52x88.gif" alt="Java" border=0 width=52 height=88 />
+</td>
+
+
+<td align=CENTER>
+         <h1>JDK<sup><font size="-2">TM</font></sup> 6 Documentation</h1>
+</td>
+
+
+<td align=RIGHT width=100>
+
+<table summary="layout">
+<tr>
+<td>
+<a href="http://java.sun.com/javase/6/download.jsp#docs"><img src="images/download.arrow.gif" border="0" width="45" height="42" alt="Download Java SE 6 Documentation" /></a>
+</td>
+<td align="LEFT">
+<font style="font-family: Arial, Helvetica, sans-serif" size="-1"><a ref="http://java.sun.com/javase/6/download.jsp#docs">Download this<br /> Documentation</a></font>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+<p>
+<!-- ====================END OF TITLE HEADING======================= -->
+
+
+<!-- =================BEGINNING OF LINK HEADING ==================== -->
+</p><table summary="headings" border=1 cellpadding=2 cellspacing=0 width="100%"><tr><td bgcolor="#EEEEFF" align="center">
+<font style="font-family: Arial, Helvetica, sans-serif" size="-1">
+<b>
+ &nbsp; <a href="../docs/legal/SMICopyright.html">Legal Notices</a>
+ &nbsp; <a href="#api">API, Language, and VM Specs</a>
+ &nbsp; <a href="#guide">Features Guides</a>
+ &nbsp; <a href="http://java.sun.com/javase/6/webnotes/index.html">Release Notes</a>
+ &nbsp; <a href="technotes/tools/index.html">Tool Docs</a>
+ &nbsp; <a href="#demos">Tutorials and Training</a>
+</b>
+</font>
+</td></tr>
+</table>
+<!-- =====================END OF LINK HEADING ======================= -->
+
+
+<!-- =====================BEGINNING OF GRAPHIC======================= -->
+<blockquote>
+
+<a name="map"></a>
+<font size="+1"><b>Java<sup><font size="-2">TM</font></sup> SE 6
+ Platform at a Glance</b></font><br />
+<p>
+This document covers the Java<sup><font size="-2">TM</font></sup> 
+Platform, Standard Edition 6 JDK.  Its product version number is
+6 and developer version number is 1.6.0, as described in 
+<a href="http://java.sun.com/javase/6/webnotes/6/version-6.html">Platform Name and Version Numbers</a>.
+For information on a feature of the JDK, click on a
+component in the diagram below.</p>
+<p>
+
+
+<!-- NOTE: Keep "a href" links even though they are redundant with onclick links in td, 
+           because onclick does not honor middle-button click to open in new tab,
+           and in case user has javascript turned off -->
+
+</p><table class="table" border="1" width="80%" bordercolor="#ffffff" cellpadding="0" cellspacing="0">
+
+<!-- JDK -->
+
+  <tr> 
+    <td class="tdleftside" rowspan="8" colspan="1"
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'"
+        title="Java SE Development Kit"
+        onclick="location.href='technotes/guides/index.html#jre-jdk';">
+    <a href="technotes/guides/index.html#jre-jdk" class="atext">JDK</a></td>
+    <td style="border-width: 0px 0px 0px 0px;" width="3" rowspan="9">&nbsp;</td>
+
+<!-- Java Language -->
+
+    <td class="tdhead" colspan="2"
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#ffffff'; style.cursor='default'" 
+        title="Java programming language"
+        onclick="location.href='technotes/guides/language/index.html';"> 
+    <a href="technotes/guides/language/index.html" class="ahead" alt="Java programming language" >
+        <b>Java Language</b>  </a>
+        </td>
+    <td colspan="1" style="border-width: 0px 0px 0px 0px;" >
+
+
+<!-- Java Language -->
+
+<table class="table" width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+<tr> 
+          <td class="tdbody" bgcolor="#EEEEEE"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'"
+              onmouseout="this.bgColor='#EEEEEE'" 
+              title="Java programming language"
+              onclick="location.href='technotes/guides/language/index.html';"> 
+            <a href="technotes/guides/language/index.html" class="atext" alt="Java Programming Language"> 
+            Java Language </a> </td>
+        </tr>
+</table>
+</td>
+</tr>
+
+<!-- Tools & Tool APIs -->
+
+<tr> 
+    <td class="tdhead" colspan="2" 
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#ffffff'" 
+        title="Tools and Tool APIs"
+        onclick"location.href='./technotes/tools/index.html';"> 
+      <a href="./technotes/tools/index.html" class="ahead" alt="Tools and APIs for software development"> 
+        <b>Tools &amp;<br />Tool APIs</b>  </a></td>
+    <td style="border-width: 0px 0px 0px 0px;" colspan="1">
+
+<table class="table" width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+
+<!-- TOOLS: java   javac   javadoc   apt   jar   javap   JPDA   Other -->
+
+<tr> 
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Java runtime launcher"
+              onclick="location.href='technotes/tools/windows/java.html';"> 
+         <a href="technotes/tools/windows/java.html" class="atext" alt="Java runtime launcher"> 
+            java </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Java compiler"
+              onclick="location.href='technotes/guides/javac/index.html';"> 
+         <a href="technotes/guides/javac/index.html" class="atext" alt="Compile Java language code"> 
+            javac </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Java documentation generator"
+              onclick="location.href='technotes/guides/javadoc/index.html';"> 
+            <a href="technotes/guides/javadoc/index.html" class="atext" alt="Generate HTML pages that describe classes and class members."> 
+            javadoc </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Annotation Processing Tool"
+              onclick="location.href='technotes/guides/apt/index.html';"> 
+          <a href="technotes/guides/apt/index.html" class="atext" alt="Annotation Processing Tool">apt 
+            </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Java archive tool"
+              onclick="location.href='technotes/guides/jar/index.html';"> 
+            <a href="technotes/guides/jar/index.html" class="atext" alt="Java archive tool">
+            jar
+            </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Java class file disassembler"
+              onclick="location.href='technotes/tools/windows/javap.html';"> 
+            <a href="technotes/tools/windows/javap.html" class="atext" alt="Java class file disassembler">javap 
+            </a></td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Java Platform Debugger Architecture"
+              onclick="location.href='technotes/guides/jpda/index.html';"> 
+            <a href="technotes/guides/jpda/index.html" class="atext" alt="Java Platform Debugger Architecture"> 
+            JPDA </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="jconsole"
+              onclick="location.href='./technotes/tools/index.html#jconsole';" colspan="2"> 
+            <a href="./technotes/tools/index.html#jconsole" class="atext" alt="jconsole"> 
+            jconsole </a> </td>
+        </tr>
+
+<!-- TOOLS: Security   Int'l   RMI   IDL   Deploy   Monitoring   Troubleshooting   Scripting JVM TI -->
+
+<tr> 
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Security tools"
+              onclick="location.href='technotes/tools/index.html#security';"> 
+            <a href="technotes/tools/index.html#security" class="atext" alt="Security tools"> 
+            Security </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Internationalization tools"
+              onclick="location.href='technotes/tools/index.html#intl';"> 
+            <a href="technotes/tools/index.html#intl" class="atext" alt="Internationalization tools"> 
+            Int'l </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Remote Method Invocation tools"
+              onclick="location.href='technotes/tools/index.html#rmi';"> 
+            <a href="technotes/tools/index.html#rmi" class="atext" alt="Remote Method Invocation tools"> 
+            RMI </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Interface Definition Language and RMI-IIOP tools"
+              onclick="location.href='technotes/tools/index.html#idl';"> 
+            <a href="technotes/tools/index.html#idl" class="atext" alt="IDL and RMI-IIOP tools"> 
+            IDL </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Deployment, Plug-in and Web Start tools"
+              onclick="location.href='technotes/tools/index.html#deployment';"> 
+            <a href="technotes/tools/index.html#deployment" class="atext" alt="Deployment, Plug-in and Web Start tools"> 
+            Deploy </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Monitoring and Management tools"
+              onclick="location.href='technotes/tools/index.html#manage';"> 
+            <a href="technotes/tools/index.html#monitor" class="atext" alt="Monitoring and management tools"> 
+            Monitoring </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Troubleshooting tools"
+              onclick="location.href='technotes/tools/index.html#troubleshoot';"> 
+            <a href="technotes/tools/index.html#troubleshoot" class="atext" alt="Troubleshooting tools"> 
+            Troubleshoot </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Troubleshooting tools"
+              onclick="location.href='technotes/tools/index.html#scripting';"> 
+            <a href="technotes/tools/index.html#scripting" class="atext" alt="Scripting tools"> 
+            Scripting </a> </td>
+
+          <td class="tdbody" bgcolor="#E8FA71"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#e8fa71'" 
+              title="Java Virtual Machine Tool Interface"
+              onclick="location.href='technotes/guides/jvmti/index.html';"> 
+<a href="technotes/guides/jvmti/index.html" class="atext" alt="Java Virtual Machine Tool Interface"> 
+            JVM TI</a> </td>
+        </tr>
+</table></td>
+</tr>
+
+<tr> 
+
+<!-- JRE -->
+
+    <td class="tdleftside" colspan="1" rowspan="6" 
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'"
+        title="Java Runtime Environment"
+        onclick="location.href='technotes/guides/index.html#jre-jdk';">
+      <a href="technotes/guides/index.html#jre-jdk" class="atext">JRE</a> 
+    </td>
+
+<!-- Deployment Technologies -->
+
+    <td class="tdhead" 
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'"
+        title="Deployment Technologies"
+        onclick="location.href='technotes/guides/index.html#deployment';">
+      <a href="technotes/guides/index.html#deployment" class="ahead" alt="Deployment of Java platform, control panel, application and applet"> 
+      <b>Deployment<br />
+      Technologies</b></a> </td>
+    <td style="border-width: 0px 0px 0px 0px;" colspan="1">
+
+<!-- Deployment   Java Web Start   Java Plug-in -->
+
+<table class="table" width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+<tr> 
+          <td class="tdbody" bgcolor="#79BD77"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#79bd77'" 
+              title="Deployment of Java platform, control panel, applications and applets"
+              onclick="location.href='technotes/guides/deployment/index.html';"> 
+            <a href="technotes/guides/deployment/index.html" class="atext" alt="Deployment of Java platform, control panel, applications and applets"> 
+            Deployment </a> </td>
+
+          <td class="tdbody" bgcolor="#79BD77"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#79bd77'" 
+              title="Java Web Start"
+              onclick="location.href='technotes/guides/javaws/index.html';"> 
+            <a href="technotes/guides/javaws/index.html" class="atext" alt="Seamlessly download and launch a Java application"> 
+            Java Web Start </a> </td>
+
+          <td class="tdbody" bgcolor="#79BD77"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#79bd77'" 
+              title="Java Plug-In for browsers"
+              onclick="location.href='technotes/guides/plugin/index.html';"> 
+            <a href="technotes/guides/plugin/index.html" class="atext" alt="Use the Sun JRE in your browser to run applets or Java beans"> 
+            Java Plug-in </a> </td>
+        </tr>
+</table>
+</td>
+</tr>
+
+<!-- User Interface Toolkits -->
+
+<tr> 
+    <td class="tdhead" colspan="1"
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'" 
+        title="User Interface programming"
+        onclick="location.href='technotes/guides/index.html#userinterface';"> 
+      <a href="technotes/guides/index.html#userinterface" class="ahead">
+      <b>User Interface <br />
+      Toolkits</b> </a> </td>
+    <td style="border-width: 0px 0px 0px 0px;" >
+
+<!-- AWT   Swing   Java 2D -->
+
+<table class="table" width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+<tr> 
+          <td class="tdbody" colspan="3" bgcolor="#78AAAB" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'"
+              title="Abstract Window Toolkit"
+              onclick="location.href='technotes/guides/awt/index.html';">
+            <a href="technotes/guides/awt/index.html" class="atext" alt="Abstract Window Toolkit for graphical user interface programming"> 
+            AWT </a> </td>
+
+          <td class="tdbody" colspan="4" bgcolor="#78AAAB" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'"
+              title="Graphical user interface components"
+              onclick="location.href='technotes/guides/swing/index.html';">
+            <a href="technotes/guides/swing/index.html" class="atext" alt="GUI components for creating graphical user interfaces with pluggable look and feel"> 
+            Swing </a> </td>
+
+          <td class="tdbody" colspan="3" bgcolor="#78AAAB" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'"
+              title="2D graphics, text and images"
+              onclick="location.href='technotes/guides/2d/index.html';">
+            <a href="technotes/guides/2d/index.html" class="atext" alt="Incorporate high-quality 2D graphics, text and images"> 
+            Java 2D </a> </td>
+        </tr>
+
+<!-- Accessibility   Drag n Drop   Input Methods   Image I/O   Print Service   Sound -->
+
+<tr> 
+          <td class="tdbody" bgcolor="#78AAAB" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'"
+              title="Assistive technologies for user interfaces"
+              onclick="location.href='technotes/guides/access/index.html';">
+            <a href="technotes/guides/access/index.html" class="atext" alt="Enable assistive technologies for user interfaces"> 
+            Accessibility </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#78AAAB"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'" 
+              title="Drag and drop data transfer"
+              onclick="location.href='technotes/guides/dragndrop/index.html';"> 
+            <a href="technotes/guides/dragndrop/index.html" class="atext" alt="Drag and drop support between Java applications and native applications">
+            Drag n Drop </a></td>
+
+          <td class="tdbody"  colspan="2" bgcolor="#78AAAB"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'" 
+              title="Input Method Framework"
+              onclick="location.href='technotes/guides/imf/index.html';">
+            <a href="technotes/guides/imf/index.html" class="atext" alt="Input Method Framework for text editing components and input methods"> 
+            Input Methods </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#78AAAB"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'" 
+              title="Image input/output API"
+              onclick="location.href='technotes/guides/imageio/index.html';">
+            <a href="technotes/guides/imageio/index.html" class="atext" alt="Pluggable architecture for images accessed across a network"> 
+            Image I/O </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#78AAAB"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'" 
+              title="Print service API"
+              onclick="location.href='technotes/guides/jps/index.html';">
+            <a href="technotes/guides/jps/index.html" class="atext" alt="API for printing"> 
+            Print Service </a> </td>
+
+          <td class="tdbody" colspan="1"  bgcolor="#78AAAB" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#78AAAB'"
+              title="MIDI API"
+              onclick="location.href='technotes/guides/sound/index.html';">
+            <a href="technotes/guides/sound/index.html" class="atext" alt="API for capturing, processing, and playing back audio and MIDI data">
+            Sound  </a> </td>
+        </tr>
+</table>
+</td>
+<td style="border-width: 0px 0px 0px 0px;" rowspan="9" width="3">&nbsp;</td>
+
+<!-- Java SE API -->
+
+    <td class="tdrightside" style="border-width: 2px 2px 2px 0px;" rowspan="4" 
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'"
+        title="Java SE Application Programming Interface"
+        onclick="location.href='api/index.html';">
+      <a href="technotes/guides/index.html#jre-jdk" class="atext">
+      Java SE<br />API </a> </td>
+  </tr>
+
+<!-- Integration Libraries -->
+
+<tr> 
+    <td class="tdhead" 
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'"
+        title="Integration libraries"
+        onclick="location.href='technotes/guides/index.html#integration';">
+      <a href="technotes/guides/index.html#integration" class="ahead"><b>Integration<br />Libraries</b> </a> </td>
+    <td style="border-width: 0px 0px 0px 0px;" >
+
+<!-- IDL   JDBC   JNDI   RMI   RMI-IIOP Scripting -->
+
+<table class="table" width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+<tr> 
+          <td class="tdbody" colspan="2" bgcolor="#A5A5C7"
+             onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+             onmouseout="this.bgColor='#A5A5C7'" 
+             title="CORBA Interface Definition Language API"
+             onclick="location.href='technotes/guides/idl/index.html';"> 
+            <a href="technotes/guides/idl/index.html" class="atext" alt="Interfaces defined in CORBA Interface Definition Language"> 
+            IDL </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#A5A5C7"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#A5A5C7'" 
+              title="Java Database Connectivity API"
+              onclick="location.href='technotes/guides/jdbc/index.html';">
+            <a href="technotes/guides/jdbc/index.html" class="atext" alt="Java Database Connectivity"> 
+            JDBC<sup class="TM">TM</sup></a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#A5A5C7"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#A5A5C7'" 
+              title="Java Naming and Directory Interface API"
+              onclick="location.href='technotes/guides/jndi/index.html';"> 
+            <a href="technotes/guides/jndi/index.html" class="atext" alt="Java Naming and Directory Interface">
+            JNDI<sup class="TM">TM</sup></a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#A5A5C7"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#A5A5C7'" 
+              title="Remote Method Invocation API"
+              onclick="location.href='technotes/guides/rmi/index.html';"> 
+            <a href="technotes/guides/rmi/index.html" class="atext" alt="Remote Method Invocation"> 
+            RMI </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#A5A5C7"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#A5A5C7'" 
+              title="RMI interfaces over IIOP"
+              onclick="location.href='technotes/guides/rmi-iiop/index.html';">
+            <a href="technotes/guides/rmi-iiop/index.html" class="atext" alt="RMI interfaces using IIOP as the underlying transport">
+            RMI-IIOP </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#A5A5C7"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#A5A5C7'" 
+              title="Scripting for the Java Platform"
+              onclick="location.href='technotes/guides/scripting/index.html';">
+            <a href="technotes/guides/scripting/index.html" class="atext" alt="Scripting for the Java Platform">
+            Scripting </a> </td>
+        </tr>
+
+</table>
+</td>
+</tr>
+
+<!-- Other Base Libraries -->
+
+<tr> 
+    <td class="tdhead" colspan="1"
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'" 
+        title="Base libraries other than java.lang and java.util"
+        onclick="location.href='technotes/guides/index.html#otherbase';"> 
+      <a href="technotes/guides/index.html#otherbase" class="ahead" alt="Base libraries other than lang and util"><b>Other Base<br />Libraries</b> </a> </td>
+    <td style="border-width: 0px 0px 0px 0px;" >
+
+<!-- Beans   Intl Support   I/O    JMX   JNI   Math -->
+
+<table class="table" width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+<tr> 
+          <td class="tdbody" bgcolor="#AAAA67" 
+              onmouseover="this.bgColor='#CCFFDD'"  
+              onmouseout="this.bgColor='#AAAA67'"
+              title="Java Beans component API"
+              onclick="location.href='technotes/guides/beans/index.html';">
+            <a href="technotes/guides/beans/index.html" class="atext" alt="Java Beans component API"> 
+            Beans </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#AAAA67" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'"
+              title="Internationalization of applications"
+              onclick="location.href='technotes/guides/intl/index.html';">
+            <a href="technotes/guides/intl/index.html" class="atext" alt="Application internationalization"> 
+            Intl Support </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#AAAA67" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'"
+              title="Input/Output API"
+              onclick="location.href='technotes/guides/io/index.html';">
+            <a href="technotes/guides/io/index.html" class="atext" alt="Input and output through data streams, serialization and file systems"> 
+            I/O</a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#AAAA67"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'" 
+              title="Java Management Extensions"
+              onclick="location.href='technotes/guides/jmx/index.html';"> 
+            <a href="technotes/guides/jmx/index.html" class="atext" alt="Java Management Extensions"> 
+            JMX </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#AAAA67" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'"
+              title="Java Native Interface"
+              onclick="location.href='technotes/guides/jni/index.html';">
+            <a href="technotes/guides/jni/index.html" class="atext" alt="Java Native Interface">
+           JNI </a> </td>
+
+          <td class="tdbody" bgcolor="#AAAA67" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'"
+              title="Math classes"
+              onclick="location.href='technotes/guides/math/index.html';">
+            <a href="technotes/guides/math/index.html" class="atext" alt="Floating point and arbitrary-precision math"> 
+            Math </a> </td>
+        </tr>
+
+<!-- Networking   Std. Override Mechanism    Security   Serialization   Extension Mechanism   XML JAXP -->
+
+<tr> 
+          <td class="tdbody" bgcolor="#AAAA67"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'" 
+              title="Networking API"
+              onclick="location.href='technotes/guides/net/index.html';">
+            <a href="technotes/guides/net/index.html" class="atext" alt="Networking API"> 
+            Networking </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#AAAA67"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'" 
+              title="Endorsed Standards Override Mechanism"
+              onclick="location.href='technotes/guides/standards/index.html';">
+            <a href="technotes/guides/standards/index.html" class="atext" alt="Endorsed Standards Override Mechanism">
+            Override Mechanism </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#AAAA67"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'" 
+              title="Security API"
+              onclick="location.href='technotes/guides/security/index.html';"> 
+            <a href="technotes/guides/security/index.html" class="atext" alt="Writing secure applications">
+            Security </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#AAAA67"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'" 
+              title="Object Serialization"
+              onclick="location.href='technotes/guides/serialization/index.html';">
+            <a href="technotes/guides/serialization/index.html" class="atext" alt="Java input/output classes with object support serialization">
+           Serialization</a>  </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#AAAA67"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'" 
+              title="Package extension mechanism"
+              onclick="location.href='technotes/guides/extensions/index.html';">
+            <a href="technotes/guides/extensions/index.html" class="atext" alt="Mechanism for JVM to use optional packages">
+            Extension Mechanism </a> </td>
+
+          <td class="tdbody" bgcolor="#AAAA67" nowrap
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#AAAA67'" 
+              title="Java API for XML Processing"
+              onclick="location.href='technotes/guides/xml/index.html';"> 
+            <a href="technotes/guides/xml/index.html" class="atext" alt="Java API for Extensible Markup Language Processing">
+            XML JAXP </a> </td>
+        </tr>
+</table>
+</td>
+</tr>
+
+<!-- lang and util Base Libraries -->
+
+<tr> 
+    <td class="tdhead" 
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'" 
+        title="java.lang and java.util libraries"
+        onclick="location.href='technotes/guides/index.html#langutil';" colspan="1"> 
+      <a href="technotes/guides/index.html#langutil" class="ahead"><b>lang and util<br /> Base Libraries</b> </a> </td>
+    <td style="border-width: 0px 0px 0px 0px;" >
+
+<table class="table" width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+
+<!-- lang and util   Collections    Concurrency Utilities    JAR   Logging   Management   -->
+
+<tr> 
+          <td class="tdbody" colspan="1" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="java.lang and java.util packages"
+              onclick="location.href='technotes/guides/lang/index.html';"> 
+            <a href="technotes/guides/lang/index.html" class="atext" alt="java.lang and java.util packages"> 
+            lang and util </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Collections framework"
+              onclick="location.href='technotes/guides/collections/index.html';"> 
+            <a href="technotes/guides/collections/index.html" class="atext" alt="Framework for representing and manipulating collections"> 
+            Collections </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cusor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Concurrency utilities"
+              onclick="location.href='technotes/guides/concurrency/index.html';"> 
+            <a href="technotes/guides/concurrency/index.html" class="atext" alt="Concurrency utilities"> 
+            Concurrency Utilities </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Java archive file format"
+              onclick="location.href='technotes/guides/jar/index.html';"> 
+            <a href="technotes/guides/jar/index.html" class="atext" alt="Platform-independent file format that aggregates many files into one">
+            JAR </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Logging API"
+              onclick="location.href='technotes/guides/logging/index.html';">
+            <a alt="Logging features" href="technotes/guides/logging/index.html" class="atext">
+            Logging </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="JVM Monitoring and Management"
+              onclick="location.href='technotes/guides/management/index.html';">
+            <a href="technotes/guides/management/index.html" class="atext" alt="Java virtual machine monitoring and management"> 
+            Management </a> </td>
+
+</tr>
+
+<!-- Preferences   Ref Objects   Reflection   Regular Expressions   Versioning   Zip   Instrument  -->
+
+<tr> 
+          <td class="tdbody" colspan="1" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Preferences API"
+              onclick="location.href='api/java/util/regex/package-summary.html';"> 
+            <a alt="Preferences" href="technotes/guides/preferences/index.html" class="atext">
+            Preferences API</a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Reference Objects API"
+              onclick="location.href='api/java/lang/ref/package-summary.html';"> 
+            <a alt="Reference Objects API" href="api/java/lang/ref/package-summary.html" class="atext"> 
+            Ref Objects </a></td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Reflection API"
+              onclick="location.href='technotes/guides/reflection/index.html';">
+            <a href="technotes/guides/reflection/index.html" class="atext" alt="Introspection of loaded classes and objects"> 
+            Reflection </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Regular expressions"
+              onclick="location.href='api/java/util/regex/package-summary.html';">
+            <a alt="Regular expressions" href="api/java/util/regex/package-summary.html" class="atext">
+            Regular Expressions </a> </td>
+
+          <td class="tdbody" colspan="2" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Package version identification"
+              onclick="location.href='technotes/guides/versioning/index.html';">
+            <a href="technotes/guides/versioning/index.html" class="atext" alt="Package Version Identification">
+            Versioning </a> </td>
+
+          <td class="tdbody" colspan="1" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Zip and gzip file formats"
+              onclick="location.href='api/java/util/zip/package-summary.html';">
+            <a href="api/java/util/zip/package-summary.html" class="atext" alt="Reading and writing ZIP and GZIP file formats">
+            Zip </a> </td>
+          <td class="tdbody" colspan="1" bgcolor="#999967"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#999967'" 
+              title="Instrumentation"
+              onclick="location.href='technotes/guides/instrumentation/index.html';">
+            <a href="technotes/guides/instrumentation/index.html" class="atext" alt="instrumentation"> 
+            Instrument </a> </td>
+        </tr>
+</table>
+</td>
+</tr>
+
+<!-- Java Virtual Machine -->
+
+<tr> 
+    <td class="tdhead" width="117" colspan="1" rowspan="1" 
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#FFFFFF'" valign="middle"
+        title="Java Virtual Machine"
+        onclick="location.href='technotes/guides/vm/index.html';">
+      <a alt="Write Once, Run Anywhere (TM)" href="technotes/guides/vm/index.html" class="ahead"> 
+      <b>Java Virtual<br />Machine</b>  </a> </td>
+    <td style="border-width: 0px 0px 0px 0px;" colspan="1">
+
+<!-- Java Hotspot Server VM   Java Hotspot Client VM -->
+
+<table class="table" border=0 width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+<tr> 
+          <td class="tdbody" colspan="5" rowspan="1" bgcolor="#77ABDD"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#77ABDD'" 
+              title="Client virtual machine"
+              onclick="location.href='technotes/guides/vm/index.html';"> 
+            <a alt="Write Once, Run Anywhere (TM)" href="technotes/guides/vm/index.html" class="atext"> 
+            Java Hotspot<sup class="TM">TM</sup> Client VM</a></td>
+
+          <td class="tdbody" colspan="5" rowspan="1" bgcolor="#77ABDD"
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#77ABDD'" 
+              title="Server virtual machine"
+              onclick="location.href='technotes/guides/vm/index.html';">
+            <a alt="Write Once, Run Anywhere (TM)" href="technotes/guides/vm/index.html" class="atext"> 
+            Java Hotspot<sup class="TM">TM</sup> Server VM </a> </td>
+        </tr>
+</table>
+</td>
+</tr>
+
+<!-- Platforms -->
+
+<tr> 
+    <td style="border-width: 0px 0px 0px 0px;"></td>
+    <td class="tdhead" colspan="2" 
+        onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+        onmouseout="this.bgColor='#ffffff'" 
+        title="Operating systems"
+        onclick="location.href='technotes/guides/index.html#platform';"> 
+      <a href="technotes/guides/index.html#platform" alt="Operating system platforms" class="ahead"> 
+        <b>Platforms</b></a> </td>
+    <td style="border-width: 0px 0px 0px 0px;" colspan="1">
+
+<!-- Solaris   Linux   Windows   Other -->
+
+<table class="table" border=0 width="100%" bgcolor="#c0c0c0" cellpadding="2px" cellspacing="1px">
+<tr> 
+
+          <td class="tdbody" bgcolor="#EEEEEE" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#EEEEEE'" colspan="3"
+              title="Sun Solaris operating system"
+              onclick="location.href='technotes/guides/index.html#platform';">
+            <a href="technotes/guides/index.html#platform" class="atext">
+            Solaris<sup class="TM">TM</sup> </a></td>
+
+          <td class="tdbody" bgcolor="#EEEEEE" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#EEEEEE'" colspan="3"
+              title="Linux"
+              onclick="location.href='technotes/guides/index.html#platform';">
+            <a href="technotes/guides/index.html#platform" class="atext">
+            Linux </a></td>
+
+          <td class="tdbody" bgcolor="#EEEEEE" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#EEEEEE'" colspan="1"
+              title="Microsoft Windows"
+              onclick="location.href='technotes/guides/index.html#platform';">
+            <a href="technotes/guides/index.html#platform" class="atext">
+            Windows </a></td>
+
+          <td class="tdbody" bgcolor="#EEEEEE" 
+              onmouseover="this.bgColor='#CCFFDD'; style.cursor='pointer'" 
+              onmouseout="this.bgColor='#EEEEEE'" colspan="1"
+              title="Other operating systems"
+              onclick="location.href='technotes/guides/index.html#platform';">
+            <a href="technotes/guides/index.html#platform" class="atext">
+            Other </a></td>
+        </tr>
+
+</table>
+</td>
+</tr>
+
+</table>
+
+<!-- =====================END OF GRAPHIC======================= -->
+
+<p>
+</p>
+<hr />
+<p>
+</p>
+
+<!-- =====================BEGIN TEXT INDEX===================== -->
+
+
+<a name="releasenotes"></a>
+
+
+<a href="http://java.sun.com/javase/6/webnotes/index.html">
+<font size="+1"><b>Release Notes</b></font></a>
+<blockquote>
+Topics include New Features, Known Issues, Compatibility with Prior Releases, 
+Supported System Configurations, Installation, and More)
+</blockquote>
+
+
+<hr />
+<p>
+</p>
+
+<!-- ============================================================= -->
+<a name="api"></a>
+
+<font size="+1"><b>API, Language, and Virtual Machine Documentation </b></font> <br />
+<font size="-1">
+</font>
+
+<p></p><blockquote>
+
+<p>
+
+</p>
+<table border=0 width=99% cellspacing=10 cellpadding=0>
+<tr>
+<td>
+<a href="api/index.html">Java  Platform API Specification</a> &nbsp; 
+<a href="api/overview-summary.html"><font size="-2">(NO FRAMES)</font></a>
+<br />
+<font size="-1"> 
+(included in the JDK documentation bundle and on java.sun.com )
+</font></td>
+<td>
+<a href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">Note About sun.* Packages</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html">
+The Java Language Specification</a> &nbsp;
+<a href="http://java.sun.com/docs/books/jls/index.html"><font size="-2">(DOWNLOAD)</font></a><br />
+</td>
+<td>
+<a href="http://java.sun.com/docs/books/vmspec/2nd-edition/html/VMSpecTOC.doc.html">
+The Java Virtual Machine Specification</a> &nbsp;
+<a href="http://java.sun.com/docs/books/vmspec/index.html"><font size="-2">(DOWNLOAD)</font></a><br />
+</td>
+</tr>
+
+
+</table>
+</blockquote>
+
+<hr />
+<p>
+</p>
+
+<!-- ============================================================= -->
+
+<a name="guide"></a>
+
+<font size="+1"><b>Features Reference Guides - Java Platform </b></font><br />
+<font size="-1">
+All guides listed are included in the documentation download bundle as well as the java.sun.com website
+(unless otherwise noted).
+</font>
+<p></p>
+<p>
+</p>
+<blockquote>
+
+<a href="technotes/guides/index.html"><b>Java SE 6 Overview</b></a>
+<br />
+<a href="http://java.sun.com/javase/6/webnotes/features.html"><b>New Features and Enhancements</b></a><br />
+(available only on the java.sun.com website)
+<p>
+</p>
+
+<table border=0 width=85% cellspacing=0 cellpadding=0>
+
+      <!-- =========== JAVA LANGUAGE ============== -->
+
+<tr> 
+<td colspan=2> <b>Java Language</b> </td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> 
+<a href="technotes/guides/language/index.html">Java Programming Language</a> 
+</td>
+<td>
+</td>
+</tr>
+
+
+      <!-- =========== VIRTUAL MACHINE ============== -->
+
+<tr> 
+<td colspan=2> <b>Virtual Machine</b> </td>
+</tr>
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/vm/index.html">Virtual 
+Machine</a> </td>
+<td>
+</td>
+</tr>
+
+      <!-- =========== BASE LIBRARIES =============== -->
+
+<tr> 
+<td colspan=2> <b>Base Libraries</b> </td>
+</tr>
+
+      <!-- =========== java.* LIBRARIES ============= -->
+
+      <!-- =========== java.lang and java.util LIBRARIES ========== -->
+
+<tr> 
+<td colspan=2> <b style="font-size: 80%; margin-left: 1.4em;">java.lang, java.util Packages</b> </td>
+</tr>
+
+      <!-- =========== java.lang LIBRARIES ========== -->
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" />
+<a href="technotes/guides/instrumentation/index.html">Instrumentation</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" />
+<a href="technotes/guides/lang/index.html">Language and Utility Packages</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> 
+<a href="technotes/guides/management/index.html">Monitoring and Management</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> 
+<a href="technotes/guides/versioning/index.html">Package Version Identification</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> 
+<a href="api/java/lang/ref/package-summary.html">Reference Objects</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> 
+<a href="technotes/guides/reflection/index.html">Reflection</a> 
+</td>
+<td>
+</td>
+</tr>
+
+
+      <!-- =========== java.util LIBRARIES ========== -->
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> 
+<a href="technotes/guides/collections/index.html">Collections Framework</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/concurrency/index.html">Concurrency
+Utilities</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jar/index.html">Java 
+Archive (JAR) Files</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/logging/index.html">Logging</a> 
+</td>
+<td>
+</td>
+</tr>
+
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/preferences/index.html">Preferences</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="api/java/util/regex/package-summary.html">Regular Expressions</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+</tr><tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="api/java/util/zip/package-summary.html">Zip Files</a> </td>
+<td>
+</td>
+</tr>
+
+      <!-- =========== Other Packages ========== -->
+
+<tr> 
+<td colspan=2> <b style="font-size: 80%; margin-left: 1.4em;">Other packages</b> </td>
+</tr>
+
+      <!-- =========== java.math LIBRARIES ========== -->
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> 
+<a href="technotes/guides/math/index.html">Math</a> </td>
+<td>
+</td>
+</tr>
+
+      <!-- =========== java.io LIBRARIES ========== -->
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/io/index.html">I/O</a> 
+</td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/serialization/index.html">Object 
+Serialization</a> </td>
+<td>
+</td>
+</tr>
+
+      <!-- =========== java.net LIBRARIES ========== -->
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/net/index.html">Networking</a> 
+</td>
+<td>
+</td>
+</tr>
+
+      <!-- =========== Remaining java.* LIBRARIES ========== -->
+
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/standards/index.html">Endorsed 
+Standards Override Mechanism</a><br /> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/extensions/index.html">Extension 
+Mechanism</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/intl/index.html">Internationalization</a> 
+</td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/beans/index.html"> 
+JavaBeans<sup><font size="-2">TM</font></sup> Component API</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jmx/index.html">Java 
+Management Extensions (JMX)</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jni/index.html">Java 
+Native Interface (JNI)</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/security/index.html">Security</a> 
+</td>
+<td>
+</td>
+</tr>
+
+<tr> 
+</tr><tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/xml/index.html">XML
+(JAXP)</a> </td>
+<td>
+</td>
+</tr>
+
+      <!-- =========== INTEGRATION LIBRARIES =============== -->
+
+<tr> 
+<td colspan=2> <b>Integration Libraries</b> </td>
+</tr>
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jdbc/index.html">Java Database Connectivity
+(JDBC<sup><font size="-2">TM</font></sup>)</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/idl/index.html">Java 
+IDL</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jndi/index.html">Java 
+Naming and Directory Interface<sup><font size="-2">TM</font></sup> (JNDI)</a> 
+</td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/rmi/index.html">Remote 
+Method Invocation (RMI)</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/rmi-iiop/index.html">RMI-IIOP</a> 
+</td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/scripting/index.html">Scripting for the Java Platform</a> 
+</td>
+<td>
+</td>
+</tr>
+
+      <!-- =========== USER INTERFACE LIBRARIES =============== -->
+
+<tr> 
+<td colspan=2> <b>User Interface Libraries</b> </td>
+</tr>
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/2d/index.html">2D 
+Graphics and Imaging</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/access/index.html">Accessibility</a> 
+</td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/awt/index.html">Abstract 
+Window Toolkit</a> (AWT) </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/dragndrop/index.html">Drag-and-Drop 
+Data Transfer</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/imageio/index.html">Image 
+I/O</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/imf/index.html">Input 
+Method Framework</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jps/index.html">Print 
+Service</a> </td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/sound/index.html">Sound</a> 
+</td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/swing/index.html">
+Swing Components</a> </td>
+<td>
+</td>
+</tr>
+
+<!-- =========== DEPLOYMENT =============== -->
+
+<tr> 
+<td colspan=2> <b>Deployment</b> </td>
+</tr>
+
+<tr> 
+<td><img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/deployment/index.html">General 
+Deployment</a></td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/plugin/index.html">Java 
+Plug-in</a> </td>
+<p> 
+</p><td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/javaws/index.html">Java 
+Web Start</a> </td>
+<p> 
+</p><td>
+</td>
+</tr>
+
+<!-- =========== TOOL SPECIFICATIONS =============== -->
+
+<tr> 
+<td colspan=2> <b>Tools</b> </td>
+</tr>
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/apt/index.html">Annotation Processing Tool</a></td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/attach/index.html">Attach API</a></td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/javac/index.html">javac Tool</a></td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/javadoc/index.html">Javadoc Tool</a></td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td> <img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jpda/index.html">Java 
+Platform Debugger Architecture (JPDA)</a> </td>
+<p> 
+</p><td>
+</td>
+</tr>
+
+<tr> 
+<td><span style="margin-left: 1.2em;"><img src="images/bullet-round-indented.gif" /> 
+<a href="jdk/api/jpda/jdi/index.html">Java Debug Interface (JDI)</a> 
+</span></td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td><span style="margin-left: 1.2em;"><img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jpda/jdwp-spec.html">Java 
+Debug Wire Protocol (JDWP)</a> </span></td>
+<td>
+</td>
+</tr>
+
+<tr> 
+<td><span style="margin-left: 1.2em;"><img src="images/bullet-round-indented.gif" /> <a href="technotes/guides/jvmti/index.html">JVM<sup><font size="-2">TM</font></sup> 
+Tool Interface (JVM<font size="-2"> </font>TI)</a> (replaces JVMPI and JVMDI)</span></td>
+<td>
+</td>
+</tr>
+
+
+</table>
+
+</blockquote>
+<hr />
+<p>
+</p>
+
+<!-- ============================================================= -->
+
+<a name="tools"></a>
+
+<font size="+1"><b>JDK Tools and Utilities</b></font><br />
+<font size="-1">
+Reference documentation for the JDK tools and utilities. 
+</font>
+<p></p><p>
+
+</p><blockquote>
+
+<table border=0 width=99% cellspacing=10 cellpadding=0>
+<tr>
+<td>
+<a href="technotes/tools/index.html">JDK Tool and Utility Documentation</a>
+<br /> &nbsp; &nbsp; &nbsp; &nbsp;<font size="-1">Including Troubleshooting and Diagnostic Information 
+</font>
+</td>
+<td width="1%" align=RIGHT valign=TOP><i><font size="-1">&nbsp;</font></i>
+</td>
+</tr>
+
+<!--
+<tr>
+<td> 
+<a href="http://java.sun.com/javase/6/pdf/jdk60_ts_guide.pdf">
+Java SE 6 Trouble-Shooting and Diagnostic Guide <font color="#CC00FF">
+</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp;<font size="-1">
+Tools, options, and other items for use in analyzing problems
+</font></td>
+<td>
+&nbsp;
+</td>
+</td></tr>
+-->
+</table>
+</blockquote>
+
+<hr />
+<p>
+</p>
+<!-- ============================================================= -->
+<a name="demos"></a> <font size="+1"><b>Tutorials, Training, Demos, Samples, and Other Information 
+</b></font><br />
+<font size="-1">
+Learning about Java.
+</font>
+<p></p><p>
+</p><blockquote>
+
+<table border=0 width=99% cellspacing=10 cellpadding=0>
+
+<tr> 
+<td> <a href="http://java.sun.com/docs/books/tutorial/index.html"> 
+The Java Tutorial</a> 
+<br /> 
+<font size="-1"> 
+An example-filled guide to the Java programming language and core APIs. 
+</font> </td>
+<td>
+<a href="http://java.sun.com/">Java Technology Home Page</a> 
+</td>
+<td colspan=2>
+&nbsp; <!-- Blank link -->
+</td>
+</tr>
+
+<tr> 
+<td> <a href="http://java.sun.com/learning/index.html"> 
+Training for the Java programming language</a> 
+<br />
+<font size="-1"> 
+Directory of various training resources. </font> </td>
+<td>
+<a href="technotes/samples/demos.html">Demonstration Applets and Applications</a>
+<br />
+<font size="-1"> 
+(included in the JDK documentation bundle and on java.sun.com )
+</font>
+</td>
+</tr>
+
+<tr> 
+<td> <a href="http://developer.java.sun.com/developer/onlineTraining"> 
+On-Line Courses for the Java Programming Language</a> 
+<br /> 
+<font size="-1"> 
+</font> </td>
+<td> 
+<a href="technotes/samples/javaws_samples.html">Java Web Start Samples</a>
+<br />
+<font size="-1"> 
+(included in the JDK documentation bundle and on java.sun.com )
+</font>
+</td>
+</tr>
+
+<tr> 
+<td> 
+<a href="http://www.sun.com/books/java_series.html">
+Java Series Books</a>
+<blockquote>
+<a href="http://java.sun.com/docs/books/effective/index.html"> 
+Effective Java</a> 
+<br /> 
+<font size="-1"> 
+Best selling guide about best programming practices. 
+</blockquote>
+</font> </td>
+<td> <a href="http://java.sun.com/docs/windows_format.html">
+Java Documentation in HTMLHelp and WinHelp Formats</a> 
+<br /> 
+<font size="-1"> 
+For Windows users. </font> </td>
+</tr>
+
+<tr> 
+<td> <a href="http://java.sun.com/docs/codeconv/index.html">
+Code Conventions for the Java Programming Language</a>
+<br /> 
+<font size="-1"> 
+Standards and styles for coding Java programs. </font> 
+</td>
+<td>
+<a href="http://developer.java.sun.com/developer/onlineTraining/new2java/index.html">
+New-to-Java<sup><font size="-2">TM</font></sup> Programming Center</a>.
+<br />
+<font size="-1"> 
+New to the Java Platform.
+</font></td>
+</tr>
+
+<!--
+<tr>
+<td>
+</td>
+</tr>
+-->
+
+</table>
+
+</blockquote>
+
+  <p>&nbsp; </p>
+</blockquote>
+<!-- ======================END OF TEXT INDEX====================== -->
+
+
+
+<!-- ===================BEGINNING OF FOOTER======================= -->
+
+<hr size=3 noshade />
+
+<table summary="layout" border="0" width="100%">
+<tr valign=TOP>
+
+<td>
+   <font size="-2">
+
+   <a href="legal/SMICopyright.html">Copyright &#169;</a> 2006
+   <a href="http://www.sun.com/">Sun Microsystems, Inc.</a>
+   All Rights Reserved.
+
+   </font>
+   <p>
+
+   <font size="-1">
+
+   <a href="http://java.sun.com/javase/6/download.jsp#docs">
+   Download this JDK documentation</a>
+   </font>
+</p><p>
+</p></td>
+
+<td align=RIGHT>
+   <img src="images/sunlogo64x30.gif" alt="Sun" border=0 width=64 height=30 />
+   <br /><br />
+   <font size="+1">
+   <i>Java Software</i>
+   </font>
+</td>
+
+</tr>
+</table>
+
+<!-- ========================END OF FOOTER======================= -->
+
+<pre>
+</pre>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+    <!--<endpoint name="CDKey" implementation="com.joypiegame.gameservice.server.ExchangeCDKeyImpl" url-pattern="/cdkey" />-->
+    <!--<endpoint name="Test" implementation="com.joypiegame.gameservice.server.TestServiceImpl" url-pattern="/test" />-->
+    <endpoint name="cdkey" implementation="com.joypiegame.gameservice.webservice.server.GWServiceImpl" url-pattern="/gws" />
+</endpoints>
+
+
